@@ -19,7 +19,7 @@
                 </div>
                 
                 <div class="section-field mb-2">
-                    <div class="field-widget"> <i class="glyph-icon flaticon-user"></i>
+                    <div class="field-widget"> <i class="fa fa-envelope-o"></i>
                     <input id="email" class="web @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus type="email" placeholder="Enter your email">
                     </div>
                     @error('email')
@@ -30,7 +30,7 @@
                 </div>
                 
                 <div class="section-field mb-1">
-                    <div class="field-widget"> <i class="glyph-icon flaticon-padlock"></i>
+                    <div class="field-widget"> <i class="fa fa-lock"></i>
                     <input id="Password" class="Password @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" type="password" placeholder="Password" name="Enter your password">
                     </div>
                     @error('password')

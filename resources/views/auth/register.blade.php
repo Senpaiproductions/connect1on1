@@ -10,7 +10,7 @@
                     <div class="login-1-form register-1-form clearfix">
                         <h4 class="title divider-3 mb-3 text-white">{{ __('Sign Up') }}</h4>
                         <div class="section-field mb-3">
-                            <div class="field-widget"> <i class="glyph-icon flaticon-user"></i>
+                            <div class="field-widget"> <i class="fa fa-user"></i>
                                 <input id="name" class="web @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" type="text" placeholder="Create a display name">
                             </div>
                             @error('name')
@@ -32,7 +32,7 @@
                         </div>
                         
                         <div class="section-field mb-3">
-                            <div class="field-widget"> <i class="glyph-icon flaticon-padlock"></i>
+                            <div class="field-widget"> <i class="fa fa-lock"></i>
                                 <input id="Password" class="Password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" type="password" placeholder="Create a password">
                             </div>
                             @error('password')
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="section-field mb-3">
-                            <div class="field-widget"> <i class="glyph-icon flaticon-padlock"></i>
+                            <div class="field-widget"> <i class="fa fa-lock"></i>
                                 <input id="ConfirmPassword" class="Password" name="password_confirmation" type="password" placeholder="Confirm your password">
                             </div>
                         </div>
