@@ -72,9 +72,9 @@ class DemoSiteSeeder extends Seeder
         	$storagePath.'/profiles'
         ];
 
-        foreach ($dirs as $dir){
+        /*foreach ($dirs as $dir){
             system("rm -rf ".escapeshellarg($dir));
-        }
+        }*/
     }
 
     private function settingsData()
