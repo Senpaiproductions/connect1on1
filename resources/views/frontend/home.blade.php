@@ -1,0 +1,783 @@
+@extends('layouts.app')
+
+@section('content')
+<!--=================================
+banner -->
+<!--<section id="main-slider" class="fullscreen" style="height: 750px !important;">
+  <div class="banner banner-3 bg-1 bg-overlay-red" style="background-image: url(/images/bg/bg-6.jpg);">
+    <div class="slider-static">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-12 align-self-center">
+                                <h1 class="animated3 text-white">CONNECT1ON1.COM IS A 100% FREE SITE</h1>
+                            </div>
+                            <div class="col-lg-5 col-md-12 mt-5 sm-mt-0">
+                                <div class="banner-form">
+                                    <h4>dating with Cupid love Your perfect match is just a click away</h4>
+                                    <form action="{{ route('frontend.members.index') }}" method="GET" class="form-inner">  
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">I am a</label>
+                                            <div class="col-md-8">
+                                                <select class="selectpicker" name="gender" tabindex="-98">
+                                                    <option>Man</option>
+                                                    <option>Woman</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Seeking a</label>
+                                            <div class="col-md-8">
+                                                <select class="selectpicker" name="seeking" tabindex="-98">
+                                                    <option>Woman</option>
+                                                    <option>Man</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">From</label>
+                                            <div class="col-md-8">
+                                                <select class="selectpicker" name="from" tabindex="-98">
+                                                    <option>18</option>
+                                                    <option>19</option>
+                                                    <option>20</option>
+                                                    <option>21</option>
+                                                    <option>22</option>
+                                                    <option>23</option>
+                                                    <option>24</option>
+                                                    <option>25</option>
+                                                    <option>26</option>
+                                                    <option>27</option>
+                                                    <option>28</option>
+                                                    <option>29</option>
+                                                    <option>30</option>
+                                                    <option>31</option>
+                                                    <option>32</option>
+                                                    <option>33</option>
+                                                    <option>34</option>
+                                                    <option>35</option>
+                                                    <option>36</option>
+                                                    <option>37</option>
+                                                    <option>38</option>
+                                                    <option>39</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">To</label>
+                                            <div class="col-md-8">
+                                                <select class="selectpicker" name="to" tabindex="-98">
+                                                    <option>40</option>
+                                                    <option>41</option>
+                                                    <option>42</option>
+                                                    <option>43</option>
+                                                    <option>44</option>
+                                                    <option>45</option>
+                                                    <option>46</option>
+                                                    <option>47</option>
+                                                    <option>48</option>
+                                                    <option>49</option>
+                                                    <option>50</option>
+                                                    <option>51</option>
+                                                    <option>52</option>
+                                                    <option>53</option>
+                                                    <option>54</option>
+                                                    <option>55</option>
+                                                    <option>56</option>
+                                                    <option>57</option>
+                                                    <option>58</option>
+                                                    <option>59</option>
+                                                    <option>60</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0 text-right col-md-12"> 
+                                            <button type="submit" class="button btn-lg btn-theme full-rounded animated right-icn">
+                                                <span>start flirting <i class="fa fa-search" aria-hidden="true"></i></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+
+        <section id="home-slider" class="fullscreen" style="height: 520px;">
+          <div id="main-slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner"> 
+              <!--/ Carousel item end -->
+              <div class="carousel-item h-100 bg-overlay-red active" style="background: url(/images/bg/bg-1.jpg ) no-repeat 0 0; background-size: cover;">
+                <div class="slider-content">
+                  <div class="container">
+                    <div class="row carousel-caption align-items-center h-100">
+                      <div class="col-md-12 text-right">
+                        <div class="slider-1">
+                          <h1 class="animated2 text-white">Are You <span>Waiting</span> For <span> Dating ?</span></h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item h-100 bg-overlay-red" style="background: url(/images/bg/bg-2.jpg ) no-repeat 0 0; background-size: cover;">
+                <div class="slider-content">
+                  <div class="container">
+                    <div class="row carousel-caption align-items-center h-100">
+                      <div class="col-md-12 text-left">
+                        <div class="slider-1">
+                          <h1 class="animated7 text-white">Meet big <span> and </span> beautiful love <span> here!</span></h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Carousel item end --> 
+            </div>
+            <!-- Controls --> 
+            <a class="left carousel-control" href="#main-slider" data-slide="prev"> <span><i class="fa fa-angle-left"></i></span> </a> <a class="right carousel-control" href="#main-slider" data-slide="next"> <span><i class="fa fa-angle-right"></i></span> </a> </div>
+        </section>
+
+        <section class="form-1 py-3">
+          <div class="container">
+            <div class="banner-form">
+              <form action="{{ route('frontend.members.index') }}" method="GET">  
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group row">
+                      <div class="col-lg-4 col-md-12">
+                        <label class="control-label text-white">I am a</label>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                        <div class="btn-group bootstrap-select">
+                          <select class="selectpicker" name="gender" tabindex="-98">
+                            <option>Man</option>
+                            <option>Woman</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group row">
+                      <div class="col-lg-5 col-md-12">
+                        <label class="control-label text-white">Seeking a</label>
+                      </div>
+                      <div class="col-lg-7 col-md-12">
+                        <div class="btn-group bootstrap-select">
+                          <select class="selectpicker" name="seeking" tabindex="-98">
+                            <option>Woman</option>
+                            <option>Man</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <div class="col-lg-4 col-md-12">
+                            <label class="control-label text-white">From</label>
+                          </div>
+                          <div class="col-lg-8 col-md-12">
+                            <div class="btn-group bootstrap-select">
+                              <select class="selectpicker" name="from" tabindex="-98">
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                                <option>26</option>
+                                <option>27</option>
+                                <option>28</option>
+                                <option>29</option>
+                                <option>30</option>
+                                <option>31</option>
+                                <option>32</option>
+                                <option>33</option>
+                                <option>34</option>
+                                <option>35</option>
+                                <option>36</option>
+                                <option>37</option>
+                                <option>38</option>
+                                <option>39</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <div class="col-lg-4 col-md-12">
+                            <label class="control-label text-white pl-0">To</label>
+                          </div>
+                          <div class="col-lg-8 col-md-12">
+                            <div class="btn-group bootstrap-select">
+                              <select class="selectpicker" name="to" tabindex="-98">
+                                <option>40</option>
+                                <option>41</option>
+                                <option>42</option>
+                                <option>43</option>
+                                <option>44</option>
+                                <option>45</option>
+                                <option>46</option>
+                                <option>47</option>
+                                <option>48</option>
+                                <option>49</option>
+                                <option>50</option>
+                                <option>51</option>
+                                <option>52</option>
+                                <option>53</option>
+                                <option>54</option>
+                                <option>55</option>
+                                <option>56</option>
+                                <option>57</option>
+                                <option>58</option>
+                                <option>59</option>
+                                <option>60</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="submit" class="button btn-lg btn-theme full-rounded animated right-icn">
+                      <span>search <i class="fa fa-search" aria-hidden="true"></i></span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        
+        <!--=================================
+         banner --> 
+        
+        <!--=================================
+         Page Section --> 
+        
+        <!--=================================
+        Step to find your Soul Mate -->
+        
+        <section class="page-section-ptb position-relative timeline-section">
+          <div class="container">
+            <div class="row justify-content-center mb-5 sm-mb-3">
+              <div class="col-md-10 text-center">
+                <h2 class="title divider mb-3">Step to find your Soul Mate</h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed <br>
+                  do eiusmod tempor incididunt ut labore et dolore magna</p>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-lg-10 col-md-12">
+                <ul class="timeline list-inline">
+                  <li>
+                    <div class="timeline-badge"><img class="img-fluid" src="/images/timeline/01.png" alt=""></div>
+                    <div class="timeline-panel">
+                      <div class="timeline-heading text-center">
+                        <h4 class="timeline-title divider-3">CREATE PROFILE</h4>
+                      </div>
+                      <div class="timeline-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="timeline-inverted">
+                    <div class="timeline-badge"><img class="img-fluid" src="/images/timeline/02.png" alt=""></div>
+                    <div class="timeline-panel">
+                      <div class="timeline-heading text-center">
+                        <h4 class="timeline-title divider-3">Find match</h4>
+                      </div>
+                      <div class="timeline-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="timeline-badge"><img class="img-fluid" src="/images/timeline/03.png" alt=""></div>
+                    <div class="timeline-panel">
+                      <div class="timeline-heading text-center">
+                        <h4 class="timeline-title divider-3">START DATING</h4>
+                      </div>
+                      <div class="timeline-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!--=================================
+        They found true love -->
+        
+        <section class="page-section-ptb text-white bg-overlay-black-70 bg text-center" style="background: url(/images/bg/bg-4.jpg) no-repeat 0 0; background-size: cover;">
+          <div class="container">
+            <div class="row justify-content-center mb-5 sm-mb-3">
+              <div class="col-md-10">
+                <h2 class="title divider mb-3">START VIDEO CHAT</h2>
+                <p class="lead">Ready to take your dating chatting experience to the next level? To start using video chat on dating.com , be sure your webcam is in working order and then follow a few easy setup and start video chat.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h5 class="title mb-3">see video</h5>
+                <div class="popup-gallery"> <a href="https://www.youtube.com/embed/8xg3vE8Ie_E" class="play-btn popup-youtube"> <span><i class="glyph-icon flaticon-play-button"></i></span></a> </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Set up your HTML -->
+        
+        <!--=================================
+        Last added profile -->
+        
+        <section class="page-section-ptb profile-slider pb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h2 class="title divider">Last Added Profiles</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel">
+                            <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/05.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Bill Nelson</h5>
+                                                    <span>22 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/06.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Francisco Pierce</h5>
+                                                    <span>23 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/07.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Nelle Townsend</h5>
+                                                    <span>19 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/08.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Glen Bell</h5>
+                                                    <span>22 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/01.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Bill Nelson</h5>
+                                                    <span>23 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                    
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/02.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Francisco Pierce</h5>
+                                                    <span>21 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                            <div class="profile-image clearfix">
+                                                <img class="img-fluid w-100" src="/images/profile/03.jpg" alt="">
+                                            </div>
+                                            <div class="profile-details text-center">
+                                                <h5 class="title">Nelle Townsend</h5>
+                                                <span>19 Years Old</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                
+                                
+                                    <div class="item">
+                                        <a href="profile-details.html" class="profile-item">
+                                            <div class="profile-image clearfix">
+                                                <img class="img-fluid w-100" src="/images/profile/04.jpg" alt="">
+                                            </div>
+                                            <div class="profile-details text-center">
+                                                <h5 class="title">Glen Bell</h5>
+                                                <span>20 Years Old</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                
+                                
+                                    <div class="item">
+                                        <a href="profile-details.html" class="profile-item">
+                                            <div class="profile-image clearfix">
+                                                <img class="img-fluid w-100" src="/images/profile/05.jpg" alt="">
+                                            </div>
+                                            <div class="profile-details text-center">
+                                                <h5 class="title">Bill Nelson</h5>
+                                                <span>22 Years Old</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                   
+                                    <div class="item">
+                                        <a href="profile-details.html" class="profile-item">
+                                            <div class="profile-image clearfix">
+                                                <img class="img-fluid w-100" src="/images/profile/06.jpg" alt="">
+                                            </div>
+                                            <div class="profile-details text-center">
+                                                <h5 class="title">Francisco Pierce</h5>
+                                                <span>23 Years Old</span>
+                                            </div>
+                                        </a> 
+                                    </div>
+                        
+                                    
+                                        <div class="item">
+                                            <a href="profile-details.html" class="profile-item">
+                                                <div class="profile-image clearfix">
+                                                    <img class="img-fluid w-100" src="/images/profile/07.jpg" alt="">
+                                                </div>
+                                                <div class="profile-details text-center">
+                                                    <h5 class="title">Nelle Townsend</h5>
+                                                    <span>19 Years Old</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    
+                                    <div class="item"> <a href="profile-details.html" class="profile-item">
+                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/08.jpg" alt=""></div>
+                    <div class="profile-details text-center">
+                      <h5 class="title">Glen Bell</h5>
+                      <span>22 Years Old</span> </div>
+                    </a> </div>
+                    
+                    <div class="item"> <a href="profile-details.html" class="profile-item">
+                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/01.jpg" alt=""></div>
+                    <div class="profile-details text-center">
+                      <h5 class="title">Bill Nelson</h5>
+                      <span>23 Years Old</span> </div>
+                    </a> </div>
+                    
+                    <div class="item"> <a href="profile-details.html" class="profile-item">
+                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/02.jpg" alt=""></div>
+                    <div class="profile-details text-center">
+                      <h5 class="title">Francisco Pierce</h5>
+                      <span>21 Years Old</span> </div>
+                    </a> </div>
+                    
+                    <div class="item"> <a href="profile-details.html" class="profile-item">
+                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/03.jpg" alt=""></div>
+                    <div class="profile-details text-center">
+                      <h5 class="title">Nelle Townsend</h5>
+                      <span>19 Years Old</span> </div>
+                    </a> </div>
+                    
+                    <div class="item"> <a href="profile-details.html" class="profile-item">
+                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/04.jpg" alt=""></div>
+                    <div class="profile-details text-center">
+                      <h5 class="title">Glen Bell</h5>
+                      <span>20 Years Old</span> </div>
+                    </a> 
+                </div>
+            <!--<div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style=""><i class="fa fa-angle-left fa-2x"></i></div><div class="owl-next" style=""><i class="fa fa-angle-right fa-2x"></i></div></div><div style="display: none;" class="owl-dots"></div></div></div>-->
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!--=================================
+        they found true love --> 
+        
+        <!--=================================
+        Counter -->
+        <section class="page-section-ptb  text-white" style="background: url(/images/pattern/02.png) no-repeat 0 0; background-size: cover;">
+          <div class="container">
+            <div class="row justify-content-center mb-5 sm-mb-3">
+              <div class="col-md-8 text-center">
+                <h2 class="title divider">Animated Fun Facts</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 text-center">
+                <div class="counter"> <img src="/images/counter/01.png" alt=""> <span class="timer" data-to="1600" data-speed="10000">1600</span>
+                  <label>Total Members</label>
+                </div>
+              </div>
+              <div class="col-md-3 text-center">
+                <div class="counter"> <img src="/images/counter/02.png" alt=""> <span class="timer" data-to="750" data-speed="10000">750</span>
+                  <label>Online Members</label>
+                </div>
+              </div>
+              <div class="col-md-3 text-center">
+                <div class="counter"> <img src="/images/counter/03.png" alt=""> <span class="timer" data-to="380" data-speed="10000">380</span>
+                  <label>Men Online</label>
+                </div>
+              </div>
+              <div class="col-md-3 text-center">
+                <div class="counter"> <img src="/images/counter/04.png" alt=""> <span class="timer" data-to="370" data-speed="10000">370</span>
+                  <label>Women Online</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!--=================================
+        Testimonial-->
+        
+        <section class="page-section-ptb pb-130 sm-pb-6 gray-bg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h2 class="title divider">Testimonials</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="owl-carousel-testimonial">
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                    <div class="testimonial-avatar">
+                                        <img alt="" src="/images/thumbnail/thum-2.jpg">
+                                    </div>
+                                    <div class="testimonial-info">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                                    </div>
+                                    <div class="author-info">
+                                        <strong>Miss Jorina Akter - <span>Iraq</span></strong>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                               
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                    <div class="testimonial-avatar"> <img alt="" src="/images/thumbnail/thum-3.jpg"> </div>
+                                    <div class="testimonial-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                    <div class="author-info"> <strong>Adam Cooper - <span> New york</span></strong> </div>
+                                </div>
+                            </div>
+                  
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                <div class="testimonial-avatar"> <img alt="" src="/images/thumbnail/thum-1.jpg"> </div>
+                                <div class="testimonial-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                <div class="author-info"> <strong>Jack Thompson - <span>Usa</span></strong> </div>
+                                </div>
+                            </div>
+                  
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                <div class="testimonial-avatar"> <img alt="" src="/images/thumbnail/thum-2.jpg"> </div>
+                                <div class="testimonial-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                <div class="author-info"> <strong>Miss Jorina Akter - <span>Iraq</span></strong> </div>
+                                </div>
+                            </div>
+                  
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                <div class="testimonial-avatar"> <img alt="" src="/images/thumbnail/thum-3.jpg"> </div>
+                                <div class="testimonial-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                <div class="author-info"> <strong>Adam Cooper - <span> New york</span></strong> </div>
+                                </div>
+                            </div>
+                            
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                <div class="testimonial-avatar"> <img alt="" src="/images/thumbnail/thum-1.jpg"> </div>
+                                <div class="testimonial-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                <div class="author-info"> <strong>Jack Thompson - <span>Usa</span></strong> </div>
+                                </div>
+                            </div>
+                            
+                            <div class="item">
+                                <div class="testimonial left_pos">
+                                <div class="testimonial-avatar"> <img alt="" src="/images/thumbnail/thum-2.jpg"> </div>
+                                <div class="testimonial-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                                <div class="author-info"> <strong>Miss Jorina Akter - <span>Iraq</span></strong> </div>
+                                </div>
+                            </div>
+                
+                
+                <!--<div class="owl-controls">
+                    <div class="owl-nav">
+                        <div class="owl-prev" style="display: none;">
+                            <i class="fa fa-angle-left fa-2x"></i>
+                        </div>
+                        <div class="owl-next" style="display: none;">
+                            <i class="fa fa-angle-right fa-2x"></i>
+                        </div>
+                    </div>
+                    <div style="" class="owl-dots">
+                        <div class="owl-dot active">
+                            <span></span>
+                        </div>
+                        <div class="owl-dot">
+                            <span></span>
+                        </div>
+                        <div class="owl-dot">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>-->
+
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="page-section-ptb">
+          <div class="container">
+            <div class="row justify-content-center mb-5 sm-mb-3">
+              <div class="col-md-8 text-center">
+                <h2 class="title divider mb-3">Our team member</h2>
+                <p class="lead">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu, diam erant convenire et vis. Et essent evertitur sea, vis cu ubique referrentur, sed eu dicant expetendis. Eum cu</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="team boxed">
+                  <div class="team-images"> <img class="img-fluid" src="/images/team/team1.png" alt=""> </div>
+                  <div class="team-description">
+                    <h5 class="title"><a href="team-single.html">Bill Nelson</a></h5>
+                    <span>Founder</span>
+                    <p>Nam nisl lacus, dignissim ac tristique ut, scelerisque eu massa. Vestibulum ligula nunc.</p>
+                    <div class="team-social-icon social-icons color-hover">
+                      <ul>
+                        <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="social-gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="team boxed">
+                  <div class="team-images"> <img class="img-fluid" src="/images/team/team2.png" alt=""> </div>
+                  <div class="team-description">
+                    <h5 class="title"><a href="team-single.html">Francisco Pierce</a></h5>
+                    <span>Photographer</span>
+                    <p>Nam nisl lacus, dignissim ac tristique ut, scelerisque eu massa. Vestibulum ligula nunc.</p>
+                    <div class="team-social-icon social-icons color-hover">
+                      <ul>
+                        <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="social-gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="team boxed">
+                  <div class="team-images"> <img class="img-fluid" src="/images/team/team3.png" alt=""> </div>
+                  <div class="team-description">
+                    <h5 class="title"><a href="team-single.html">Nelle Townsend</a></h5>
+                    <span>Interpreter</span>
+                    <p>Nam nisl lacus, dignissim ac tristique ut, scelerisque eu massa. Vestibulum ligula nunc.</p>
+                    <div class="team-social-icon social-icons color-hover">
+                      <ul>
+                        <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="social-gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="team boxed">
+                  <div class="team-images"> <img class="img-fluid" src="/images/team/team4.png" alt=""> </div>
+                  <div class="team-description">
+                    <div class="team-tilte">
+                      <h5 class="title"><a href="team-single.html">Glen Bell</a></h5>
+                      <span>Administrator</span> </div>
+                    <p>Nam nisl lacus, dignissim ac tristique ut, scelerisque eu massa. Vestibulum ligula nunc.</p>
+                    <div class="team-social-icon social-icons color-hover">
+                      <ul>
+                        <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="social-gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!--=================================
+         page-section -->
+        
+        <section class="page-section-ptb bg fixed text-white bg-overlay-black-50" style="background-image:url(/images/bg/bg-5.jpg)">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h2 class="title title2 divider mb-3">Get The Best
+                  <label>Dating</label>
+                  Team Now</h2>
+                <h5 class="pb-20">Want to hear more story, subscribe for our newsletter</h5>
+                <a class="button  btn-lg btn-theme full-rounded animated right-icn"><span>Subscribe<i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> </div>
+            </div>
+          </div>
+        </section>
+@endsection
