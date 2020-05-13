@@ -88,7 +88,7 @@
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"
-                                >{{ __('Login') }}</a>
+                                >{{ __('Logout') }}</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -124,6 +124,9 @@
                           </li>
                           <li class="hoverTrigger"><a href="{{ route('frontend.members.index') }}">Discover</a>
                           </li>
+                          @auth
+                            <li class="hoverTrigger"><a href="{{ route('user.dashboard') }}"> Connect </a></li>
+                          @endauth
                           <li class="hoverTrigger"><a href="{{ route('about') }}">About Us</a></li>
                           <li class="hoverTrigger"><a href="{{ route('contact') }}"> Contact </a></li>
                         </ul>
