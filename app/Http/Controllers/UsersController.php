@@ -125,7 +125,7 @@ class UsersController extends Controller
             $user->save();
             
             //return redirect()->route('user.dashboard')->with('completed_profile_success');
-            return redirect()->url('/');
+            return redirect()->route('home');
         }
         
         return view('frontend.user.editprofile');
