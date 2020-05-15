@@ -6291,12 +6291,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-$(function () {//var localVideo = document.getElementById('localVideo');
-  //var remoteVideo = document.getElementById('remoteVideo');
-  //var answerButton = document.getElementById('answerCallButton');
-  //answerButton.onclick = answerCall;
-  //$('input[type=file]').on('change', prepareUpload);
-});
+
+/*$(function () {
+    //var localVideo = document.getElementById('localVideo');
+    //var remoteVideo = document.getElementById('remoteVideo');
+    //var answerButton = document.getElementById('answerCallButton');
+
+    //answerButton.onclick = answerCall;
+
+    //$('input[type=file]').on('change', prepareUpload);
+});*/
 var files;
 var conversationID;
 var leftUID;

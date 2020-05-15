@@ -170,7 +170,7 @@
 </template>
 
 <script>
-$(function () {
+/*$(function () {
     //var localVideo = document.getElementById('localVideo');
     //var remoteVideo = document.getElementById('remoteVideo');
     //var answerButton = document.getElementById('answerCallButton');
@@ -178,7 +178,7 @@ $(function () {
     //answerButton.onclick = answerCall;
 
     //$('input[type=file]').on('change', prepareUpload);
-});
+});*/
 
 var files;
 
