@@ -85,7 +85,7 @@ Vue.filter('two_digits', function (value) {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('chat', () => import('./components/Chat'));
+//Vue.component('chat', () => import('./components/Chat'));
 
 Vue.component('dashboard', () => import('./components/dashboard/Dashboard.vue'));
 
@@ -101,12 +101,14 @@ Vue.component('popup-without-convo', () => import('./components/chat/PopupWithou
 */
 
 import findmembers from './components/Members';
+import chat from './components/Chat';
 
 const app = new Vue({
     el: '#app',
 
     components: {
-        findmembers
+        findmembers,
+        chat
     },
 
     data() {

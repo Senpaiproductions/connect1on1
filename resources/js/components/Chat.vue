@@ -203,16 +203,16 @@ function trace(arg) {
     console.log(now + ': ', arg);
 }
 
-//import Modals from './modals/Modals';
+import Modals from './modals/Modals';
 //import VideoComponent from './VideoComponent';
 
 export default {
     props: ['authuser', 'otheruser', 'conversation'],
 
-    /*components: {
+    components: {
         Modals,
-        VideoComponent,
-    },*/
+        //VideoComponent,
+    },
       
     data() {
         return {
