@@ -9,13 +9,19 @@
             </div>
         </div>
         @if (!$users->isEmpty())
-            <findmembers :users="{{ json_encode($users)  }}"></findmembers>
+            @auth
+                <findmembers :users="{{ json_encode($users)  }}" :authuser="{{ json_encode(Auth::user()) }}"></findmembers>
+            @endauth
+
+            @guest
+                <findmembers :users="{{ json_encode($users)  }}" authuser="null"></findmembers>
+            @endguest
         @endif
         <div class="row">
             <div class="col-md-12 text-center">
-                <!--<a class="button  btn-lg btn-theme full-rounded animated right-icn">
+                <a class="button  btn-lg btn-theme full-rounded animated right-icn">
                     <span>Show More<i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span>
-                </a>-->
+                </a>
                 {!! $users->render() !!}
             </div>
             <span v-if="selectedUsers != null" class="main-chat">

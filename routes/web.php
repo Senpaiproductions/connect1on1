@@ -21,14 +21,15 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/get-conversations/{user_id}', 'MessageController@getConversations')->name('messages.conversations');
         Route::get('/messages/user/{id}', 'MessageController@chat')->name('messages.chat');
 
-        Route::any('/chat/{slug}', 'MessageController@chat')->name('user.chat');
-        Route::get('/messages/{conversation_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
-        Route::get('/messages-without-convo/{user_id}', 'MessageController@fetchMessagesWithoutConvo')->name('user.messagesWithoutConvo.fetch');
+        //Route::get('/messages/{conversation_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
+        Route::get('/messages/{user_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
         
         Route::post('/send-message/{conversation_id}', 'MessageController@sendMessage')->name('user.messages.send');
         Route::post('/send-message-without-convo/{user_id}', 'MessageController@sendMessageWithoutConvo')->name('user.messagesWithoutConvo.send');
         
     });
+
+    Route::any('/chat/{slug}', 'MessageController@chats')->name('user.chat');
 
     Route::group(['prefix' => '@me'], function () {
         Route::any('/', 'UsersController@dashboard')->name('user.dashboard')->middleware('profile_completed');

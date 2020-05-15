@@ -6172,17 +6172,187 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['users'],
+  props: ["users", "authuser"],
   components: {
-    'gallery': vue_gallery__WEBPACK_IMPORTED_MODULE_0___default.a
+    gallery: vue_gallery__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   data: function data() {
     return {
-      images: ['https://dummyimage.com/800/ffffff/000000', 'https://dummyimage.com/1600/ffffff/000000', 'https://dummyimage.com/1280/000000/ffffff', 'https://dummyimage.com/400/000000/ffffff'],
+      images: ["https://dummyimage.com/800/ffffff/000000", "https://dummyimage.com/1600/ffffff/000000", "https://dummyimage.com/1280/000000/ffffff", "https://dummyimage.com/400/000000/ffffff"],
       index: null
     };
+  },
+  computed: {
+    notLoggedIn: function notLoggedIn() {
+      return this.authuser == 'null';
+    }
   },
   created: function created() {
     console.log(this.users.data[0].id);
@@ -13058,19 +13228,38 @@ exports.push([module.i, "@charset \"UTF-8\";.blueimp-gallery,.blueimp-gallery>.s
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&lang=css&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Members.vue?vue&type=style&index=0&lang=css& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
+exports.i(__webpack_require__(/*! -!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!./css/modal.css */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./resources/js/components/css/modal.css"), "");
+
+// module
+exports.push([module.i, "\ndl dt[data-v-2b07bdfe] {\r\n    font-family: 'Montserrat', sans-serif;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./resources/js/components/css/modal.css":
+/*!********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./resources/js/components/css/modal.css ***!
+  \********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
 
 
 // module
-exports.push([module.i, "\n.image {\r\n    float: left;\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n    background-position: center center;\r\n    border: 1px solid #ebebeb;\r\n    margin: 5px;\n}\r\n", ""]);
+exports.push([module.i, ".image {\r\n    float: left;\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n    background-position: center center;\r\n    border: 1px solid #ebebeb;\r\n    margin: 5px;\n}\n.profile_card {\r\n      font-size: 14px;\n}\n.col-xs,\r\n   .col-xs-1,\r\n   .col-xs-2,\r\n   .col-xs-3,\r\n   .col-xs-4,\r\n   .col-xs-5,\r\n   .col-xs-6,\r\n   .col-xs-7,\r\n   .col-xs-8,\r\n   .col-xs-9,\r\n   .col-xs-10,\r\n   .col-xs-11,\r\n   .col-xs-12,\r\n   .col-xs-offset-1,\r\n   .col-xs-offset-2,\r\n   .col-xs-offset-3,\r\n   .col-xs-offset-4,\r\n   .col-xs-offset-5,\r\n   .col-xs-offset-6,\r\n   .col-xs-offset-7,\r\n   .col-xs-offset-8,\r\n   .col-xs-offset-9,\r\n   .col-xs-offset-10,\r\n   .col-xs-offset-11,\r\n   .col-xs-offset-12 {\r\n    flex:0 0 auto\n}\n.col-xs {\r\n    flex-grow:1;\r\n    flex-basis:0;\r\n    max-width:100%\n}\n.col-xs-1 {\r\n    flex-basis:8.333%;\r\n    max-width:8.333%\n}\n.col-xs-2 {\r\n    flex-basis:16.667%;\r\n    max-width:16.667%\n}\n.col-xs-3 {\r\n    flex-basis:25%;\r\n    max-width:25%\n}\n.col-xs-4 {\r\n    flex-basis:33.333%;\r\n    max-width:33.333%\n}\n.col-xs-5 {\r\n    flex-basis:41.667%;\r\n    max-width:41.667%\n}\n.col-xs-6 {\r\n    flex-basis:50%;\r\n    max-width:50%\n}\n.col-xs-7 {\r\n    flex-basis:58.333%;\r\n    max-width:58.333%\n}\n.col-xs-8 {\r\n    flex-basis:66.667%;\r\n    max-width:66.667%\n}\n.col-xs-9 {\r\n    flex-basis:75%;\r\n    max-width:75%\n}\n.col-xs-10 {\r\n    flex-basis:83.333%;\r\n    max-width:83.333%\n}\n.col-xs-11 {\r\n    flex-basis:91.667%;\r\n    max-width:91.667%\n}\n.col-xs-12 {\r\n    flex-basis:100%;\r\n    max-width:100%\n}\n.col-xs-offset-1 {\r\n    margin-left:8.333%\n}\n.col-xs-offset-2 {\r\n    margin-left:16.667%\n}\n.col-xs-offset-3 {\r\n    margin-left:25%\n}\n.col-xs-offset-4 {\r\n    margin-left:33.333%\n}\n.col-xs-offset-5 {\r\n    margin-left:41.667%\n}\n.col-xs-offset-6 {\r\n    margin-left:50%\n}\n.col-xs-offset-7 {\r\n    margin-left:58.333%\n}\n.col-xs-offset-8 {\r\n    margin-left:66.667%\n}\n.col-xs-offset-9 {\r\n    margin-left:75%\n}\n.col-xs-offset-10 {\r\n    margin-left:83.333%\n}\n.col-xs-offset-11 {\r\n    margin-left:91.667%\n}\n.start-xs {\r\n    justify-content:flex-start;\r\n    text-align:start\n}\n.center-xs {\r\n    justify-content:center;\r\n    text-align:center\n}\n.end-xs {\r\n    justify-content:flex-end;\r\n    text-align:end\n}\n.top-xs {\r\n    align-items:flex-start\n}\n.middle-xs {\r\n    align-items:center\n}\n.bottom-xs {\r\n    align-items:flex-end\n}\n.baseline-xs {\r\n    align-items:baseline\n}\n.around-xs {\r\n    justify-content:space-around\n}\n.between-xs {\r\n    justify-content:space-between\n}\n.column-xs {\r\n    flex-direction:column\n}\n.wrap-xs {\r\n    flex-wrap:wrap\n}\n.nowrap-xs {\r\n    flex-wrap:nowrap\n}\n.reverse-xs {\r\n    flex-wrap:wrap-reverse\n}\n.first-xs {\r\n    order:-1\n}\n.last-xs {\r\n    order:1\n}\n@media only screen and (min-width:48em) {\n.container {\r\n     width:49em\n}\n.col-sm,\r\n    .col-sm-1,\r\n    .col-sm-2,\r\n    .col-sm-3,\r\n    .col-sm-4,\r\n    .col-sm-5,\r\n    .col-sm-6,\r\n    .col-sm-7,\r\n    .col-sm-8,\r\n    .col-sm-9,\r\n    .col-sm-10,\r\n    .col-sm-11,\r\n    .col-sm-12,\r\n    .col-sm-offset-1,\r\n    .col-sm-offset-2,\r\n    .col-sm-offset-3,\r\n    .col-sm-offset-4,\r\n    .col-sm-offset-5,\r\n    .col-sm-offset-6,\r\n    .col-sm-offset-7,\r\n    .col-sm-offset-8,\r\n    .col-sm-offset-9,\r\n    .col-sm-offset-10,\r\n    .col-sm-offset-11,\r\n    .col-sm-offset-12 {\r\n     flex:0 0 auto\n}\n.col-sm {\r\n     flex-grow:1;\r\n     flex-basis:0;\r\n     max-width:100%\n}\n.col-sm-1 {\r\n     flex-basis:8.333%;\r\n     max-width:8.333%\n}\n.col-sm-2 {\r\n     flex-basis:16.667%;\r\n     max-width:16.667%\n}\n.col-sm-3 {\r\n     flex-basis:25%;\r\n     max-width:25%\n}\n.col-sm-4 {\r\n     flex-basis:33.333%;\r\n     max-width:33.333%\n}\n.col-sm-5 {\r\n     flex-basis:41.667%;\r\n     max-width:41.667%\n}\n.col-sm-6 {\r\n     flex-basis:50%;\r\n     max-width:50%\n}\n.col-sm-7 {\r\n     flex-basis:58.333%;\r\n     max-width:58.333%\n}\n.col-sm-8 {\r\n     flex-basis:66.667%;\r\n     max-width:66.667%\n}\n.col-sm-9 {\r\n     flex-basis:75%;\r\n     max-width:75%\n}\n.col-sm-10 {\r\n     flex-basis:83.333%;\r\n     max-width:83.333%\n}\n.col-sm-11 {\r\n     flex-basis:91.667%;\r\n     max-width:91.667%\n}\n.col-sm-12 {\r\n     flex-basis:100%;\r\n     max-width:100%\n}\n.col-sm-offset-1 {\r\n     margin-left:8.333%\n}\n.col-sm-offset-2 {\r\n     margin-left:16.667%\n}\n.col-sm-offset-3 {\r\n     margin-left:25%\n}\n.col-sm-offset-4 {\r\n     margin-left:33.333%\n}\n.col-sm-offset-5 {\r\n     margin-left:41.667%\n}\n.col-sm-offset-6 {\r\n     margin-left:50%\n}\n.col-sm-offset-7 {\r\n     margin-left:58.333%\n}\n.col-sm-offset-8 {\r\n     margin-left:66.667%\n}\n.col-sm-offset-9 {\r\n     margin-left:75%\n}\n.col-sm-offset-10 {\r\n     margin-left:83.333%\n}\n.col-sm-offset-11 {\r\n     margin-left:91.667%\n}\n.start-sm {\r\n     justify-content:flex-start;\r\n     text-align:start\n}\n.center-sm {\r\n     justify-content:center;\r\n     text-align:center\n}\n.end-sm {\r\n     justify-content:flex-end;\r\n     text-align:end\n}\n.top-sm {\r\n     align-items:flex-start\n}\n.middle-sm {\r\n     align-items:center\n}\n.bottom-sm {\r\n     align-items:flex-end\n}\n.baseline-sm {\r\n     align-items:baseline\n}\n.around-sm {\r\n     justify-content:space-around\n}\n.between-sm {\r\n     justify-content:space-between\n}\n.column-sm {\r\n     flex-direction:column\n}\n.wrap-sm {\r\n     flex-wrap:wrap\n}\n.nowrap-sm {\r\n     flex-wrap:nowrap\n}\n.reverse-sm {\r\n     flex-wrap:wrap-reverse\n}\n.first-sm {\r\n     order:-1\n}\n.last-sm {\r\n     order:1\n}\n}\n@media only screen and (min-width:64em) {\n.container {\r\n     width:65em\n}\n.col-md,\r\n    .col-md-1,\r\n    .col-md-2,\r\n    .col-md-3,\r\n    .col-md-4,\r\n    .col-md-5,\r\n    .col-md-6,\r\n    .col-md-7,\r\n    .col-md-8,\r\n    .col-md-9,\r\n    .col-md-10,\r\n    .col-md-11,\r\n    .col-md-12,\r\n    .col-md-offset-1,\r\n    .col-md-offset-2,\r\n    .col-md-offset-3,\r\n    .col-md-offset-4,\r\n    .col-md-offset-5,\r\n    .col-md-offset-6,\r\n    .col-md-offset-7,\r\n    .col-md-offset-8,\r\n    .col-md-offset-9,\r\n    .col-md-offset-10,\r\n    .col-md-offset-11,\r\n    .col-md-offset-12 {\r\n     flex:0 0 auto\n}\n.col-md {\r\n     flex-grow:1;\r\n     flex-basis:0;\r\n     max-width:100%\n}\n.col-md-1 {\r\n     flex-basis:8.333%;\r\n     max-width:8.333%\n}\n.col-md-2 {\r\n     flex-basis:16.667%;\r\n     max-width:16.667%\n}\n.col-md-3 {\r\n     flex-basis:25%;\r\n     max-width:25%\n}\n.col-md-4 {\r\n     flex-basis:33.333%;\r\n     max-width:33.333%\n}\n.col-md-5 {\r\n     flex-basis:41.667%;\r\n     max-width:41.667%\n}\n.col-md-6 {\r\n     flex-basis:50%;\r\n     max-width:50%\n}\n.col-md-7 {\r\n     flex-basis:58.333%;\r\n     max-width:58.333%\n}\n.col-md-8 {\r\n     flex-basis:66.667%;\r\n     max-width:66.667%\n}\n.col-md-9 {\r\n     flex-basis:75%;\r\n     max-width:75%\n}\n.col-md-10 {\r\n     flex-basis:83.333%;\r\n     max-width:83.333%\n}\n.col-md-11 {\r\n     flex-basis:91.667%;\r\n     max-width:91.667%\n}\n.col-md-12 {\r\n     flex-basis:100%;\r\n     max-width:100%\n}\n.col-md-offset-1 {\r\n     margin-left:8.333%\n}\n.col-md-offset-2 {\r\n     margin-left:16.667%\n}\n.col-md-offset-3 {\r\n     margin-left:25%\n}\n.col-md-offset-4 {\r\n     margin-left:33.333%\n}\n.col-md-offset-5 {\r\n     margin-left:41.667%\n}\n.col-md-offset-6 {\r\n     margin-left:50%\n}\n.col-md-offset-7 {\r\n     margin-left:58.333%\n}\n.col-md-offset-8 {\r\n     margin-left:66.667%\n}\n.col-md-offset-9 {\r\n     margin-left:75%\n}\n.col-md-offset-10 {\r\n     margin-left:83.333%\n}\n.col-md-offset-11 {\r\n     margin-left:91.667%\n}\n.start-md {\r\n     justify-content:flex-start;\r\n     text-align:start\n}\n.center-md {\r\n     justify-content:center;\r\n     text-align:center\n}\n.end-md {\r\n     justify-content:flex-end;\r\n     text-align:end\n}\n.top-md {\r\n     align-items:flex-start\n}\n.middle-md {\r\n     align-items:center\n}\n.bottom-md {\r\n     align-items:flex-end\n}\n.baseline-md {\r\n     align-items:baseline\n}\n.around-md {\r\n     justify-content:space-around\n}\n.between-md {\r\n     justify-content:space-between\n}\n.column-md {\r\n     flex-direction:column\n}\n.wrap-md {\r\n     flex-wrap:wrap\n}\n.nowrap-md {\r\n     flex-wrap:nowrap\n}\n.reverse-md {\r\n     flex-wrap:wrap-reverse\n}\n.first-md {\r\n     order:-1\n}\n.last-md {\r\n     order:1\n}\n}\n@media only screen and (min-width:75em) {\n.container {\r\n     width:76em\n}\n.col-lg,\r\n    .col-lg-1,\r\n    .col-lg-2,\r\n    .col-lg-3,\r\n    .col-lg-4,\r\n    .col-lg-5,\r\n    .col-lg-6,\r\n    .col-lg-7,\r\n    .col-lg-8,\r\n    .col-lg-9,\r\n    .col-lg-10,\r\n    .col-lg-11,\r\n    .col-lg-12,\r\n    .col-lg-offset-1,\r\n    .col-lg-offset-2,\r\n    .col-lg-offset-3,\r\n    .col-lg-offset-4,\r\n    .col-lg-offset-5,\r\n    .col-lg-offset-6,\r\n    .col-lg-offset-7,\r\n    .col-lg-offset-8,\r\n    .col-lg-offset-9,\r\n    .col-lg-offset-10,\r\n    .col-lg-offset-11,\r\n    .col-lg-offset-12 {\r\n     flex:0 0 auto\n}\n.col-lg {\r\n     flex-grow:1;\r\n     flex-basis:0;\r\n     max-width:100%\n}\n.col-lg-1 {\r\n     flex-basis:8.333%;\r\n     max-width:8.333%\n}\n.col-lg-2 {\r\n     flex-basis:16.667%;\r\n     max-width:16.667%\n}\n.col-lg-3 {\r\n     flex-basis:25%;\r\n     max-width:25%\n}\n.col-lg-4 {\r\n     flex-basis:33.333%;\r\n     max-width:33.333%\n}\n.col-lg-5 {\r\n     flex-basis:41.667%;\r\n     max-width:41.667%\n}\n.col-lg-6 {\r\n     flex-basis:50%;\r\n     max-width:50%\n}\n.col-lg-7 {\r\n     flex-basis:58.333%;\r\n     max-width:58.333%\n}\n.col-lg-8 {\r\n     flex-basis:66.667%;\r\n     max-width:66.667%\n}\n.col-lg-9 {\r\n     flex-basis:75%;\r\n     max-width:75%\n}\n.col-lg-10 {\r\n     flex-basis:83.333%;\r\n     max-width:83.333%\n}\n.col-lg-11 {\r\n     flex-basis:91.667%;\r\n     max-width:91.667%\n}\n.col-lg-12 {\r\n     flex-basis:100%;\r\n     max-width:100%\n}\n.col-lg-offset-1 {\r\n     margin-left:8.333%\n}\n.col-lg-offset-2 {\r\n     margin-left:16.667%\n}\n.col-lg-offset-3 {\r\n     margin-left:25%\n}\n.col-lg-offset-4 {\r\n     margin-left:33.333%\n}\n.col-lg-offset-5 {\r\n     margin-left:41.667%\n}\n.col-lg-offset-6 {\r\n     margin-left:50%\n}\n.col-lg-offset-7 {\r\n     margin-left:58.333%\n}\n.col-lg-offset-8 {\r\n     margin-left:66.667%\n}\n.col-lg-offset-9 {\r\n     margin-left:75%\n}\n.col-lg-offset-10 {\r\n     margin-left:83.333%\n}\n.col-lg-offset-11 {\r\n     margin-left:91.667%\n}\n.start-lg {\r\n     justify-content:flex-start;\r\n     text-align:start\n}\n.center-lg {\r\n     justify-content:center;\r\n     text-align:center\n}\n.end-lg {\r\n     justify-content:flex-end;\r\n     text-align:end\n}\n.top-lg {\r\n     align-items:flex-start\n}\n.middle-lg {\r\n     align-items:center\n}\n.bottom-lg {\r\n     align-items:flex-end\n}\n.baseline-lg {\r\n     align-items:baseline\n}\n.around-lg {\r\n     justify-content:space-around\n}\n.between-lg {\r\n     justify-content:space-between\n}\n.column-lg {\r\n     flex-direction:column\n}\n.wrap-lg {\r\n     flex-wrap:wrap\n}\n.nowrap-lg {\r\n     flex-wrap:nowrap\n}\n.reverse-lg {\r\n     flex-wrap:wrap-reverse\n}\n.first-lg {\r\n     order:-1\n}\n.last-lg {\r\n     order:1\n}\n}\n.box,\r\n   .box-first,\r\n   .box-large,\r\n   .box-nested,\r\n   .box-row {\r\n    position:relative;\r\n    padding:1rem;\r\n    min-height:1rem;\r\n    margin-bottom:0;\r\n    background:#007fff;\r\n    border:1px solid #fff;\r\n    border-radius:2px;\r\n    overflow:hidden;\r\n    text-align:center;\r\n    color:#fff\n}\n.box-row {\r\n    margin-bottom:1rem\n}\n.box-nested {\r\n    background:#036;\r\n    border-color:#007fff\n}\n.box-first {\r\n    background:#06c;\r\n    border-color:#007fff\n}\n.box-large {\r\n    height:8rem\n}\n.btn {\r\n    position:relative;\r\n    padding:.5em 2em .4em;\r\n    color:#8c9aaa;\r\n    height:auto;\r\n    font-size:112.5%;\r\n    font-family:conv_poppins_medium,sans-serif;\r\n    line-height:1;\r\n    background:transparent;\r\n    border:2px solid #8c9aaa;\r\n    border-radius:1.5625em;\r\n    box-shadow:none;\r\n    transition:background-color .2s cubic-bezier(.4,0,.2,1)\n}\n.btn:hover {\r\n    color:#fff;\r\n    background:#97a6b8;\r\n    border:2px solid #97a6b8\n}\n.btn:hover .icon {\r\n    fill:#fff\n}\n.btn.active.focus,\r\n   .btn.active:focus,\r\n   .btn.focus,\r\n   .btn:active,\r\n   .btn:active.focus,\r\n   .btn:active:focus,\r\n   .btn:focus {\r\n    outline:0;\r\n    color:#fff;\r\n    background:#828f9e;\r\n    border:2px solid #828f9e;\r\n    box-shadow:none\n}\n.btn.active.focus .icon,\r\n   .btn.active:focus .icon,\r\n   .btn.focus .icon,\r\n   .btn:active.focus .icon,\r\n   .btn:active .icon,\r\n   .btn:active:focus .icon,\r\n   .btn:focus .icon {\r\n    fill:#fff\n}\n.btn.disabled,\r\n   .btn:disabled,\r\n   .btn[disabled][disabled] {\r\n    color:#eceef1;\r\n    background:#fff;\r\n    border-color:#fff\n}\n.btn-group-lg>.btn,\r\n   .btn.btn-lg {\r\n    font-size:137.5%!important;\r\n    font-family:conv_poppins_medium,sans-serif\n}\n.btn-group-sm>.btn,\r\n   .btn.btn-sm {\r\n    font-size:87.5%\n}\n.btn-primary,\r\n   a.btn-primary {\r\n    color:#fff;\r\n    outline:0;\r\n    background:#ee486d;\r\n    border:2px solid #ee486d\n}\n.btn-primary:hover,\r\n   a.btn-primary:hover {\r\n    background:#f55678;\r\n    border-color:#f55678\n}\n.btn-primary.active.focus,\r\n   .btn-primary.active:focus,\r\n   .btn-primary.focus,\r\n   .btn-primary:active,\r\n   .btn-primary:active.focus,\r\n   .btn-primary:active:focus,\r\n   .btn-primary:focus,\r\n   a.btn-primary.active.focus,\r\n   a.btn-primary.active:focus,\r\n   a.btn-primary.focus,\r\n   a.btn-primary:active,\r\n   a.btn-primary:active.focus,\r\n   a.btn-primary:active:focus,\r\n   a.btn-primary:focus {\r\n    outline:0;\r\n    background:#d6395b;\r\n    border:2px solid #d6395b\n}\n.btn-primary.disabled,\r\n   .btn-primary:disabled,\r\n   .btn-primary[disabled][disabled],\r\n   a.btn-primary.disabled,\r\n   a.btn-primary:disabled,\r\n   a.btn-primary[disabled][disabled] {\r\n    color:#fff;\r\n    background:#eceef1;\r\n    border-color:#eceef1\n}\n.btn-default.disabled,\r\n   .btn-default:disabled,\r\n   .btn-default[disabled][disabled] {\r\n    color:#c2cdd2;\r\n    background:#eceef1;\r\n    border-color:#eceef1\n}\n.open>.btn-primary.dropdown-toggle.focus,\r\n   .open>.btn-primary.dropdown-toggle:focus,\r\n   .open>.btn-primary.dropdown-toggle:hover {\r\n    outline:0;\r\n    background:#d6395b;\r\n    border:2px solid #d6395b\n}\n.btn-link {\r\n    color:#ee486d;\r\n    font-family:conv_poppins_regular,sans-serif;\r\n    border-color:transparent\n}\n.btn-link.active.focus,\r\n   .btn-link.active:focus,\r\n   .btn-link.focus,\r\n   .btn-link:active,\r\n   .btn-link:active.focus,\r\n   .btn-link:active:focus,\r\n   .btn-link:focus,\r\n   .btn-link:hover {\r\n    color:#ee486d;\r\n    background:transparent;\r\n    border-color:transparent\n}\n.btn-group-lg>.btn-link.btn,\r\n   .btn-link.btn-lg {\r\n    font-family:conv_poppins_regular,sans-serif\n}\n.btn--dismiss .icon {\r\n    position:relative;\r\n    top:2px;\r\n    margin-right:4px;\r\n    width:14px;\r\n    height:14px;\r\n    fill:#8c9aaa\n}\n.btn--reply {\r\n    color:#43b4b9;\r\n    border-color:#43b4b9\n}\n.btn--reply .icon {\r\n    position:relative;\r\n    top:1px;\r\n    margin-right:4px;\r\n    width:14px;\r\n    height:14px;\r\n    fill:#43b4b9\n}\n.btn--reply.active.focus,\r\n   .btn--reply.active:focus,\r\n   .btn--reply.focus,\r\n   .btn--reply:active,\r\n   .btn--reply:active.focus,\r\n   .btn--reply:active:focus,\r\n   .btn--reply:focus,\r\n   .btn--reply:hover {\r\n    background:#43b4b9;\r\n    border-color:#43b4b9\n}\ndl {\r\n    margin:0 2.5rem 0 0;\r\n    padding:0;\r\n    color:#8c9aaa\n}\ndl dt {\r\n    font-size:75%;\r\n    text-transform:uppercase\n}\ndl dd {\r\n    margin:0;\r\n    color:#696f7e\n}\ninput[type=text],\r\n   textarea {\r\n    -webkit-appearance:none\n}\n.list {\r\n    margin:0;\r\n    padding:0\n}\n.list li {\r\n    margin-bottom:.1875em;\r\n    list-style:none\n}\n.list li a {\r\n    padding:.625em .9375em;\r\n    display:block;\r\n    color:#353942;\r\n    background:#eceef1\n}\n.list li a:hover {\r\n    color:#fff;\r\n    background:#ee486d\n}\n.tabs--neutral ul {\r\n    margin:0 auto;\r\n    border-top:1px solid #eceef1;\r\n    border-bottom:1px solid #eceef1\n}\n.tabs--neutral li {\r\n    background-color:transparent;\r\n    background-position:50%;\r\n    background-repeat:no-repeat;\r\n    margin-right:5px;\r\n    border:none;\r\n    font-size:1em\n}\n.tabs--neutral li a {\r\n    position:relative;\r\n    margin:0;\r\n    padding:15px;\r\n    border:0;\r\n    width:100%;\r\n    height:100%;\r\n    background-color:transparent\n}\n.tabs--neutral li a .notification--circle {\r\n    position:absolute;\r\n    top:15px;\r\n    left:100%;\r\n    margin-left:-10px;\r\n    width:8px;\r\n    height:8px\n}\n.tabs--neutral li.active a {\r\n    background-color:transparent\n}\n.tabs--neutral li.phrends-tab a:active,\r\n   .tabs--neutral li.phrends-tab a:focus,\r\n   .tabs--neutral li.phrends-tab a:hover,\r\n   .tabs--neutral li.starnotifications-tab a:active,\r\n   .tabs--neutral li.starnotifications-tab a:focus,\r\n   .tabs--neutral li.starnotifications-tab a:hover {\r\n    border:0;\r\n    outline:0;\r\n    background-color:transparent\n}\n.tabs--neutral li.active,\r\n   .tabs--neutral li.additionalActions.active,\r\n   .tabs--neutral li.additionalActions:hover,\r\n   .tabs--neutral li.additionalActions a:active,\r\n   .tabs--neutral li.additionalActions a:focus,\r\n   .tabs--neutral li.additionalActions a:hover,\r\n   .tabs--neutral li:hover {\r\n    background-color:transparent\n}\n.tabs--neutral li.active>a,\r\n   .tabs--neutral li.active>a:focus,\r\n   .tabs--neutral li.active>a:hover {\r\n    color:#43b4b9;\r\n    font-family:conv_poppins_semibold,sans-serif;\r\n    border:0;\r\n    outline:0\n}\n@media (max-width:1366px) {\n.tabs--neutral li,\r\n    .tabs--neutral li a {\r\n     font-size:1em!important\n}\n.tabs--neutral li a {\r\n     padding:8px 10px\n}\n.tabs--neutral li a .notification--circle {\r\n     top:10px;\r\n     margin-left:-6px;\r\n     width:7px;\r\n     height:7px\n}\n}\n.bootstrap-switch {\r\n    width:100%!important;\r\n    max-width:120px;\r\n    height:30px;\r\n    background-color:#c2cdd2;\r\n    background-repeat:no-repeat;\r\n    background-size:120px 30px;\r\n    border-radius:20px\n}\n.bootstrap-switch .bootstrap-switch-label {\r\n    position:absolute;\r\n    top:2px;\r\n    width:60px;\r\n    height:26px;\r\n    background-color:#eceef1;\r\n    background-repeat:no-repeat;\r\n    background-position:50%;\r\n    background-size:22px;\r\n    border-radius:20px;\r\n    transition:left .28s cubic-bezier(.4,0,.2,1)\n}\n.bootstrap-switch .bootstrap-switch-handle-off,\r\n   .bootstrap-switch .bootstrap-switch-handle-on {\r\n    height:30px\n}\n.bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label {\r\n    left:2px\n}\n.bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {\r\n    left:58px;\r\n    background-color:#fff\n}\n.view-browse #debug-footer,\r\n   .view-browse #debug-log {\r\n    display:none\n}\n.view-browse .container__cards {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-direction:normal;\r\n    -webkit-box-orient:horizontal;\r\n    -webkit-flex-direction:row;\r\n    -moz-flex-direction:row;\r\n    -ms-flex-direction:row;\r\n    flex-direction:row;\r\n    -webkit-flex-wrap:wrap;\r\n    -moz-flex-wrap:wrap;\r\n    -ms-flex-wrap:wrap;\r\n    flex-wrap:wrap;\r\n    padding-top:2px;\r\n    padding-left:10px;\r\n    background-color:#fff;\r\n    flex-flow:row wrap;\r\n    align-content:flex-start;\r\n    justify-content:space-between\n}\n.view-browse .container__cards .opac .mc--frost {\r\n    background-color:#fff;\r\n    opacity:.4\n}\n.view-browse .container__cards .full .mc--frost {\r\n    background-color:transparent;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main {\r\n    flex:0;\r\n    flex-basis:250px;\r\n    background-color:#e3f3f5;\r\n    border:2px solid #fff;\r\n    position:relative\n}\n.view-browse .container__cards .mc__main .mc--frost {\r\n    position:absolute;\r\n    width:100%;\r\n    height:100%;\r\n    top:0\n}\n.view-browse .container__cards .mc__main .image__container {\r\n    position:relative;\r\n    overflow:hidden\n}\n.view-browse .container__cards .mc__main .image__container .mc--image {\r\n    width:100%;\r\n    border:none\n}\n.view-browse .container__cards .mc__main .suggest-card {\r\n    flex:1;\r\n    flex-basis:100%;\r\n    background-color:#e3f3f5;\r\n    padding:20px;\r\n    width:100%;\r\n    min-height:65px;\r\n    position:relative;\r\n    overflow:hidden;\r\n    text-align:center\n}\n.view-browse .container__cards .mc__main .suggest-card a {\r\n    color:#43b4b9\n}\n.view-browse .container__cards .mc__main .mc__top__container {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack:end;\r\n    -ms-flex-pack:end;\r\n    -webkit-justify-content:flex-end;\r\n    -moz-justify-content:flex-end;\r\n    justify-content:flex-end;\r\n    position:absolute;\r\n    z-index:2;\r\n    width:100%;\r\n    padding:10px\n}\n.view-browse .container__cards .mc__main .mc__top__container .mc--star {\r\n    background-image:url(\"/images/svg/sprite-star.svg\");\r\n    background-size:52px 24px;\r\n    width:26px;\r\n    height:24px;\r\n    display:none;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc__top__container .mc--star.off {\r\n    background-position:0 0\n}\n.view-browse .container__cards .mc__main .mc__top__container .mc--star.on {\r\n    background-position:-26px 0\n}\n.view-browse .container__cards .mc__main .mc__name__container {\r\n    color:#fff;\r\n    position:absolute;\r\n    width:100%;\r\n    z-index:2;\r\n    text-align:center;\r\n    margin-top:-40px;\r\n    padding:10px;\r\n    background-image:-webkit-gradient(linear,left bottom,left top,from(rgba(50,50,50,.5)),to(transparent),color-stop(0,#333));\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-align:baseline;\r\n    -ms-flex-align:baseline;\r\n    -webkit-align-items:baseline;\r\n    -moz-align-items:baseline;\r\n    align-items:baseline;\r\n    -webkit-box-pack:center;\r\n    -ms-flex-pack:center;\r\n    -webkit-justify-content:center;\r\n    -moz-justify-content:center;\r\n    justify-content:center\n}\n.view-browse .container__cards .mc__main .mc__name__container .mc--name {\r\n    font-family:conv_poppins_medium,sans-serif;\r\n    font-size:16px;\r\n    max-width:205px;\r\n    display:block;\r\n    white-space:nowrap\n}\n.view-browse .container__cards .mc__main .mc__name__container .mc--age {\r\n    font-size:12px;\r\n    display:block;\r\n    white-space:nowrap;\r\n    color:#eceef1\n}\n.view-browse .container__cards .mc__main .mc--buttons {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-direction:normal;\r\n    -webkit-box-orient:horizontal;\r\n    -webkit-flex-direction:row;\r\n    -moz-flex-direction:row;\r\n    -ms-flex-direction:row;\r\n    flex-direction:row;\r\n    -ms-flex-pack:distribute;\r\n    -webkit-justify-content:space-around;\r\n    -moz-justify-content:space-around;\r\n    justify-content:space-around;\r\n    position:absolute;\r\n    background-color:#f5f6f8;\r\n    padding:20px;\r\n    z-index:3;\r\n    width:100%;\r\n    box-shadow:0 1px 3px 0 rgba(52,57,65,.3)\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--img {\r\n    background:url(\"/images/svg/sprite-buttons.svg\");\r\n    width:40px;\r\n    height:40px\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--chat.on {\r\n    background-position:0 -80px;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--phone.available,\r\n   .view-browse .container__cards .mc__main .mc--buttons .mc--phone.on {\r\n    background-position:0 -40px;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--video.available,\r\n   .view-browse .container__cards .mc__main .mc--buttons .mc--video.on {\r\n    background-position:0 0;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--chat.off {\r\n    background-position:-40px -80px\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--phone.away,\r\n   .view-browse .container__cards .mc__main .mc--buttons .mc--phone.off {\r\n    background-position:-40px -40px\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--video.away,\r\n   .view-browse .container__cards .mc__main .mc--buttons .mc--video.off {\r\n    background-position:-40px 0\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--chat.busy {\r\n    background-position:-80px -80px;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--phone.busy {\r\n    background-position:-80px -40px;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--video.busy {\r\n    background-position:-80px 0;\r\n    cursor:pointer\n}\n.view-browse .container__cards .mc__main .mc--buttons .mc--video.arrange {\r\n    background-position:-120px 0;\r\n    cursor:pointer\n}\n.view-browse .container__cards .suggest-main {\r\n    flex-basis:100%!important\n}\n.view-browse .mc__main.next__card {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    -webkit-box-align:center;\r\n    -ms-flex-align:center;\r\n    -webkit-align-items:center;\r\n    -moz-align-items:center;\r\n    align-items:center;\r\n    background-color:#f5f6f8;\r\n    display:flex\n}\n.view-browse .mc__main.next__card .next__card__element {\r\n    font-size:1.3125em;\r\n    font-weight:700;\r\n    color:#8c9aaa;\r\n    border:2px solid #8c9aaa;\r\n    background-color:#fff;\r\n    padding:5px 40px;\r\n    border-radius:40px;\r\n    margin:10px\n}\n.view-browse .mc__main.next__card:hover {\r\n    background-color:#eceef1;\r\n    cursor:pointer\n}\n.view-browse .mc__main.next__card:hover .next__card__element {\r\n    color:#fff;\r\n    border:2px solid #8c9aaa;\r\n    background-color:#8c9aaa\n}\n.view-browse .browse--pagination {\r\n    color:#8c9aaa;\r\n    padding:0 20px\n}\n.view-browse .browse--pagination span {\r\n    font-family:conv_poppins_semibold,sans-serif\n}\n.view-browse .browse__links {\r\n    color:#c2cdd2;\r\n    font-size:.75em;\r\n    padding:0 17px 80px\n}\n.view-browse .browse__links .delim {\r\n    padding:0 10px\n}\n@media (max-width:1920px) {\n.view-browse .container__cards .mc__main {\r\n     flex-basis:250px\n}\n}\n@media (max-width:1320px) {\n.view-browse .arrange-notif {\r\n     width:224px\n}\n.view-browse .container__cards .mc__main {\r\n     flex-basis:244px\n}\n}\n@media (max-width:1024px) {\n.view-browse .arrange-notif {\r\n     width:205px;\r\n     margin-top:-130px\n}\n.view-browse .container__cards .mc__main {\r\n     flex-basis:221px\n}\n.view-browse .container__cards .mc__main .mc__name__container .mc--name {\r\n     font-size:10px\n}\n}\n@media (max-width:768px) {\n.view-browse .arrange-notif {\r\n     display:none!important\n}\n.view-browse .flex--overflow--browse .btn {\r\n     font-size:13px\n}\n.view-browse .container__nomatches {\r\n     font-size:12px\n}\n.view-browse .container__cards .mc__main {\r\n     flex-basis:181.5px\n}\n.view-browse .container__cards .mc__main .mc--buttons {\r\n     padding:8px\n}\n}\n@media (max-width:375px) {\n.view-browse .container__cards .mc__main {\r\n     flex-basis:50%\n}\n.view-browse .container__cards .mc__main .mc--buttons {\r\n     padding:5px\n}\n.view-browse .container__cards .mc__main .mc__name__container .mc--name {\r\n     font-size:9px\n}\n}\n.modal__profile__container {\r\n    font-size:14px;\r\n    height:65vh;\r\n    overflow-y:auto;\r\n    overflow-x:hidden;\r\n    max-height:1100px;\r\n    min-width:800px!important\n}\n.modal__profile__container .top__part__fixed {\r\n    background-color:#fff;\r\n    padding:15px 25px 0;\r\n    position:fixed;\r\n    top:1px;\r\n    left:-74px;\r\n    z-index:16;\r\n    width:770px;\r\n    -webkit-box-shadow:0 2px 2px 0 #b2b2b2;\r\n    -moz-box-shadow:0 2px 2px 0 #b2b2b2;\r\n    box-shadow:0 2px 2px 0 #b2b2b2\n}\n.modal__profile__container .top__phrend__name {\r\n    margin-top:-150px;\r\n    position:relative;\r\n    z-index:1\n}\n.modal__profile__container .container-close-pos {\r\n    position:fixed;\r\n    width:840px;\r\n    z-index:-2\n}\n.modal__profile__container .container-close-pos a .icon {\r\n    width:20px;\r\n    height:20px;\r\n    fill:#fff\n}\n.modal__profile__container .container-close-pos a:after {\r\n    content:\"\";\r\n    position:absolute;\r\n    top:0;\r\n    right:0;\r\n    bottom:0;\r\n    left:0\n}\n.modal__profile__container .container-close-pos .end-xs {\r\n    text-align:right\n}\n.modal__profile__container .container-ctrls-pos {\r\n    position:fixed;\r\n    width:898px;\r\n    left:-124px;\r\n    top:200px;\r\n    z-index:-2\n}\n.modal__profile__container .container-ctrls-pos .end-xs {\r\n    text-align:right\n}\n.modal__profile__container .container-ctrls-pos .mod-arrow-size {\r\n    width:46px;\r\n    height:129px;\r\n    border:none\n}\n@media (-ms-high-contrast:none),screen and (-ms-high-contrast:active) {\n.modal__profile__container .top__part__fixed {\r\n     position:absolute\n}\n.modal__profile__container .container-ctrls-pos {\r\n     left:auto;\r\n     transform:translateX(-5.6%)\n}\n}\n.modal__profile__container .modal__profile__details .text-error {\r\n    color:#ed523f;\r\n    font-size:13px\n}\n.modal__profile__container .modal__profile__details .prof--image--size {\r\n    width:200px;\r\n    height:200px;\r\n    border:none\n}\n.modal__profile__container .modal__profile__details .prof--image--size.large {\r\n    width:100%;\r\n    height:100%;\r\n    border:none\n}\n.modal__profile__container .modal__profile__details .prof--expand--pos {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack:end;\r\n    -ms-flex-pack:end;\r\n    -webkit-justify-content:flex-end;\r\n    -moz-justify-content:flex-end;\r\n    justify-content:flex-end;\r\n    height:40px;\r\n    background:url(\"/images/opac-bg-name.png\");\r\n    position:relative;\r\n    margin-top:-40px;\r\n    width:100%\n}\n.modal__profile__container .modal__profile__details .prof--expand--pos .icon--pos {\r\n    color:#fff;\r\n    width:20px;\r\n    height:20px;\r\n    margin-top:10px;\r\n    margin-right:10px\n}\n.modal__profile__container .modal__profile__details .prof--contact--box {\r\n    -webkit-box-flex:2;\r\n    -webkit-flex:2;\r\n    -moz-box-flex:2;\r\n    -moz-flex:2;\r\n    -ms-flex:2;\r\n    flex:2;\r\n    flex-basis:65%;\r\n    background-color:#f5f6f8;\r\n    padding:10px 15px;\r\n    margin-bottom:20px\n}\n.modal__profile__container .modal__profile__details .prof--contact--box .container-msg-buttons {\r\n    padding:0 0 0 10px;\r\n    margin:0;\r\n    width:100%\n}\n.modal__profile__container .modal__profile__details .prof--contact--box .container-msg-buttons .row {\r\n    width:100%\n}\n.modal__profile__container .modal__profile__details .prof--contact--box .container-msg-buttons span#insufficient-funds-message {\r\n    font-size:.875em\n}\n.modal__profile__container .modal__profile__details .profile--description {\r\n    font-size:16px;\r\n    color:#696f7e;\r\n    min-height:50px;\r\n    padding-right:10px\n}\n.modal__profile__container .modal__profile__details .row--line2 {\r\n    border-top:2px solid #eceef1;\r\n    padding-top:10px;\r\n    margin-top:20px;\r\n    margin-bottom:0\n}\n.modal__profile__container .modal__profile__details .four--words-label {\r\n    background-color:#eceef1;\r\n    padding:8px 10px;\r\n    margin-right:10px;\r\n    margin-bottom:10px;\r\n    max-width:365px;\r\n    word-break:break-word\n}\n.modal__profile__container .modal__profile__details #message-box button:disabled,\r\n   .modal__profile__container .modal__profile__details .btn-send.disabled,\r\n   .modal__profile__container .modal__profile__details .btn-send:disabled,\r\n   .modal__profile__container .modal__profile__details .btn-send[disabled][disabled] {\r\n    color:#8c9aaa;\r\n    background:#c2cdd2;\r\n    border-color:#c2cdd2;\r\n    cursor:no-drop\n}\n.modal__profile__container .modal__profile__details .btn--suggest {\r\n    margin-right:10px;\r\n    padding-left:18px;\r\n    padding-right:18px\n}\n.modal__profile__container .modal__profile__details .btn--send--width {\r\n    padding-left:18px;\r\n    padding-right:18px\n}\n.modal__profile__container .modal__profile__details .btn--addtofavorites {\r\n    color:#8c9aaa;\r\n    border-color:#8c9aaa;\r\n    background:url(\"/images/svg/prof-star-off.svg\") no-repeat;\r\n    background-position:12px 7px;\r\n    padding:10px 20px 10px 40px\n}\n.modal__profile__container .modal__profile__details .btn--favorited {\r\n    color:#43b4b9;\r\n    border-color:#43b4b9;\r\n    background:#e3f3f5 url(\"/images/svg/prof-star-on.svg\") no-repeat;\r\n    background-position:12px 7px;\r\n    padding:10px 20px 10px 40px\n}\n.modal__profile__container .modal__profile__details .profile-display-name {\r\n    font-size:21px\n}\n.modal__profile__container .modal__profile__details .mc--img {\r\n    background:url(\"/images/svg/sprite-buttons.svg\");\r\n    width:40px;\r\n    height:40px\n}\n.modal__profile__container .modal__profile__details .mc--chat.on {\r\n    background-position:0 -80px;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--phone.available,\r\n   .modal__profile__container .modal__profile__details .mc--phone.on {\r\n    background-position:0 -40px;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--video.available,\r\n   .modal__profile__container .modal__profile__details .mc--video.on {\r\n    background-position:0 0;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--chat.off {\r\n    background-position:-40px -80px\n}\n.modal__profile__container .modal__profile__details .mc--phone.away,\r\n   .modal__profile__container .modal__profile__details .mc--phone.off {\r\n    background-position:-40px -40px\n}\n.modal__profile__container .modal__profile__details .mc--video.away,\r\n   .modal__profile__container .modal__profile__details .mc--video.off {\r\n    background-position:-40px 0\n}\n.modal__profile__container .modal__profile__details .mc--chat.busy {\r\n    background-position:-80px -80px;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--phone.busy {\r\n    background-position:-80px -40px;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--video.busy {\r\n    background-position:-80px 0;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--video.arrange {\r\n    background-position:-120px 0;\r\n    cursor:pointer\n}\n.modal__profile__container .modal__profile__details .mc--video.arrange:hover:after {\r\n    content:\"Click this icon to let your offline phrend know that you\\2019    d like to arrange a time to video chat.\";\r\n    background-color:#bbe07f;\r\n    color:#333;\r\n    display:block;\r\n    position:absolute;\r\n    width:200px!important;\r\n    word-wrap:break-word;\r\n    text-align:left;\r\n    z-index:14;\r\n    font-size:11px;\r\n    border-radius:4px;\r\n    padding:5px;\r\n    margin-left:-160px;\r\n    margin-top:50px\n}\n.modal__profile__container .modal__profile__details .prof--textarea--border {\r\n    border:2px solid #c2cdd2;\r\n    border-radius:14px;\r\n    padding:8px 8px 4px;\r\n    background-color:#fff;\r\n    margin-top:10px;\r\n    margin-bottom:10px;\r\n    font-size:.875em\n}\n.modal__profile__container .modal__profile__details .prof--textarea--border .prof-textarea-box {\r\n    resize:none;\r\n    width:100%;\r\n    height:36px;\r\n    border:none;\r\n    /*! outline:0; */padding-right:10px;\n}\n.modal__profile__container .modal__profile__details .text--pay--direction {\r\n    font-size:.875em;\r\n    color:#353942;\r\n    padding:10px;\r\n    position:absolute;\r\n    border:2px solid #c2cdd2;\r\n    margin-top:-70px;\r\n    background-color:#fff;\r\n    border-radius:14px;\r\n    z-index:9999;\r\n    margin-right:20px;\r\n    display:none\n}\n.modal__profile__container .modal__profile__details .text--pay--direction.show {\r\n    display:block\n}\n.modal__profile__container .modal__profile__details .text--pay--direction.hide {\r\n    display:none\n}\n.modal__profile__container .modal__profile__details .text--pay--direction span {\r\n    font-size:1.125em\n}\n.modal__profile__container .modal__profile__details .row__additional__images {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-direction:normal;\r\n    -webkit-box-orient:horizontal;\r\n    -webkit-flex-direction:row;\r\n    -moz-flex-direction:row;\r\n    -ms-flex-direction:row;\r\n    flex-direction:row;\r\n    margin-top:10px;\r\n    margin-bottom:20px\n}\n.modal__profile__container .modal__profile__details .row__additional__images .img--box {\r\n    width:50px;\r\n    height:50px;\r\n    background-color:#8c9aaa;\r\n    margin-right:10px\n}\n@media only screen and (max-width:1024px) {\n#profileCardHolder .quiz-modal-width {\r\n     width:680px\n}\n.modal__profile__container {\r\n     width:680px!important;\r\n     min-width:680px!important;\r\n     margin-left:0!important\n}\n.modal__profile__container .top__part__fixed {\r\n     width:668px;\r\n     left:0\n}\n.modal__profile__container .container-close-pos {\r\n     width:710px\n}\n.modal__profile__container .container-ctrls-pos {\r\n     width:778px;\r\n     left:-49px\n}\n}\n@media only screen and (max-width:768px) {\n#profileCardHolder .quiz-modal-width {\r\n     width:425px;\r\n     margin:10px auto\n}\n.modal__profile__container {\r\n     width:425px!important;\r\n     min-width:425px!important\n}\n.modal__profile__container .top__part__fixed {\r\n     width:390px;\r\n     height:auto!important;\r\n     left:0;\r\n     position:relative;\r\n     box-shadow:none;\r\n     padding:0\n}\n.modal__profile__container .top__part__fixed .top__phrend__name {\r\n     margin-top:10px\n}\n.modal__profile__container .top__part__fixed .expand1 {\r\n     height:200px;\r\n     margin:10px auto\n}\n.modal__profile__container .top__part__fixed .baseline-xs,\r\n    .modal__profile__container .top__part__fixed .profile-desc {\r\n     margin-left:0!important\n}\n.modal__profile__container .top__part__fixed .prof--contact--box {\r\n     margin-bottom:0\n}\n.modal__profile__container .modal-body {\r\n     padding:0 5px\n}\n.modal__profile__container .modal__profile__details .nowrap-xs {\r\n     padding-top:0!important;\r\n     flex-direction:column\n}\n.modal__profile__container .modal__profile__details .nowrap-xs dl {\r\n     margin:0 0 10px\n}\n.modal__profile__container .modal__profile__details .four--words-label {\r\n     width:100%\n}\n.modal__profile__container .modal__profile__details .btn--addtofavorites,\r\n    .modal__profile__container .modal__profile__details .btn--favorited {\r\n     background-position:6px 7px;\r\n     padding:10px 10px 10px 30px\n}\n.modal__profile__container .modal__profile__details .profile-display-name {\r\n     font-size:18px\n}\n.modal__profile__container .box--personality1 {\r\n     padding:5px\n}\n.modal__profile__container .box--personality1 .results__row__container {\r\n     flex-direction:column\n}\n.modal__profile__container .box--personality1 .results__row__container .results__bar__background {\r\n     background-size:240px\n}\n.modal__profile__container .container__line {\r\n     width:100%\n}\n.modal__profile__container .container__line .header--flex2 .middle-xs,\r\n    .modal__profile__container .container__line .header--line {\r\n     flex-direction:column\n}\n.modal__profile__container .container__line .header--flex2 .themyoubox {\r\n     margin:5px 0\n}\n.modal__profile__container .container-close-pos {\r\n     width:450px\n}\n.modal__profile__container .container-ctrls-pos {\r\n     width:496px;\r\n     margin-left:13px\n}\n.modal__profile__container .container-ctrls-pos .mod-arrow-size {\r\n     width:35px;\r\n     height:110px;\r\n     border:none\n}\n}\n@media only screen and (max-width:414px) {\n#profileCardHolder .quiz-modal-width {\r\n     width:280px\n}\n.modal__profile__container {\r\n     width:280px!important;\r\n     min-width:280px!important;\r\n     font-size:12px\n}\n.modal__profile__container .top__part__fixed {\r\n     left:0;\r\n     width:260px\n}\n.modal__profile__container .container-close-pos {\r\n     width:302px\n}\n.modal__profile__container .container-ctrls-pos {\r\n     width:340px;\r\n     margin-left:19px\n}\n.modal__profile__container .modal__profile__details .prof--contact--box {\r\n     margin-right:15px;\r\n     background-color:#fff;\r\n     padding:0 10px 0 5px\n}\n.modal__profile__container .modal__profile__details .btn--addtofavorites,\r\n    .modal__profile__container .modal__profile__details .btn--favorited {\r\n     background-position:6px 7px;\r\n     padding:10px 10px 10px 30px\n}\n.modal__profile__container .modal__profile__details .profile-display-name {\r\n     font-size:150%;\r\n     max-width:220px;\r\n     text-overflow:ellipsis;\r\n     overflow:hidden\n}\n.modal__profile__container .modal__profile__details .profile--description {\r\n     min-height:45px;\r\n     font-size:12px;\r\n     max-width:245px\n}\n.modal__profile__container .box--personality1 .results__row__container {\r\n     font-size:14px\n}\n.modal__profile__container .box--personality1 .results__row__container .results__text__container .results--header {\r\n     font-size:12px\n}\n.modal__profile__container .box--personality1 .results__row__container .results__bar__background {\r\n     background-size:200px\n}\n.modal__profile__container .box--personality1 .results__row__container .results__bar__background .adapter,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .challenger,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .explorer,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .extravert,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .flexible,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .focused,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .introvert,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .preserver,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .reactive,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .resilient {\r\n     background-size:50px;\r\n     width:55px;\r\n     height:55px\n}\n.modal__profile__container .box--personality1 .results__row__container .results__bar__background .ambivert,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .balanced,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .her_ambivert .ambivert,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .her_balanced .balanced,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .her_moderate .moderate,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .her_negotiator .negotiator,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .moderate,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .negotiator,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .neutral .her_responsive .responsive,\r\n    .modal__profile__container .box--personality1 .results__row__container .results__bar__background .responsive {\r\n     background-size:30px;\r\n     width:35px;\r\n     height:35px\n}\n.modal__profile__container .box--personality1 .results__row__container .results__bar__background .circle {\r\n     width:26px;\r\n     height:26px;\r\n     font-size:9px\n}\n}\n.profile__window {\r\n    padding:0 50px\n}\n.profile-display-name {\r\n    font-size:200%\n}\n.profile-age {\r\n    font-size:112.5%;\r\n    color:#c2cdd2\n}\n.profile-indicator {\r\n    border-radius:50%;\r\n    width:15px;\r\n    height:15px;\r\n    background-color:#78c000;\r\n    border:1px solid #fff;\r\n    z-index:15\n}\n@media only screen and (max-width:414px) {\n.profile__window .floating-label .form-control~label {\r\n     top:26px;\r\n     left:15px;\r\n     font-size:14px\n}\n.profile__window .floating-label .form-control.dirty~label,\r\n    .profile__window .floating-label .form-control:focus~label {\r\n     top:0;\r\n     left:1rem;\r\n     font-size:.6875rem\n}\n}\n@media only screen and (max-width:320px) {\n.profile__window .floating-label .form-control~label {\r\n     top:28px;\r\n     left:15px;\r\n     font-size:13px\n}\n}\n.modal__profile__override.no--ctas .prof--contact--box {\r\n    display:none\n}\n.modal__profile__override.no--ctas .top__part__fixed .expand1.marginrgt20.photos {\r\n    margin:0 auto\n}\n.modal__profile__override {\r\n    max-width:800px!important;\r\n    margin:0 auto;\r\n    position:relative\n}\n.modal__profile__override .top__part__fixed {\r\n    background-color:#fff;\r\n    padding-bottom:15px;\r\n    position:relative;\r\n    box-shadow:none!important\n}\n.modal__profile__override .row.nowrap-xs.mob--labels {\r\n    padding-top:0!important\n}\n.modal__profile__override .top__phrend__name {\r\n    margin-top:-150px;\r\n    position:relative;\r\n    z-index:1\n}\n@media (-ms-high-contrast:none),screen and (-ms-high-contrast:active) {\n.modal__profile__override .top__part__fixed {\r\n     position:absolute\n}\n}\n.modal__profile__override .modal__profile__details .text-error {\r\n    color:#ed523f;\r\n    font-size:13px\n}\n.modal__profile__override .modal__profile__details .prof--image--size {\r\n    width:200px;\r\n    height:200px;\r\n    border:none\n}\n.modal__profile__override .modal__profile__details .prof--image--size.large {\r\n    width:100%;\r\n    height:100%;\r\n    border:none\n}\n.modal__profile__override .modal__profile__details .prof--expand--pos {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack:end;\r\n    -ms-flex-pack:end;\r\n    -webkit-justify-content:flex-end;\r\n    -moz-justify-content:flex-end;\r\n    justify-content:flex-end;\r\n    height:40px;\r\n    background:url(\"/images/opac-bg-name.png\");\r\n    position:relative;\r\n    margin-top:-40px;\r\n    width:100%\n}\n.modal__profile__override .modal__profile__details .prof--expand--pos .icon--pos {\r\n    color:#fff;\r\n    width:20px;\r\n    height:20px;\r\n    margin-top:10px;\r\n    margin-right:10px\n}\n.modal__profile__override .modal__profile__details .prof--contact--box {\r\n    -webkit-box-flex:2;\r\n    -webkit-flex:2;\r\n    -moz-box-flex:2;\r\n    -moz-flex:2;\r\n    -ms-flex:2;\r\n    flex:2;\r\n    flex-basis:65%;\r\n    background-color:#f5f6f8;\r\n    padding:10px 15px;\r\n    margin-bottom:15px\n}\n.modal__profile__override .modal__profile__details .profile--description {\r\n    font-size:16px;\r\n    color:#696f7e;\r\n    min-height:50px;\r\n    padding-right:10px\n}\n.modal__profile__override .modal__profile__details .row--line2 {\r\n    border-top:2px solid #eceef1;\r\n    padding-top:10px;\r\n    margin-top:20px;\r\n    margin-bottom:0\n}\n.modal__profile__override .modal__profile__details .four--words-label {\r\n    background-color:#eceef1;\r\n    padding:8px 10px;\r\n    margin-right:10px;\r\n    margin-bottom:10px;\r\n    max-width:365px;\r\n    word-break:break-word\n}\n.modal__profile__override .modal__profile__details #message-box button:disabled,\r\n   .modal__profile__override .modal__profile__details .btn-send.disabled,\r\n   .modal__profile__override .modal__profile__details .btn-send:disabled,\r\n   .modal__profile__override .modal__profile__details .btn-send[disabled][disabled] {\r\n    color:#8c9aaa;\r\n    background:#c2cdd2;\r\n    border-color:#c2cdd2;\r\n    cursor:no-drop\n}\n.modal__profile__override .modal__profile__details .btn--suggest {\r\n    margin-right:10px;\r\n    padding-left:18px;\r\n    padding-right:18px\n}\n.modal__profile__override .modal__profile__details .btn--send--width {\r\n    padding-left:18px;\r\n    padding-right:18px\n}\n.modal__profile__override .modal__profile__details .btn--addtofavorites {\r\n    color:#8c9aaa;\r\n    border-color:#8c9aaa;\r\n    background:url(\"/images/svg/prof-star-off.svg\") no-repeat;\r\n    background-position:12px 7px;\r\n    padding:10px 20px 10px 40px\n}\n.modal__profile__override .modal__profile__details .btn--favorited {\r\n    color:#43b4b9;\r\n    border-color:#43b4b9;\r\n    background:#e3f3f5 url(\"/images/svg/prof-star-on.svg\") no-repeat;\r\n    background-position:12px 7px;\r\n    padding:10px 20px 10px 40px\n}\n.modal__profile__override .modal__profile__details .profile-display-name {\r\n    font-size:21px\n}\n.modal__profile__override .modal__profile__details .mc--img {\r\n    background:url(\"/images/svg/sprite-buttons.svg\");\r\n    width:40px;\r\n    height:40px\n}\n.modal__profile__override .modal__profile__details .mc--chat.on {\r\n    background-position:0 -80px;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .mc--phone.available,\r\n   .modal__profile__override .modal__profile__details .mc--phone.on {\r\n    background-position:0 -40px;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .mc--video.available,\r\n   .modal__profile__override .modal__profile__details .mc--video.on {\r\n    background-position:0 0;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .mc--chat.off {\r\n    background-position:-40px -80px\n}\n.modal__profile__override .modal__profile__details .mc--phone.away,\r\n   .modal__profile__override .modal__profile__details .mc--phone.off {\r\n    background-position:-40px -40px\n}\n.modal__profile__override .modal__profile__details .mc--video.away,\r\n   .modal__profile__override .modal__profile__details .mc--video.off {\r\n    background-position:-40px 0\n}\n.modal__profile__override .modal__profile__details .mc--chat.busy {\r\n    background-position:-80px -80px;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .mc--phone.busy {\r\n    background-position:-80px -40px;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .mc--video.busy {\r\n    background-position:-80px 0;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .mc--video.arrange {\r\n    background-position:-120px 0;\r\n    cursor:pointer\n}\n.modal__profile__override .modal__profile__details .prof--textarea--border {\r\n    border:2px solid #c2cdd2;\r\n    border-radius:20px;\r\n    padding:10px;\r\n    background-color:#fff;\r\n    margin-top:15px;\r\n    margin-bottom:15px\n}\n.modal__profile__override .modal__profile__details .prof--textarea--border .prof-textarea-box {\r\n    resize:none;\r\n    width:100%;\r\n    height:42px;\r\n    border:none;\r\n    outline:0;\r\n    padding-right:10px\n}\n.modal__profile__override .modal__profile__details .text--pay--direction {\r\n    font-size:13px;\r\n    padding:7px 15px;\r\n    position:absolute;\r\n    border:2px solid #c2cdd2;\r\n    margin-top:-90px;\r\n    background-color:#fff;\r\n    border-radius:20px;\r\n    z-index:9999;\r\n    margin-right:20px;\r\n    display:none\n}\n.modal__profile__override .modal__profile__details .text--pay--direction.show {\r\n    display:block\n}\n.modal__profile__override .modal__profile__details .text--pay--direction.hide {\r\n    display:none\n}\n.modal__profile__override .modal__profile__details .row__additional__images {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-direction:normal;\r\n    -webkit-box-orient:horizontal;\r\n    -webkit-flex-direction:row;\r\n    -moz-flex-direction:row;\r\n    -ms-flex-direction:row;\r\n    flex-direction:row;\r\n    margin-top:10px;\r\n    margin-bottom:20px\n}\n.modal__profile__override .modal__profile__details .row__additional__images .img--box {\r\n    width:50px;\r\n    height:50px;\r\n    background-color:#8c9aaa;\r\n    margin-right:10px\n}\n@media (max-width:768px) {\n.modal__profile__override.no--ctas .top__part__fixed {\r\n     padding-top:15px\n}\n.modal__profile__override {\r\n     width:500px!important;\r\n     min-width:500px!important;\r\n     font-size:13px\n}\n.modal__profile__override .top__part__fixed {\r\n     width:472px;\r\n     height:auto!important;\r\n     left:0;\r\n     position:relative;\r\n     box-shadow:none;\r\n     padding:0\n}\n.modal__profile__override .top__part__fixed .top__phrend__name {\r\n     margin-top:10px\n}\n.modal__profile__override .top__part__fixed .expand1 {\r\n     height:200px;\r\n     margin:10px auto\n}\n.modal__profile__override .top__part__fixed .baseline-xs,\r\n    .modal__profile__override .top__part__fixed .profile-desc {\r\n     margin-left:0!important\n}\n.modal__profile__override .top__part__fixed .prof--contact--box {\r\n     margin-bottom:0\n}\n.modal__profile__override .modal-body {\r\n     padding:0 5px\n}\n.modal__profile__override .modal__profile__details .nowrap-xs {\r\n     padding-top:0!important;\r\n     flex-direction:column\n}\n.modal__profile__override .modal__profile__details .nowrap-xs dl {\r\n     margin:0 0 10px\n}\n.modal__profile__override .modal__profile__details .four--words-label {\r\n     width:100%\n}\n.modal__profile__override .modal__profile__details .btn--addtofavorites,\r\n    .modal__profile__override .modal__profile__details .btn--favorited {\r\n     background-position:6px 7px;\r\n     padding:10px 10px 10px 30px\n}\n.modal__profile__override .modal__profile__details .profile-display-name {\r\n     font-size:18px\n}\n.modal__profile__override .box--personality1 {\r\n     padding:5px\n}\n.modal__profile__override .box--personality1 .results__row__container {\r\n     flex-direction:column\n}\n.modal__profile__override .box--personality1 .results__row__container .results__bar__background {\r\n     background-size:240px\n}\n.modal__profile__override .container__line {\r\n     width:100%\n}\n.modal__profile__override .container__line .header--flex2 .middle-xs,\r\n    .modal__profile__override .container__line .header--line {\r\n     flex-direction:column\n}\n.modal__profile__override .container__line .header--flex2 .themyoubox {\r\n     margin:5px 0\n}\n}\n@media (max-width:414px) {\n.modal__profile__override {\r\n     width:390px!important;\r\n     min-width:390px!important;\r\n     font-size:12px;\r\n     margin-bottom:50px\n}\n.modal__profile__override .top__part__fixed {\r\n     left:0;\r\n     width:365px\n}\n.modal__profile__override .modal__profile__details .prof--contact--box {\r\n     margin-right:15px;\r\n     background-color:#fff;\r\n     padding:0 10px 0 5px\n}\n.modal__profile__override .modal__profile__details .btn--addtofavorites,\r\n    .modal__profile__override .modal__profile__details .btn--favorited {\r\n     background-position:6px 7px;\r\n     padding:10px 10px 10px 30px\n}\n.modal__profile__override .modal__profile__details .profile-display-name {\r\n     font-size:150%\n}\n.modal__profile__override .modal__profile__details .profile--description {\r\n     min-height:45px;\r\n     font-size:12px\n}\n.modal__profile__override .box--personality1 .results__row__container {\r\n     font-size:14px\n}\n.modal__profile__override .box--personality1 .results__row__container .results__text__container .results--header {\r\n     font-size:12px\n}\n.modal__profile__override .box--personality1 .results__row__container .results__bar__background {\r\n     background-size:200px\n}\n.modal__profile__override .box--personality1 .results__row__container .results__bar__background .adapter,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .challenger,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .explorer,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .extravert,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .flexible,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .focused,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .introvert,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .preserver,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .reactive,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .resilient {\r\n     background-size:50px;\r\n     width:55px;\r\n     height:55px\n}\n.modal__profile__override .box--personality1 .results__row__container .results__bar__background .ambivert,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .balanced,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .her_ambivert .ambivert,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .her_balanced .balanced,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .her_moderate .moderate,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .her_negotiator .negotiator,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .moderate,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .negotiator,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .neutral .her_responsive .responsive,\r\n    .modal__profile__override .box--personality1 .results__row__container .results__bar__background .responsive {\r\n     background-size:30px;\r\n     width:35px;\r\n     height:35px\n}\n.modal__profile__override .box--personality1 .results__row__container .results__bar__background .circle {\r\n     width:26px;\r\n     height:26px;\r\n     font-size:9px\n}\n}\n@media (max-width:375px) {\n.modal__profile__override {\r\n     width:360px!important;\r\n     min-width:360px!important\n}\n.modal__profile__override .top__part__fixed {\r\n     width:335px\n}\n}\n@media (max-width:320px) {\n.modal__profile__override {\r\n     width:300px!important;\r\n     min-width:280px!important\n}\n.modal__profile__override .top__part__fixed {\r\n     width:275px\n}\n}\n.prof-indicator-container {\r\n    width:15px;\r\n    height:15px;\r\n    margin:180px 11px 0 -26px;\r\n    z-index:9999\n}\n@media (max-width:415px) {\n.prof-indicator-container {\r\n     margin:180px 11px 0 -22px\n}\n}\n.gif-me-container.unified .gif-sample-bg {\r\n    height:175px\n}\n.gif-me-container.unified .photos__container {\r\n    padding:0 0 0 20px\n}\n.gif-me-container.unified .photos__container #additional_photos_container {\r\n    overflow:hidden\n}\n.gif-me-container.unified .photos__container .box--photo {\r\n    height:175px\n}\n.gif-me-container {\r\n    width:100%;\r\n    padding:20px 50px\n}\n.gif-me-bg,\r\n   .gif-me-container {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex\n}\n.gif-me-bg {\r\n    background:url(\"/images/gif-me-bg.gif\") no-repeat;\r\n    background-position:50%;\r\n    height:176px;\r\n    min-width:176px;\r\n    -webkit-box-pack:center;\r\n    -ms-flex-pack:center;\r\n    -webkit-justify-content:center;\r\n    -moz-justify-content:center;\r\n    justify-content:center;\r\n    -webkit-box-align:center;\r\n    -ms-flex-align:center;\r\n    -webkit-align-items:center;\r\n    -moz-align-items:center;\r\n    align-items:center\n}\n.gif-me-arrow {\r\n    background:url(\"/images/svg/gif-me-arrow.svg\") no-repeat;\r\n    background-position:100%;\r\n    min-width:24px\n}\n.gif-sample-bg {\r\n    background-color:#e3f3f5;\r\n    padding:0 50px;\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-direction:normal;\r\n    -webkit-box-orient:vertical;\r\n    -webkit-flex-direction:column;\r\n    -moz-flex-direction:column;\r\n    -ms-flex-direction:column;\r\n    flex-direction:column;\r\n    -webkit-box-pack:center;\r\n    -ms-flex-pack:center;\r\n    -webkit-justify-content:center;\r\n    -moz-justify-content:center;\r\n    justify-content:center;\r\n    -webkit-box-align:center;\r\n    -ms-flex-align:center;\r\n    -webkit-align-items:center;\r\n    -moz-align-items:center;\r\n    align-items:center\n}\n.gif-sample-bg .gif-me-ani {\r\n    margin-bottom:15px\n}\n.gif-sample-bg .gif-me-text {\r\n    text-align:center;\r\n    color:#696f7e;\r\n    font-size:13px;\r\n    min-width:80px\n}\n@media (max-width:1200px) {\n.gif-sample-bg {\r\n     padding:0 15px\n}\n.gif-sample-bg .gif-me-ani {\r\n     display:none\n}\n}\n@media (max-width:768px) {\n.gif-me-container {\r\n     padding:20px\n}\n.gif-me-bg {\r\n     margin-right:10px\n}\n.gif-me-arrow {\r\n     display:none\n}\n.gif-sample-bg {\r\n     padding:0 15px\n}\n.gif-sample-bg .gif-me-ani {\r\n     display:none\n}\n@-moz-document url-prefix() {\n.frame .profile .profile__header {\r\n      background-color:#fff!important\n}\n.gif-me-container.unified {\r\n      margin:-20px 0 0 -80px;\r\n      background-color:#fff\n}\n.gif-me-container.unified .gif-sample-bg {\r\n      margin-right:15%\n}\n.gif-me-container.unified .gif-sample-bg .gif-me-ani {\r\n      display:none\n}\n.gif-me-container.unified .photos__container {\r\n      background-color:#fff!important;\r\n      padding-top:25px!important\n}\n.gif-me-container {\r\n      padding:20px;\r\n      width:20%\n}\n.gif-sample-bg {\r\n      padding:0 15px;\r\n      font-size:13px;\r\n      min-width:175px!important\n}\n.gif-sample-bg .gif-me-ani {\r\n      display:none\n}\n}\n}\n@media (max-width:414px) {\n@-moz-document url-prefix() {\n.gif-me-container.unified {\r\n      margin:-30px 0 -50px -140px\n}\n.gif-me-container.unified .gif-sample-bg {\r\n      margin-right:40%\n}\n.gif-me-container.unified .photos__container {\r\n      padding-top:50px!important\n}\n.icon.icon-gifbooth {\r\n      display:none\n}\n}\n}\n.sample-pic {\r\n    background-color:#fff\n}\n.add__photos__css .btn-facebook {\r\n    background-color:#3b5998;\r\n    border:2px solid #3b5998\n}\n.add__photos__css .btn-instagram {\r\n    background-color:#8a3ab9;\r\n    border:2px solid #8a3ab9\n}\n.add__photos__css .btn-icon {\r\n    width:20px;\r\n    height:20px;\r\n    margin-right:10px\n}\ndiv.fancybox-inner {\r\n    overflow-y:scroll!important;\r\n    overflow-x:hidden!important;\r\n    text-align:center;\r\n    padding-right:10px\n}\nimg.ph-fancy-override {\r\n    max-height:600px\n}\n.infinite_container.overflow-override {\r\n    overflow-x:scroll!important\n}\n@media (max-width:768px) {\nimg.ph-fancy-override {\r\n     max-width:600px\n}\n}\n@media (max-width:414px) {\nimg.ph-fancy-override {\r\n     max-width:320px\n}\n.infinite_container.overflow-override {\r\n     min-width:250px;\r\n     max-height:250px;\r\n     margin-left:-10px\n}\n}\n@media (max-width:375px) {\nimg.ph-fancy-override {\r\n     max-width:280px\n}\n}\n@media (max-width:320px) {\nimg.ph-fancy-override {\r\n     max-width:230px\n}\n}\n.modal .want_to_vote .hearts--box {\r\n    display:none\n}\n.modal.show-radio .want_to_vote .hearts--box {\r\n    display:block\n}\n.photos__container {\r\n    -webkit-box-orient:horizontal;\r\n    -webkit-flex-direction:row;\r\n    -moz-flex-direction:row;\r\n    -ms-flex-direction:row;\r\n    flex-direction:row;\r\n    padding:20px 50px\n}\n.photos__container,\r\n   .photos__container .box--photo {\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-direction:normal\n}\n.photos__container .box--photo {\r\n    background-color:#eceef1;\r\n    min-width:186px;\r\n    height:186px;\r\n    background-size:cover;\r\n    margin-right:20px;\r\n    -webkit-box-pack:center;\r\n    -ms-flex-pack:center;\r\n    -webkit-justify-content:center;\r\n    -moz-justify-content:center;\r\n    justify-content:center;\r\n    -webkit-box-align:center;\r\n    -ms-flex-align:center;\r\n    -webkit-align-items:center;\r\n    -moz-align-items:center;\r\n    align-items:center;\r\n    -webkit-box-orient:vertical;\r\n    -webkit-flex-direction:column;\r\n    -moz-flex-direction:column;\r\n    -ms-flex-direction:column;\r\n    flex-direction:column\n}\n.photos__container .box--photo .hearts--box {\r\n    color:#8c9aaa;\r\n    font-size:13px;\r\n    width:186px;\r\n    padding:5px 17px;\r\n    height:30px;\r\n    z-index:15;\r\n    position:relative;\r\n    margin-top:-30px\n}\n.photos__container .box--photo .hearts--box.on {\r\n    background-color:#fff;\r\n    background-color:hsla(0,0%,100%,.8);\r\n    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff);\r\n    -ms-filter:\"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)\"\n}\n.photos__container .box--photo .hearts--box.on .hearts--text {\r\n    margin-top:3px;\r\n    color:#353942\n}\n.photos__container .box--photo .hearts--text.marginlft30 .rejectreason {\r\n    color:#353942;\r\n    font-size:14px;\r\n    width:230px;\r\n    margin:0 -8px\n}\n.photos__container .box--photo .hearts--box.off {\r\n    background-color:#fff;\r\n    background-color:hsla(0,0%,100%,.8);\r\n    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff);\r\n    -ms-filter:\"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)\"\n}\n.photos__container .box--photo .hearts--box.off .hearts--text {\r\n    display:none\n}\n.photos__container .box--photo .hearts--box.off .radio-styled {\r\n    position:relative;\r\n    margin-top:0\n}\n.photos__container .box--photo .hearts--box.off .radio-styled input~span:before {\r\n    content:\"\";\r\n    position:absolute;\r\n    left:0;\r\n    width:20px;\r\n    height:20px;\r\n    z-index:10;\r\n    border:2px solid #8c9aaa\n}\n.photos__container .box--photo .hearts--box.pending {\r\n    background-color:#fff;\r\n    background-color:hsla(0,0%,100%,.8);\r\n    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff);\r\n    -ms-filter:\"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)\"\n}\n.photos__container .box--photo .hearts--box.pending .hearts--text {\r\n    margin-top:3px;\r\n    color:#8c9aaa\n}\n.photos__container .box--photo .hearts--box.error {\r\n    background-color:#ed523f;\r\n    background-color:rgba(237,82,62,.8);\r\n    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ed523f,endColorstr=#99ed523f);\r\n    -ms-filter:\"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ed523f, endColorstr=#99ed523f)\"\n}\n.photos__container .box--photo .hearts--box.error .hearts--text {\r\n    margin-top:3px;\r\n    color:#fff\n}\n.photos__container .box--photo .heart {\r\n    border:none;\r\n    width:12px;\r\n    height:11px;\r\n    margin-right:5px;\r\n    margin-top:-3px\n}\n.photos__container .box--photo .vote-box span {\r\n    cursor:pointer;\r\n    padding:3px 6px;\r\n    display:inline-block;\r\n    margin:0 -6px 0 0\n}\n.photos__container .box--photo .vote-box .pink.heart {\r\n    display:none\n}\n.photos__container .box--photo .vote-box.show-vote {\r\n    color:#ee486d\n}\n.photos__container .box--photo .vote-box.show-vote .heart {\r\n    display:none\n}\n.photos__container .box--photo .vote-box.show-vote .pink.heart {\r\n    display:inline-block\n}\n.photos__container .photos--add--sign {\r\n    width:60px;\r\n    height:60px;\r\n    border:none\n}\n.photos__container .btn-redo-gif {\r\n    position:absolute;\r\n    z-index:2;\r\n    width:186px;\r\n    height:186px;\r\n    display:-webkit-box;\r\n    display:-webkit-flex;\r\n    display:-moz-flex;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack:center;\r\n    -ms-flex-pack:center;\r\n    -webkit-justify-content:center;\r\n    -moz-justify-content:center;\r\n    justify-content:center;\r\n    -webkit-box-align:center;\r\n    -ms-flex-align:center;\r\n    -webkit-align-items:center;\r\n    -moz-align-items:center;\r\n    align-items:center\n}\n.photos__container .btn-takeanother {\r\n    padding:6px 15px\n}\n.photos__container .box--manage {\r\n    display:none;\r\n    font-size:12px;\r\n    color:#8c9aaa;\r\n    position:absolute;\r\n    width:186px;\r\n    border:1px solid #c2cdd2;\r\n    padding:5px;\r\n    top:177px;\r\n    text-align:center;\r\n    background-color:#fff;\r\n    z-index:2\n}\n.photos__container .box--manage .delim {\r\n    padding:0 10px\n}\n.photos__container .box--progress {\r\n    position:absolute;\r\n    background-color:#fff;\r\n    width:200px;\r\n    height:200px;\r\n    z-index:3;\r\n    text-align:center;\r\n    font-size:14px;\r\n    padding-top:60px;\r\n    top:20px\n}\n.modal-body .quiz_result .circle.you {\r\n    padding-left:5px;\r\n    background-color:#43b4b9\n}\n.sprite-cc {\r\n    background:url(\"/images/svg/sprite-credit-cards.svg\") no-repeat;\r\n    background-size:200px 38px;\r\n    width:50px;\r\n    height:38px;\r\n    margin-right:5px\n}\n.sprite-cc.visa {\r\n    background-position:0 0\n}\n.sprite-cc.mastercard {\r\n    background-position:-50px 0\n}\n.sprite-cc.amex {\r\n    background-position:-100px 0\n}\n.sprite-cc.discover {\r\n    background-position:-150px 0\n}\n.sprite-cc.sm {\r\n    background-size:140px 27px;\r\n    width:35px;\r\n    height:27px;\r\n    margin-right:3px\n}\n.sprite-cc.sm.visa {\r\n    background-position:0 0\n}\n.sprite-cc.sm.mastercard {\r\n    background-position:-35px 0\n}\n.sprite-cc.sm.amex {\r\n    background-position:-70px 0\n}\n.sprite-cc.sm.discover {\r\n    background-position:-105px 0\n}\n.dd-override-ff {\r\n    -webkit-appearance:none;\r\n    -moz-appearance:none;\r\n    appearance:none;\r\n    background:url(\"/images/svg/arrow-select.svg\") no-repeat;\r\n    padding:0 24px 0 10px;\r\n    background-position:right 6px center\n}\n.debug-help {\r\n    position:relative!important;\r\n    top:0!important;\r\n    left:80px!important\n}\n.cc-csc-help-hover {\r\n    position:absolute;\r\n    right:10px;\r\n    top:35px;\r\n    display:block;\r\n    padding:0 5px;\r\n    background:url(\"/images/svg/toggle-info-icon.svg\") no-repeat 50%;\r\n    width:22px;\r\n    height:22px\n}\n.settingsp__window .overall-balance {\r\n    display:none\n}\n.modal-dialog .credit-card-receipt br.clear {\r\n    clear:both\n}\n.modal-dialog .credit-card-receipt .close-button {\r\n    float:right\n}\n.modal-dialog .credit-card-receipt h4 {\r\n    color:#696f7e;\r\n    float:left;\r\n    margin:0\n}\n@media (max-width:769px) {\n.onboard--text {\r\n     font-size:13px\n}\n.onboard--text h3 {\r\n     font-size:18px\n}\n}\n.font11 {\r\n    font-size:11px\n}\n.font12 {\r\n    font-size:12px\n}\n.font13 {\r\n    font-size:13px\n}\n.font14 {\r\n    font-size:14px\n}\n.font16 {\r\n    font-size:16px\n}\n.font18 {\r\n    font-size:18px\n}\n.font21 {\r\n    font-size:21px\n}\n.font24 {\r\n    font-size:24px\n}\n.font26 {\r\n    font-size:26px\n}\n.margin0 {\r\n    margin:0\n}\n.margin5 {\r\n    margin:5px\n}\n.margin10 {\r\n    margin:10px\n}\n.margin15 {\r\n    margin:15px\n}\n.margin20 {\r\n    margin:20px\n}\n.margin30 {\r\n    margin:30px\n}\n.margintop0 {\r\n    margin-top:0\n}\n.margintop2 {\r\n    margin-top:2px\n}\n.margintop3 {\r\n    margin-top:3px\n}\n.margintop4 {\r\n    margin-top:4px\n}\n.margintop5 {\r\n    margin-top:5px\n}\n.margintop6 {\r\n    margin-top:6px\n}\n.margintop7 {\r\n    margin-top:7px\n}\n.margintop8 {\r\n    margin-top:8px\n}\n.margintop9 {\r\n    margin-top:9px\n}\n.margintop10 {\r\n    margin-top:10px\n}\n.margintop12 {\r\n    margin-top:12px\n}\n.margintop15 {\r\n    margin-top:15px\n}\n.margintop20 {\r\n    margin-top:20px\n}\n.margintop25 {\r\n    margin-top:25px\n}\n.margintop30 {\r\n    margin-top:30px\n}\n.margintop35 {\r\n    margin-top:35px\n}\n.margintop40 {\r\n    margin-top:40px\n}\n.margintopminus2 {\r\n    margin-top:-2px\n}\n.margintopminus3 {\r\n    margin-top:-3px\n}\n.margintopminus4 {\r\n    margin-top:-4px\n}\n.margintopminus5 {\r\n    margin-top:-5px\n}\n.margintopminus8 {\r\n    margin-top:-8px\n}\n.margintopminus10 {\r\n    margin-top:-10px\n}\n.margintopminus15 {\r\n    margin-top:-15px\n}\n.margintopminus20 {\r\n    margin-top:-20px\n}\n.margintopminus30 {\r\n    margin-top:-30px\n}\n.marginlftminus5 {\r\n    margin-left:-5px\n}\n.marginlftminus10 {\r\n    margin-left:-10px\n}\n.marginlftminus20 {\r\n    margin-left:-20px\n}\n.marginlftminus30 {\r\n    margin-left:-30px\n}\n.marginrgtminus5 {\r\n    margin-right:-5px\n}\n.marginrgtminus10 {\r\n    margin-right:-10px\n}\n.marginbot0 {\r\n    margin-bottom:0\n}\n.marginbot5 {\r\n    margin-bottom:5px\n}\n.marginbot10 {\r\n    margin-bottom:10px\n}\n.marginbot15 {\r\n    margin-bottom:15px\n}\n.marginbot20 {\r\n    margin-bottom:20px\n}\n.marginbot25 {\r\n    margin-bottom:25px\n}\n.marginbot30 {\r\n    margin-bottom:30px\n}\n.marginbot35 {\r\n    margin-bottom:35px\n}\n.marginbot40 {\r\n    margin-bottom:40px\n}\n.marginbot50 {\r\n    margin-bottom:50px\n}\n.marginbot60 {\r\n    margin-bottom:60px\n}\n.marginbotminus3 {\r\n    margin-bottom:-3px\n}\n.marginbotminus5 {\r\n    margin-bottom:-5px\n}\n.marginbotminus10 {\r\n    margin-bottom:-10px\n}\n.marginbotminus15 {\r\n    margin-bottom:-15px\n}\n.marginbotminus20 {\r\n    margin-bottom:-20px\n}\n.marginbotminus25 {\r\n    margin-bottom:-25px\n}\n.marginlft5 {\r\n    margin-left:5px\n}\n.marginlft10 {\r\n    margin-left:10px\n}\n.marginlft15 {\r\n    margin-left:15px\n}\n.marginlft20 {\r\n    margin-left:20px\n}\n.marginlft30 {\r\n    margin-left:30px\n}\n.marginlft40 {\r\n    margin-left:40px\n}\n.marginlft50 {\r\n    margin-left:50px\n}\n.marginrgt5 {\r\n    margin-right:5px\n}\n.marginrgt10 {\r\n    margin-right:10px\n}\n.marginrgt15 {\r\n    margin-right:15px\n}\n.marginrgt20 {\r\n    margin-right:20px\n}\n.marginrgt30 {\r\n    margin-right:30px\n}\n.marginrgt35 {\r\n    margin-right:35px\n}\n.marginrgt40 {\r\n    margin-right:40px\n}\n.padding0 {\r\n    padding:0\n}\n.padding5 {\r\n    padding:5px\n}\n.padding10 {\r\n    padding:10px\n}\n.padding15 {\r\n    padding:15px\n}\n.padding20 {\r\n    padding:20px\n}\n.padding30 {\r\n    padding:30px\n}\n.paddingbot5 {\r\n    padding-bottom:5px\n}\n.paddingbot10 {\r\n    padding-bottom:10px\n}\n.paddingbot15 {\r\n    padding-bottom:15px\n}\n.paddingbot20 {\r\n    padding-bottom:20px\n}\n.paddingtop0 {\r\n    padding-top:0\n}\n.paddingtop1 {\r\n    padding-top:1px\n}\n.paddingtop2 {\r\n    padding-top:2px\n}\n.paddingtop5 {\r\n    padding-top:5px\n}\n.paddingtop10 {\r\n    padding-top:10px\n}\n.paddingtop15 {\r\n    padding-top:15px\n}\n.paddingtop20 {\r\n    padding-top:20px\n}\n.paddingtop25 {\r\n    padding-top:25px\n}\n.paddingtop30 {\r\n    padding-top:30px\n}\n.paddingrgt0 {\r\n    padding-right:0\n}\n.paddingrgt5 {\r\n    padding-right:5px\n}\n.paddingrgt10 {\r\n    padding-right:10px\n}\n.paddingrgt15 {\r\n    padding-right:15px\n}\n.paddingrgt20 {\r\n    padding-right:20px\n}\n.paddingrgt25 {\r\n    padding-right:25px\n}\n.paddingrgt30 {\r\n    padding-right:30px\n}\n.paddingrgt35 {\r\n    padding-right:35px\n}\n.paddinglft0 {\r\n    padding-left:0\n}\n.paddinglft5 {\r\n    padding-left:5px\n}\n.paddinglft10 {\r\n    padding-left:10px\n}\n.paddinglft12 {\r\n    padding-left:12px\n}\n.paddinglft15 {\r\n    padding-left:15px\n}\n.paddinglft20 {\r\n    padding-left:20px\n}\n.paddinglft30 {\r\n    padding-left:30px\n}\n.paddinglft40 {\r\n    padding-left:40px\n}\r\n   ", ""]);
 
 // exports
 
@@ -71392,15 +71581,15 @@ if (true) {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Members.vue?vue&type=style&index=0&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -72432,10 +72621,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72453,133 +72642,119 @@ var render = function() {
     _vm._l(_vm.users.data, function(user) {
       return _c("div", { key: user.id, staticClass: "col-md-3 sm-mb-3" }, [
         _c("div", { staticClass: "profile-item-hover-1" }, [
-          _c(
-            "a",
-            {
-              staticClass: "profile-item",
-              attrs: {
-                href: "#",
-                "data-toggle": "modal",
-                "data-target": "#modal" + user.id
-              }
-            },
-            [
-              _c("div", { staticClass: "profile-image clearfix" }, [
-                _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: { src: user.photo_url, alt: user.name }
-                })
+          _c("div", { staticClass: "profile-item" }, [
+            _c("div", { staticClass: "profile-image clearfix" }, [
+              _c("img", {
+                staticClass: "img-fluid",
+                staticStyle: { cursor: "pointer" },
+                attrs: {
+                  "data-toggle": "modal",
+                  "data-target": "#modal" + user.id,
+                  src: user.photo_url,
+                  alt: user.name
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "profile-details profile-text" }, [
+              _c("h5", { staticClass: "title" }, [_vm._v(_vm._s(user.name))]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-black" }, [
+                _vm._v(_vm._s(user.age) + " Years Old")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "profile-details profile-text" }, [
-                _c("h5", { staticClass: "title" }, [_vm._v(_vm._s(user.name))]),
-                _vm._v(" "),
-                _c("span", { staticClass: "text-black" }, [
-                  _vm._v(_vm._s(user.age) + " Years Old")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "col-md-6 btn btn-outline-dark text-warning",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#modal" + user.id
-                      },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.selectUser(user)
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "col-md-6 btn btn-outline-dark text-warning",
+                    attrs: { href: "chat/" + user.slug }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "feather feather-message-circle",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "24",
+                          height: "24",
+                          viewBox: "0 0 24 24",
+                          fill: "none",
+                          stroke: "currentColor",
+                          "stroke-width": "2",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
                         }
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "feather feather-message-circle",
+                      },
+                      [
+                        _c("path", {
                           attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
+                            d:
+                              "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
                           }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "col-md-6 btn btn-outline-dark text-warning",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "tooltip",
-                        title: "",
-                        "data-original-title": "Video call"
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "feather feather-video",
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "col-md-6 btn btn-outline-dark text-warning",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "tooltip",
+                      title: "",
+                      "data-original-title": "Video call"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "feather feather-video",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "24",
+                          height: "24",
+                          viewBox: "0 0 24 24",
+                          fill: "none",
+                          stroke: "currentColor",
+                          "stroke-width": "2",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      },
+                      [
+                        _c("polygon", {
+                          attrs: { points: "23 7 16 12 23 17 23 7" }
+                        }),
+                        _vm._v(" "),
+                        _c("rect", {
                           attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
+                            x: "1",
+                            y: "5",
+                            width: "15",
+                            height: "14",
+                            rx: "2",
+                            ry: "2"
                           }
-                        },
-                        [
-                          _c("polygon", {
-                            attrs: { points: "23 7 16 12 23 17 23 7" }
-                          }),
-                          _c("rect", {
-                            attrs: {
-                              x: "1",
-                              y: "5",
-                              width: "15",
-                              height: "14",
-                              rx: "2",
-                              ry: "2"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  )
-                ])
+                        })
+                      ]
+                    )
+                  ]
+                )
               ])
-            ]
-          )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "modal fade",
+            staticClass: "modal in",
             attrs: {
               id: "modal" + user.id,
               tabindex: "-1",
@@ -72592,61 +72767,384 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "modal-dialog modal-lg",
+                staticClass: "modal-dialog modal-lg quiz-modal-width",
                 attrs: { role: "document" }
               },
               [
-                _c("div", { staticClass: "modal-header" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(user.name) +
-                          "\n                        "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-content" }, [
-                  _c(
-                    "div",
-                    { staticClass: "modal-body" },
-                    [
-                      _c("div", { staticClass: "container-fluid" }, [
+                _vm._v("\n        >\n        "),
+                _c(
+                  "div",
+                  { staticClass: "modal__profile__container modal-content" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "container-fluid container-close-pos" },
+                      [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", {
-                            staticClass: "image",
-                            style: {
-                              backgroundImage: "url(" + _vm.images[0] + ")",
-                              width: "300px",
-                              height: "200px"
-                            },
-                            on: {
-                              click: function($event) {
-                                _vm.index = _vm.images[0]
-                              }
-                            }
-                          })
+                          _c("div", { staticClass: "col-xs-12 end-xs" }, [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "javascript:;",
+                                  "data-dismiss": "modal",
+                                  "aria-label": "Close"
+                                }
+                              },
+                              [
+                                _c(
+                                  "i",
+                                  {
+                                    staticClass: "fa fa-times",
+                                    staticStyle: { "font-size": "40px" }
+                                  },
+                                  [
+                                    _c("use", {
+                                      attrs: { "xlink:href": "#fa-times" }
+                                    })
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("gallery", {
-                        attrs: { images: _vm.images, index: _vm.index },
-                        on: {
-                          close: function($event) {
-                            _vm.index = null
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", {
-                    staticClass: "modal-footer justify-content-center"
-                  })
-                ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("div", { staticClass: "profile_card" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "container-fluid modal__profile__details"
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "top__part__fihxed",
+                                staticStyle: { height: "auto" }
+                              },
+                              [
+                                _c("div", { staticClass: "row" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "expand1 marginrgt20 photos",
+                                      staticStyle: {
+                                        height: "225px",
+                                        overflow: "hidden"
+                                      }
+                                    },
+                                    [
+                                      _c("div", { attrs: { id: "ui-id-8" } }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "endless" },
+                                          [
+                                            _c("img", {
+                                              staticClass: "prof--image--size",
+                                              staticStyle: { display: "block" },
+                                              attrs: { src: user.photo_url },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.index = _vm.images[0]
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("gallery", {
+                                              attrs: {
+                                                images: _vm.images,
+                                                index: _vm.index
+                                              },
+                                              on: {
+                                                close: function($event) {
+                                                  _vm.index = null
+                                                }
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "prof--expand--pos",
+                                          staticStyle: { display: "none" }
+                                        },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "expand-the-image",
+                                              staticStyle: { display: "block" },
+                                              attrs: { href: "javascript:;" }
+                                            },
+                                            [
+                                              _c("svg", {
+                                                staticClass:
+                                                  "icon icon-expand icon--pos"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "collapse-the-image displayNone",
+                                              attrs: { href: "javascript:;" }
+                                            },
+                                            [
+                                              _c("svg", {
+                                                staticClass:
+                                                  "icon icon-collapse icon--pos"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "prof--contact--box" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "container-fluid" },
+                                        [
+                                          _c("div", { staticClass: "row" }, [
+                                            _vm._m(0, true),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "col-sm-4 col-xs-6 end-xs"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "mc--buttons row around-xs"
+                                                  },
+                                                  [
+                                                    _c("a", {
+                                                      staticClass:
+                                                        "mc--img mc--chat on",
+                                                      attrs: {
+                                                        href:
+                                                          "chat/" + user.slug
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("div", {
+                                                      staticClass:
+                                                        "mc--img mc--video available"
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("div", {
+                                                      staticClass:
+                                                        "mc--img mc--phone available"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { attrs: { id: "message-box" } },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "col-xs-12"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "prof--textarea--border"
+                                                        },
+                                                        [
+                                                          _c("textarea", {
+                                                            staticClass:
+                                                              "prof-textarea-box",
+                                                            attrs: {
+                                                              disabled:
+                                                                _vm.notLoggedIn
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "container-fluid container-msg-buttons"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          directives: [
+                                                            {
+                                                              name: "show",
+                                                              rawName: "v-show",
+                                                              value:
+                                                                _vm.notLoggedIn,
+                                                              expression:
+                                                                "notLoggedIn"
+                                                            }
+                                                          ],
+                                                          staticClass: "row"
+                                                        },
+                                                        [_vm._m(1, true)]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "row" },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-sm-12 end-sm nowrap-sm col-xs-12 center-xs nowrap-xs"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-primary btn--send--width",
+                                                                  attrs: {
+                                                                    disabled:
+                                                                      _vm.notLoggedIn
+                                                                  }
+                                                                },
+                                                                [_vm._v("Send")]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row baseline-xs",
+                                    staticStyle: { "margin-left": "0px" }
+                                  },
+                                  [
+                                    _c(
+                                      "h5",
+                                      { staticClass: "profile-display-name" },
+                                      [_vm._v(_vm._s(user.name))]
+                                    ),
+                                    _vm._v(",\n                              "),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "profile-age paddinglft5"
+                                      },
+                                      [_vm._v(_vm._s(user.age))]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row profile-desc",
+                                    staticStyle: { "margin-left": "0px" }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "profile--description" },
+                                      [_vm._v(_vm._s(user.about))]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "row nowrap-xs mob--labels" },
+                                  [
+                                    _c("dl", [
+                                      _c("dt", [_vm._v("Age")]),
+                                      _vm._v(" "),
+                                      _c("dd", [_vm._v(_vm._s(user.age))])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("dl", [
+                                      _c("dt", [_vm._v("Interested In")]),
+                                      _vm._v(" "),
+                                      _c("dd", [
+                                        _c("div", [
+                                          user.interest == "female_interest"
+                                            ? _c("span", [_vm._v(" Women ")])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          user.interest == "male_interest"
+                                            ? _c("span", [_vm._v(" Men ")])
+                                            : _vm._e()
+                                        ])
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(2, true),
+                                    _vm._v(" "),
+                                    _vm._m(3, true)
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "modal-footer justify-content-center"
+                    })
+                  ]
+                )
               ]
             )
           ]
@@ -72656,7 +73154,76 @@ var render = function() {
     0
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-8 col-xs-6" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn--addtofavorites", attrs: { type: "button" } },
+        [_vm._v("Star")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 start-xs paddingbot5" }, [
+      _c("span", { staticClass: "start-xs" }, [
+        _vm._v(
+          "\n                                                          Please\n                                                          "
+        ),
+        _c("a", { attrs: { href: "/login" } }, [_vm._v("sign in")]),
+        _vm._v(
+          " or\n                                                          "
+        ),
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "/register",
+              "data-toggle": "modal",
+              "data-target": "#signup"
+            }
+          },
+          [_vm._v("join")]
+        ),
+        _vm._v(
+          " to send a quick message.\n                                                          "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dl", [
+      _c("dt", [_vm._v("Languages")]),
+      _vm._v(" "),
+      _c("dd", [
+        _c("div", [
+          _vm._v(
+            "\n                                          English\n                                      "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dl", [
+      _c("dt", [_vm._v("Her Local Time")]),
+      _vm._v(" "),
+      _c("dd", [_vm._v("03:57am")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -88011,10 +88578,12 @@ Vue.filter('two_digits', function (value) {
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-//Vue.component('find-members', () => import('./components/Members'));
 
+Vue.component('chat', function () {
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/Chat */ "./resources/js/components/Chat.vue"));
+});
 Vue.component('dashboard', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/dashboard/Dashboard.vue */ "./resources/js/components/dashboard/Dashboard.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ./components/dashboard/Dashboard.vue */ "./resources/js/components/dashboard/Dashboard.vue"));
 });
 /*Vue.component('chat-popup', () => import('./components/chat/ChatPopup.vue'));
 
@@ -88131,9 +88700,9 @@ window.Cookies = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Members_vue_vue_type_template_id_2b07bdfe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Members.vue?vue&type=template&id=2b07bdfe& */ "./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&");
+/* harmony import */ var _Members_vue_vue_type_template_id_2b07bdfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Members.vue?vue&type=template&id=2b07bdfe&scoped=true& */ "./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&scoped=true&");
 /* harmony import */ var _Members_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Members.vue?vue&type=script&lang=js& */ "./resources/js/components/Members.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Members.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Members.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css& */ "./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -88145,11 +88714,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Members_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Members_vue_vue_type_template_id_2b07bdfe___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Members_vue_vue_type_template_id_2b07bdfe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Members_vue_vue_type_template_id_2b07bdfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Members_vue_vue_type_template_id_2b07bdfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "2b07bdfe",
   null
   
 )
@@ -88175,35 +88744,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Members.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/Members.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************/
+/***/ "./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css& ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=style&index=0&id=2b07bdfe&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_style_index_0_id_2b07bdfe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe& ***!
-  \****************************************************************************/
+/***/ "./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&scoped=true& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_2b07bdfe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=template&id=2b07bdfe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_2b07bdfe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_2b07bdfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Members.vue?vue&type=template&id=2b07bdfe&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Members.vue?vue&type=template&id=2b07bdfe&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_2b07bdfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_2b07bdfe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Members_vue_vue_type_template_id_2b07bdfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -74,6 +74,41 @@ class MessageController extends Controller
         ]);
     }*/
 
+    public function chats(Request $request, $slug)
+    {
+        $user = User::find(Auth::user()->id);
+        $otherUser = User::where('slug', $slug)->first();
+
+        if ($user->id == $otherUser->id) {
+                return redirect()->back();
+        }
+
+        /*$conversation = Conversation::where(function ($query) use ($user, $otherUser) {
+                $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
+            })->orWhere(function ($query) use ($user, $otherUser) {
+                $query->where('first_user_id', $otherUser->id)->where('second_user_id', $user->id);
+            })->first();
+
+        
+        if (!$conversation) {
+                $conversation = [];
+                return view('frontend.user.chat')->with('otherUser', $otherUser)->with('conversation', $conversation);
+         }
+         
+        $messages = $conversation->messages;
+ 
+        foreach ($messages as $message) {
+                if($message->seen === 0 && ($message->user_id !== Auth::user()->id)) {
+                        $message->seen = 1;
+                        $message->save();
+                }
+                 
+                $message['user'] = User::find($message->user_id);
+        }*/
+ 
+        return view('frontend.user.chat')->with('otherUser', $otherUser);
+    }
+
 
     public function chat(Request $request, $slug)
     {
@@ -136,7 +171,7 @@ class MessageController extends Controller
         return response()->json(['conversations' => $conversations]);
     }
 
-    public function fetchMessagesWithoutConvo($user_id)
+    public function fetchMessages($user_id)
     {
         $user = User::find(Auth::user()->id);
         $otherUser = User::find($user_id);
@@ -170,8 +205,51 @@ class MessageController extends Controller
         return response()->json(['messages' => $messages]);
     }
 
+    public function sendMessage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+                'message' => 'required'
+        ]);
+          
+        if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 418);
+        }
 
-    public function fetchMessages($conversation_id)
+        $user = User::find(Auth::user()->id);
+        $otherUser = User::find($request->user_id);
+        
+        $body = $request->message;
+
+        $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
+                $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
+            })->orWhere(function ($query) use ($user, $otherUser) {
+                $query->where('first_user_id', $otherUser->id)->where('second_user_id', $user->id);
+            })->first();
+            
+
+        if (!$conversation) {
+                $conversation = new Conversation;
+               
+                $conversation->first_user_id = $user->id;
+                $conversation->second_user_id = $otherUser->id;
+                $conversation->save();
+        }
+
+
+        $message = $conversation->messages()->create([
+                'user_id' => $user->id,
+                'body' => $body
+        ]);
+
+        //broadcast(new MessageSent($message->load('user')))->toOthers();
+
+        return response()->json([
+                'message' => $message->load('user')
+        ], 200);
+    }
+
+
+    /*public function fetchMessages($conversation_id)
     {
         $conversation = Conversation::find($conversation_id);
         $messages = $conversation->messages;
@@ -186,7 +264,7 @@ class MessageController extends Controller
         }
 
         return response()->json(['messages' => $messages]);
-    }
+    }*/
 
     public function sendMessageWithoutConvo(Request $request)
     {
@@ -231,7 +309,7 @@ class MessageController extends Controller
         ], 200);
     }
 
-    public function sendMessage(Request $request)
+    /*public function sendMessage(Request $request)
     {
         $validator = Validator::make($request->all(), [
                 'message' => 'required'
@@ -252,20 +330,6 @@ class MessageController extends Controller
                 'body' => $body
         ]);
 
-        /*$message = Message::create([
-                'user_id' => $user->id,
-                'conversation_id' => $conversation->id,
-                'body' => $body
-        ]);*/
-
-        /*$message = new Message;
-        $message->user_id = $user->id;
-        $message->conversation_id = $conversation->id;
-        $message->body = $body;
-        $message->save();
-        
-        //$message['user'] = $user;*/
-
         //return response($message->load('user'));
 
         broadcast(new MessageSent($message->load('user')))->toOthers();
@@ -273,5 +337,5 @@ class MessageController extends Controller
         return response()->json([
                 'message' => $message->load('user')
         ], 200);
-    }
+    }*/
 }
