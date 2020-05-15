@@ -17,7 +17,7 @@ class UsersController extends Controller
 
         $users = User::paginate(30);
 
-        foreach($users as $user) {
+        /*foreach($users as $user) {
 
             $user->conversations = [];
 
@@ -42,7 +42,7 @@ class UsersController extends Controller
             }
             
             $user->conversations = array_merge($sender_conversations->toArray(), $receiver_conversations->toArray());
-        }
+        }*/
 
         return view('frontend.members', compact('users'));
     }
