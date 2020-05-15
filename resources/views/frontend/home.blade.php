@@ -109,13 +109,13 @@ banner -->
           <div id="main-slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner"> 
               <!--/ Carousel item end -->
-              <div class="carousel-item h-100 bg-overlay-red active" style="background: url(/images/bg/bg-1.jpg ) no-repeat 0 0; background-size: cover;">
+              <div class="carousel-item h-100 bg-overlay-red active" style="background: url(/images/bg/bg-1.jpg) no-repeat 0 0; background-size: cover;">
                 <div class="slider-content">
                   <div class="container">
                     <div class="row carousel-caption align-items-center h-100">
                       <div class="col-md-12 text-right">
                         <div class="slider-1">
-                          <h1 class="animated2 text-white">Are You <span>Waiting</span> For <span> Dating ?</span></h1>
+                          <h1 class="animated2 text-white">CONNECT1ON1.COM IS A <span>100% FREE SITE</span></h1>
                         </div>
                       </div>
                     </div>
@@ -128,7 +128,20 @@ banner -->
                     <div class="row carousel-caption align-items-center h-100">
                       <div class="col-md-12 text-left">
                         <div class="slider-1">
-                          <h1 class="animated7 text-white">Meet big <span> and </span> beautiful love <span> here!</span></h1>
+                          <h1 class="animated7 text-white">CONNECT WITH <span> SEXY SINGLES!</span></h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item h-100 bg-overlay-red" style="background: url(/images/bg/bg-3.jpg ) no-repeat 0 0; background-size: cover;">
+                <div class="slider-content">
+                  <div class="container">
+                    <div class="row carousel-caption align-items-center h-100">
+                      <div class="col-md-12 text-left">
+                        <div class="slider-1">
+                          <h1 class="animated7 text-white">Chat Via <span>Audio, Webcam Or Text!</span></h1>
                         </div>
                       </div>
                     </div>
@@ -273,9 +286,8 @@ banner -->
           <div class="container">
             <div class="row justify-content-center mb-5 sm-mb-3">
               <div class="col-md-10 text-center">
-                <h2 class="title divider mb-3">Step to find your Soul Mate</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed <br>
-                  do eiusmod tempor incididunt ut labore et dolore magna</p>
+                <h2 class="title divider mb-3">START VIDEO CHAT</h2>
+                <p class="lead">Ready to take your dating chatting experience to the next level? To start using video chat on dating.com , be sure your webcam is in working order and then follow a few easy setup and start video chat</p>
               </div>
             </div>
             <div class="row justify-content-center">
@@ -285,7 +297,7 @@ banner -->
                     <div class="timeline-badge"><img class="img-fluid" src="/images/timeline/01.png" alt=""></div>
                     <div class="timeline-panel">
                       <div class="timeline-heading text-center">
-                        <h4 class="timeline-title divider-3">CREATE PROFILE</h4>
+                        <h4 class="timeline-title divider-3">CREATE YOUR PROFILE</h4>
                       </div>
                       <div class="timeline-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
@@ -296,7 +308,7 @@ banner -->
                     <div class="timeline-badge"><img class="img-fluid" src="/images/timeline/02.png" alt=""></div>
                     <div class="timeline-panel">
                       <div class="timeline-heading text-center">
-                        <h4 class="timeline-title divider-3">Find match</h4>
+                        <h4 class="timeline-title divider-3">UPLOAD PERSONAL VIDEOS</h4>
                       </div>
                       <div class="timeline-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
@@ -307,7 +319,7 @@ banner -->
                     <div class="timeline-badge"><img class="img-fluid" src="/images/timeline/03.png" alt=""></div>
                     <div class="timeline-panel">
                       <div class="timeline-heading text-center">
-                        <h4 class="timeline-title divider-3">START DATING</h4>
+                        <h4 class="timeline-title divider-3">PRIVATE 1-1 LIVE WEBCAM DATE</h4>
                       </div>
                       <div class="timeline-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
@@ -319,9 +331,51 @@ banner -->
             </div>
           </div>
         </section>
-        
+
         <!--=================================
-        They found true love -->
+        Connect 1on1 -->
+        <section class="bg-white common_section feature_section">
+          <div class="container">
+              <header class="header01">
+                  <h2 class="text-center color-pink wow fadeInDown  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">FEATURES</h2>
+                  <p class="text-center wow fadeInDown  animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInDown;">Ready to take your dating chatting experience to the next level? To start using video chat on dating.com , be sure your<br class="hidden-xs hidden-md hidden-sm"> webcam is in working order and then follow a few easy setup and start video chat</p>
+              </header>
+              <ul class="list-unstyled">
+                  <li>
+                      <div class="description wow fadeInLeft  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">            
+                          <mark>1</mark>
+                          <div class="matter">
+                              <h3 class="color-pink">CONNECT WITH SEXY SINGLES!</h3>
+                              <p>You can get notifications for your<br> dating.com through SMS on your phone.</p>
+                          </div>
+                      </div>
+                      <figure class=""><img alt="img" class="img-responsive wow fadeInDown  animated" data-wow-delay="0.2s" src="{{ asset('images/story/feature-img01.png') }}" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"></figure>
+                  </li>
+                  <li>
+                      <div class="description wow fadeInLeft  animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                          <hgroup>
+                              <mark>2</mark>             
+                          </hgroup>
+                          <div class="matter">
+                              <h3 class="color-darkblue">CHAT VIA AUDIO, WEBCAM OR TEXT! </h3>
+                              <p>Make you profile complete by uploading <br>videos</p>
+                          </div></div>
+                      <figure class=""><img alt="img" class="img-responsive wow fadeInDown  animated" data-wow-delay="0.4s" src="{{ asset('images/story/feature-img02.png') }}" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInDown;"></figure>
+                  </li>
+                  <li>
+                      <div class="description wow fadeInLeft  animated" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+                          <hgroup>
+                              <mark>3</mark>              
+                          </hgroup>
+                          <div class="matter">
+                              <h3 class="color-lightgreen">SHARE VIDEO, AUDIO PROFILES!</h3>
+                              <p>Our Dating chatroom is for anyone. If you want to<br class="hidden-xs"> chat about Face to Face only, please click JOIN<br class="hidden-xs"> or login.</p>
+                          </div></div>
+                      <figure><img alt="img" class="img-responsive wow fadeInDown  animated" data-wow-delay="0.6s" src="{{ asset('images/story/feature-img03.png') }}" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInDown;"></figure>
+                  </li>
+              </ul>
+          </div></section>
+    
         
         <section class="page-section-ptb text-white bg-overlay-black-70 bg text-center" style="background: url(/images/bg/bg-4.jpg) no-repeat 0 0; background-size: cover;">
           <div class="container">
@@ -537,6 +591,26 @@ banner -->
             </div>
           </div>
         </section>
+
+        <!--=================================
+        Dating Principles -->
+
+        <section class="bg-white dating_principle">
+          <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-lg-6 col-md-6 col-sm-6 left-section col-lg-push-6 col-md-push-6 col-sm-push-6">
+                      <header class="header01 m-b-0">
+                          <h2 class="color-pink wow fadeInDown  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">DATING <span>PRINCIPLE!</span><br>
+                              Love is more than a <span>coincidence</span>.</h2>
+                          <p class="wow fadeInDown  animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInDown;">So we can bring you the matches with the most potential for a happy and long-lasting relationship, we rely on findings from 40 years of research in this field: The Dating.com analyzes 32 personality traits and is based on a matching algorithm of 136 rules.</p>
+                      </header>   
+                  </div> 
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-md-pull-6 right-section col-lg-pull-6 col-sm-pull-6 wow fadeInUp  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                      <img src="{{ asset('images/bg/datingprinciple-img.jpg') }}" class="img-responsive" alt="img">
+                  </div>  
+              </div>
+          </div>
+      </section>
         
         <!--=================================
         they found true love --> 

@@ -34,6 +34,7 @@
         "socket.io-client": "^2.3.0",
         "twilio-video": "^2.0.0",
         "vue-chat-scroll": "^1.4.0",
+        "vue-gallery": "^2.0.1",
         "vue-timeago": "^5.1.2",
         "webrtc-adapter": "^7.5.1"
     }
