@@ -9,7 +9,7 @@
             </div>
         </div>
         @if (!$users->isEmpty())
-        <members :users="{{ json_encode($users)  }}"></members>
+            <find-members :users="{{ json_encode($users)  }}"></find-members>
         @endif
         <div class="row">
             <div class="col-md-12 text-center">
