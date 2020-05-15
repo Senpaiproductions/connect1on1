@@ -19,7 +19,7 @@
                 {!! $users->render() !!}
             </div>
             <span v-if="selectedUsers != null" class="main-chat">
-                <popup-without-convo v-for="user in selectedUsers" :key="user.id" :authuser="{{ json_encode(Auth::user()) }}" :user="user"  v-on:remove="removeSelectedUser" />
+                <!--<popup-without-convo v-for="user in selectedUsers" :key="user.id" :authuser="{{ json_encode(Auth::user()) }}" :user="user"  v-on:remove="removeSelectedUser" />-->
             </span>
         </div>
     </div>
