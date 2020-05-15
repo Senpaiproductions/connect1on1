@@ -89,9 +89,9 @@ Vue.component('find-members', () => import('./components/Members'));
 
 Vue.component('dashboard', () => import('./components/dashboard/Dashboard.vue'));
 
-Vue.component('chat-popup', () => import('./components/chat/ChatPopup.vue'));
+/*Vue.component('chat-popup', () => import('./components/chat/ChatPopup.vue'));
 
-Vue.component('popup-without-convo', () => import('./components/chat/PopupWithoutConvo.vue'));
+Vue.component('popup-without-convo', () => import('./components/chat/PopupWithoutConvo.vue'));*/
 
 
 /**

@@ -84245,18 +84245,16 @@ Vue.filter('two_digits', function (value) {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('members', function () {
+Vue.component('find-members', function () {
   return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(6), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ./components/Members */ "./resources/js/components/Members.vue"));
 });
 Vue.component('dashboard', function () {
   return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/dashboard/Dashboard.vue */ "./resources/js/components/dashboard/Dashboard.vue"));
 });
-Vue.component('chat-popup', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/chat/ChatPopup.vue */ "./resources/js/components/chat/ChatPopup.vue"));
-});
-Vue.component('popup-without-convo', function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/chat/PopupWithoutConvo.vue */ "./resources/js/components/chat/PopupWithoutConvo.vue"));
-});
+/*Vue.component('chat-popup', () => import('./components/chat/ChatPopup.vue'));
+
+Vue.component('popup-without-convo', () => import('./components/chat/PopupWithoutConvo.vue'));*/
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
