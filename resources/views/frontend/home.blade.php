@@ -286,8 +286,9 @@ banner -->
           <div class="container">
             <div class="row justify-content-center mb-5 sm-mb-3">
               <div class="col-md-10 text-center">
-                <h2 class="title divider mb-3">START VIDEO CHAT</h2>
-                <p class="lead">Ready to take your dating chatting experience to the next level? To start using video chat on dating.com , be sure your webcam is in working order and then follow a few easy setup and start video chat</p>
+                <h2 class="title divider mb-3">START DATING TODAY !</h2>
+                <p class="lead">You find us, finally, and you are already in love. More than 5.000.000 around the world already shared the same
+                  experience and uses our system. Joining us today just got easier!</p>
               </div>
             </div>
             <div class="row justify-content-center">
