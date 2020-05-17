@@ -35,7 +35,15 @@
     <!-- General style -->
     <link href="{{ asset('css/general.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/connect.css') }}" rel="stylesheet" type="text/css">
-    
+    <link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+    <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
+
+
+
     <!-- main style -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
     
@@ -485,6 +493,30 @@
       }
 
       .banner-form form .form-group select.form-control {background-image: url("../../images/form-icon/skin-tomato.png");}
+    
+      @media only screen and (min-width: 1200px) {
+        .home-slider {
+          /*height: 379px;*/
+        }
+      }
+
+      @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .feature-container-tall .feature-container-content .feature-key-image.has-device-video video {
+          width: 51%;
+          top: 53px;
+          left: 28%;
+        }
+      }
+
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .feature-container-tall .feature-container-content .feature-key-image.has-device-video video {
+          width: 50%;
+          top: 38px;
+          left: 29%;
+          display: block;
+        }
+      }
+    
     </style>
   </head>
     
@@ -679,11 +711,6 @@
         
         <script src="{{ asset('js/app.js') }}"></script>
 
-        @auth
-        <!-- ChatPopup js -->
-        <script type="text/javascript" src="{{ asset('js/chatPopup.js') }}"></script> 
-        @endauth
-
 
         <!--=================================
          jquery --> 
@@ -697,7 +724,7 @@
 
         @auth
         <!-- ChatPopup js -->
-        <script type="text/javascript" src="{{ asset('js/chatPopup.js') }}"></script> 
+        <!--<script type="text/javascript" src="{{-- asset('js/chatPopup.js') --}}"></script>-->
         @endauth
 
         <!-- bootstrap --> 

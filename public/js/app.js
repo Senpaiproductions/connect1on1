@@ -92910,7 +92910,7 @@ Vue.filter('two_digits', function (value) {
 //Vue.component('chat', () => import('./components/Chat'));
 
 Vue.component('dashboard', function () {
-  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/dashboard/Dashboard.vue */ "./resources/js/components/dashboard/Dashboard.vue"));
+  return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/dashboard/Dashboard.vue */ "./resources/js/components/dashboard/Dashboard.vue"));
 });
 /*Vue.component('chat-popup', () => import('./components/chat/ChatPopup.vue'));
 

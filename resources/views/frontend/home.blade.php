@@ -104,11 +104,11 @@ banner -->
                 </div>
             </div>
         </section>-->
+        
 
-        <section id="home-slider" class="fullscreen" style="height: 520px;">
+        <section id="home-slider" class=" home-slider">
           <div id="main-slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner"> 
-              <!--/ Carousel item end -->
+            <div class="carousel-inner">
               <div class="carousel-item h-100 bg-overlay-red active" style="background: url(/images/bg/bg-1.jpg) no-repeat 0 0; background-size: cover;">
                 <div class="slider-content">
                   <div class="container">
@@ -148,11 +148,11 @@ banner -->
                   </div>
                 </div>
               </div>
-              <!--/ Carousel item end --> 
             </div>
-            <!-- Controls --> 
             <a class="left carousel-control" href="#main-slider" data-slide="prev"> <span><i class="fa fa-angle-left"></i></span> </a> <a class="right carousel-control" href="#main-slider" data-slide="next"> <span><i class="fa fa-angle-right"></i></span> </a> </div>
         </section>
+
+        
 
         <section class="form-1 py-3">
           <div class="container">
@@ -283,7 +283,7 @@ banner -->
         Step to find your Soul Mate -->
         
         <section class="page-section-ptb position-relative timeline-section">
-          <div class="container">
+          <div class="container" style="width: 88em;">
             <div class="row justify-content-center mb-5 sm-mb-3">
               <div class="col-md-10 text-center">
                 <h2 class="title divider mb-3">START DATING TODAY !</h2>
@@ -301,7 +301,7 @@ banner -->
                         <h4 class="timeline-title divider-3">CREATE YOUR PROFILE</h4>
                       </div>
                       <div class="timeline-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
+                        <p>Create your profile and add images that capture what you're about, whether it's running 5Ks or taking cooking classes.</p>
                       </div>
                     </div>
                   </li>
@@ -312,7 +312,7 @@ banner -->
                         <h4 class="timeline-title divider-3">UPLOAD PERSONAL VIDEOS</h4>
                       </div>
                       <div class="timeline-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
+                        <p>Connect1on1 lets you connect with others via video profiles. Make your profiles come to live and put them up for everyone to see, or only share them with your matches. </p>
                       </div>
                     </div>
                   </li>
@@ -323,7 +323,7 @@ banner -->
                         <h4 class="timeline-title divider-3">PRIVATE 1-1 LIVE WEBCAM DATE</h4>
                       </div>
                       <div class="timeline-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  enim ad minim veniam, quis</p>
+                        <p>This and much more is what you can do in front of the person with whom you want to chat ... because you can see each other and talk seriously!</p>
                       </div>
                     </div>
                   </li>
@@ -336,7 +336,7 @@ banner -->
         <!--=================================
         Connect 1on1 -->
         <section class="bg-white common_section feature_section">
-          <div class="container">
+          <div class="container" style="width: 88em;">
               <header class="header01">
                   <h2 class="text-center color-pink wow fadeInDown  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">FEATURES</h2>
                   <p class="text-center wow fadeInDown  animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInDown;">Ready to take your dating chatting experience to the next level? To start using video chat on dating.com , be sure your<br class="hidden-xs hidden-md hidden-sm"> webcam is in working order and then follow a few easy setup and start video chat</p>
@@ -389,7 +389,13 @@ banner -->
             <div class="row">
               <div class="col-md-12">
                 <h5 class="title mb-3">see video</h5>
-                <div class="popup-gallery"> <a href="https://www.youtube.com/embed/8xg3vE8Ie_E" class="play-btn popup-youtube"> <span><i class="glyph-icon flaticon-play-button"></i></span></a> </div>
+                <div class="popup-gallery">
+                  <a href="#" data-target="#imageModal" data-toggle="modal" class="play-btn popup-youtube">
+                    <span>
+                      <i class="fa fa-play" style="font-size: 40px; margin-top: 6px;"></i>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -400,198 +406,37 @@ banner -->
         <!--=================================
         Last added profile -->
         
+        @if (count(App\User::all()))
         <section class="page-section-ptb profile-slider pb-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 text-center">
-                        <h2 class="title divider">Last Added Profiles</h2>
-                    </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h2 class="title divider">Last Added Profiles</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="owl-carousel">
+                  @foreach (App\User::latest()->limit(10)->get() as $user)
+                  <div class="item">
+                    <a href="profile-details.html" class="profile-item">
+                      <div class="profile-image clearfix">
+                        <img class="img-fluid w-100" src="{{ $user->photo_url }}" alt="{{ $user->name }}" style="max-height: 50vh;">
+                      </div>
+                      <div class="profile-details text-center">
+                        <h5 class="title">{{ $user->name }}</h5>
+                        <span>{{ $user->age }} years old</span>
+                      </div>
+                    </a>
+                  </div>
+                  @endforeach
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="owl-carousel">
-                            <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/05.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Bill Nelson</h5>
-                                                    <span>22 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/06.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Francisco Pierce</h5>
-                                                    <span>23 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/07.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Nelle Townsend</h5>
-                                                    <span>19 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/08.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Glen Bell</h5>
-                                                    <span>22 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/01.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Bill Nelson</h5>
-                                                    <span>23 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                    
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/02.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Francisco Pierce</h5>
-                                                    <span>21 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                            <div class="profile-image clearfix">
-                                                <img class="img-fluid w-100" src="/images/profile/03.jpg" alt="">
-                                            </div>
-                                            <div class="profile-details text-center">
-                                                <h5 class="title">Nelle Townsend</h5>
-                                                <span>19 Years Old</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                
-                                
-                                    <div class="item">
-                                        <a href="profile-details.html" class="profile-item">
-                                            <div class="profile-image clearfix">
-                                                <img class="img-fluid w-100" src="/images/profile/04.jpg" alt="">
-                                            </div>
-                                            <div class="profile-details text-center">
-                                                <h5 class="title">Glen Bell</h5>
-                                                <span>20 Years Old</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                
-                                
-                                    <div class="item">
-                                        <a href="profile-details.html" class="profile-item">
-                                            <div class="profile-image clearfix">
-                                                <img class="img-fluid w-100" src="/images/profile/05.jpg" alt="">
-                                            </div>
-                                            <div class="profile-details text-center">
-                                                <h5 class="title">Bill Nelson</h5>
-                                                <span>22 Years Old</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    
-                                   
-                                    <div class="item">
-                                        <a href="profile-details.html" class="profile-item">
-                                            <div class="profile-image clearfix">
-                                                <img class="img-fluid w-100" src="/images/profile/06.jpg" alt="">
-                                            </div>
-                                            <div class="profile-details text-center">
-                                                <h5 class="title">Francisco Pierce</h5>
-                                                <span>23 Years Old</span>
-                                            </div>
-                                        </a> 
-                                    </div>
-                        
-                                    
-                                        <div class="item">
-                                            <a href="profile-details.html" class="profile-item">
-                                                <div class="profile-image clearfix">
-                                                    <img class="img-fluid w-100" src="/images/profile/07.jpg" alt="">
-                                                </div>
-                                                <div class="profile-details text-center">
-                                                    <h5 class="title">Nelle Townsend</h5>
-                                                    <span>19 Years Old</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    
-                                    <div class="item"> <a href="profile-details.html" class="profile-item">
-                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/08.jpg" alt=""></div>
-                    <div class="profile-details text-center">
-                      <h5 class="title">Glen Bell</h5>
-                      <span>22 Years Old</span> </div>
-                    </a> </div>
-                    
-                    <div class="item"> <a href="profile-details.html" class="profile-item">
-                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/01.jpg" alt=""></div>
-                    <div class="profile-details text-center">
-                      <h5 class="title">Bill Nelson</h5>
-                      <span>23 Years Old</span> </div>
-                    </a> </div>
-                    
-                    <div class="item"> <a href="profile-details.html" class="profile-item">
-                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/02.jpg" alt=""></div>
-                    <div class="profile-details text-center">
-                      <h5 class="title">Francisco Pierce</h5>
-                      <span>21 Years Old</span> </div>
-                    </a> </div>
-                    
-                    <div class="item"> <a href="profile-details.html" class="profile-item">
-                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/03.jpg" alt=""></div>
-                    <div class="profile-details text-center">
-                      <h5 class="title">Nelle Townsend</h5>
-                      <span>19 Years Old</span> </div>
-                    </a> </div>
-                    
-                    <div class="item"> <a href="profile-details.html" class="profile-item">
-                    <div class="profile-image clearfix"><img class="img-fluid w-100" src="/images/profile/04.jpg" alt=""></div>
-                    <div class="profile-details text-center">
-                      <h5 class="title">Glen Bell</h5>
-                      <span>20 Years Old</span> </div>
-                    </a> 
-                </div>
-            <!--<div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style=""><i class="fa fa-angle-left fa-2x"></i></div><div class="owl-next" style=""><i class="fa fa-angle-right fa-2x"></i></div></div><div style="display: none;" class="owl-dots"></div></div></div>-->
               </div>
             </div>
           </div>
         </section>
+        @endif
+
 
         <!--=================================
         Dating Principles -->
@@ -601,9 +446,9 @@ banner -->
               <div class="row justify-content-center">
                   <div class="col-lg-6 col-md-6 col-sm-6 left-section col-lg-push-6 col-md-push-6 col-sm-push-6">
                       <header class="header01 m-b-0">
-                          <h2 class="color-pink wow fadeInDown  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">DATING <span>PRINCIPLE!</span><br>
+                          <h2 class="color-pink wow fadeInDown  animated">DATING <span>PRINCIPLE!</span><br>
                               Love is more than a <span>coincidence</span>.</h2>
-                          <p class="wow fadeInDown  animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInDown;">So we can bring you the matches with the most potential for a happy and long-lasting relationship, we rely on findings from 40 years of research in this field: The Dating.com analyzes 32 personality traits and is based on a matching algorithm of 136 rules.</p>
+                          <p class="lead" data-wow-delay="0.4s">So we can bring you the matches with the most potential for a happy and long-lasting relationship, we rely on findings from 40 years of research in this field: The Dating.com analyzes 32 personality traits and is based on a matching algorithm of 136 rules.</p>
                       </header>   
                   </div> 
                   <div class="col-lg-6 col-md-6 col-sm-6 col-md-pull-6 right-section col-lg-pull-6 col-sm-pull-6 wow fadeInUp  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
@@ -855,4 +700,40 @@ banner -->
             </div>
           </div>
         </section>
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <img src="/images/close_modal.png">
+              </button>
+            </div>
+            <!--Content-->
+            <div class="modal-content">
+              <!--Body-->
+              <div class="modal-body mb-0 p-0">
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                  <video
+                    id="my-video"
+                    class="video-js"
+                    controls
+                    preload="auto"
+                    poster="/images/bg/bg-1.jpg"
+                  >
+                    <source src="/connect1on1video.mp4" type="video/mp4" />
+                    <source src="/connect1on1video.webm" type="video/webm" />
+                    <p class="vjs-no-js">
+                      To view this video please enable JavaScript, and consider upgrading to a
+                      web browser that
+                      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                  </video>
+                </div>
+              </div>
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+    <!--Modal: Name-->
 @endsection

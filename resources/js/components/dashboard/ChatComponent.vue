@@ -1,6 +1,6 @@
 <template>
 <div class="chat">
-    <Modals v-if="!noChatSelected" :user="user" :otherUser="conversation.person" />
+    <!--<Modals v-if="!noChatSelected" :user="user" :otherUser="conversation.person" />-->
 
     <div class="chat-header">
         <div class="chat-header-user" v-if="!noChatSelected">
@@ -214,14 +214,14 @@ function trace(arg) {
     console.log(now + ': ', arg);
 }
 
-import Modals from './modals/Modals';
+//import Modals from './modals/Modals';
 import VideoComponent from './VideoComponent';
 
 export default {
     props: ['user', 'conversation'],
 
     components: {
-        Modals,
+        //Modals,
         VideoComponent,
     },
       
