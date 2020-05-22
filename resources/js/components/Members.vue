@@ -76,7 +76,7 @@
           <div class="modal__profile__container modal-content">
               <div class="container-fluid container-close-pos">
                 <div class="row">
-                    <div class="col-xs-12 end-xs">
+                    <div class="col-12 end-xs">
                         <a href="javascript:;" data-dismiss="modal" aria-label="Close">
                             <i class="fa fa-times" style="font-size: 40px;">
                                 <use xlink:href="#fa-times"></use>
@@ -88,13 +88,13 @@
 
             <!--<div class="container-fluid container-ctrls-pos">
                 <div class="row">
-                    <div class="col-xs-6 start-xs">
+                    <div class="col-6 start-xs">
                         <a href="javascript:;" class="back displayNone" style="display: inline;">
                             <img src="/images/mod-arrow-left.png" class="mod-arrow-size" alt="">
                         </a>
                     </div>
                     
-                    <div class="col-xs-6 end-xs">
+                    <div class="col-6 end-xs">
                         <a href="javascript:;" class="next displayNone" style="display: inline;">
                             <img src="/images/mod-arrow-right.png" class="mod-arrow-size" alt="">
                         </a>
@@ -137,10 +137,10 @@
                                 <div class="prof--contact--box">
                                     <div class="container-fluid">
                                         <div class="row">
-                                            <div class="col-sm-8 col-xs-6">
+                                            <div class="col-sm-8 col-6">
                                             <button type="button" class="btn btn--addtofavorites">Star</button>
                                             </div>
-                                            <div class="col-sm-4 col-xs-6 end-xs">
+                                            <div class="col-sm-4 col-6 end-xs">
                                             <div class="mc--buttons row around-xs">
                                                 <a :href="'chat/' + user.slug" class="mc--img mc--chat on" ></a>
                                                 <div class="mc--img mc--video available"></div>
@@ -150,7 +150,7 @@
                                         </div>
                                         <div id="message-box">
                                             <div class="row">
-                                                <div class="col-xs-12">
+                                                <div class="col-12">
                                                     <div class="prof--textarea--border">
                                                         <textarea class="prof-textarea-box" :disabled="notLoggedIn"></textarea>
                                                     </div>
@@ -159,7 +159,7 @@
                                             <div class="row">
                                                 <div class="container-fluid container-msg-buttons">
                                                     <div v-show="notLoggedIn" class="row">
-                                                        <div class="col-xs-12 start-xs paddingbot5">
+                                                        <div class="col-12 start-xs paddingbot5">
                                                             <span class="start-xs">
                                                             Please
                                                             <a href="/login">sign in</a> or
@@ -169,7 +169,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div
-                                                            class="col-sm-12 end-sm nowrap-sm col-xs-12 center-xs nowrap-xs"
+                                                            class="col-sm-12 end-sm nowrap-sm col-12 center-xs nowrap-xs"
                                                         >
                                                             <button class="btn btn-primary btn--send--width" :disabled="notLoggedIn">Send</button>
                                                         </div>

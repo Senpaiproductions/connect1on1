@@ -283,7 +283,7 @@ banner -->
         Step to find your Soul Mate -->
         
         <section class="page-section-ptb position-relative timeline-section">
-          <div class="container" style="width: 88em;">
+          <div class="container">
             <div class="row justify-content-center mb-5 sm-mb-3">
               <div class="col-md-10 text-center">
                 <h2 class="title divider mb-3">START DATING TODAY !</h2>
@@ -336,7 +336,7 @@ banner -->
         <!--=================================
         Connect 1on1 -->
         <section class="bg-white common_section feature_section">
-          <div class="container" style="width: 88em;">
+          <div class="container">
               <header class="header01">
                   <h2 class="text-center color-pink wow fadeInDown  animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">FEATURES</h2>
                   <p class="text-center wow fadeInDown  animated" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInDown;">Ready to take your dating chatting experience to the next level? To start using video chat on dating.com , be sure your<br class="hidden-xs hidden-md hidden-sm"> webcam is in working order and then follow a few easy setup and start video chat</p>
