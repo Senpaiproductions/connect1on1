@@ -35,20 +35,25 @@
                         </li>
                         
                         <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="Video call">
-                            <button class="btn btn-outline-light text-warning" data-toggle="modal" data-target="#videoCall">
+                            <button @click="requestVideoCall()" :disabled="conversation == null || conversation.length == 0" class="btn btn-outline-light text-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
                             </button>
                         </li>
 
-                        <button @click="requestVideoCall()"></button>
+                        <li class="list-inline-item">
+                            <button @click="changeBackground()" data-toggle="tooltip" data-placement="right" class="btn btn-outline-light text-danger dark-light-switcher">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <div v-if="videoCalling" class="container video" style="background: rgba(21, 20, 20, 0.61); overflow:auto">  
+
+            <div v-show="videoCalling" class="container video" style="background: rgba(21, 20, 20, 0.61); overflow:auto">  
                 <div class="row">
                     <div class="col-lg-12 text-right" style="right: 0;margin-bottom: 20px; margin-top: 20px;">
-                        <video width="100" class="img-responsive" autoplay id='localVideo'></video>
+                        <video width="100" class="img-responsive" autoplay id='localVideo' muted></video>
                     </div>
                     <div class="col-lg-12 col-md-12 mb-4">
                         <div class="card" tabindex="-1">
@@ -56,34 +61,13 @@
                             <div class="card-body mb-0 p-0">
                                 <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
                                     <video width="100" class="img-responsive" autoplay id='remoteVideo'></video>
-
-                                    <!--<div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="call">
-                                                <div>
-                                                    <figure class="mb-4 avatar avatar-xl">
-                                                        <img :src="conversation.person.photo_url" class="rounded-circle" alt="image">
-                                                    </figure>
-                                                    <h4>Waiting for <span class="text-success">{{ conversation.person.name }}...</span></h4>
-                                                    <div class="action-button">
-                                                        <button type="button" class="btn btn-danger btn-floating btn-lg" data-dismiss="modal">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                                        </button>
-                                                        <button type="button" class="btn btn-success btn-pulse btn-floating btn-lg">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-12 text-center" style="right: 0;margin-bottom: 20px; margin-top: 20px;">
                             <div class="action-button">
-                                <button type="button" data-dismiss="modal" class="btn btn-danger btn-floating btn-lg">
+                                <button @click="endVideoCall" type="button" class="btn btn-danger btn-floating btn-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
                                         <line x1="18" y1="6" x2="6" y2="18"></line>
                                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -95,16 +79,15 @@
                 </div>
             </div>
             
-            
-            <div v-else id="chatbody" class="chatbody" :class="{ 'no-message': 'noChatSelected' }" style="overflow: auto; outline: currentcolor none medium;" tabindex="1"> <!-- .no-message -->
-                <!--<div class="no-message-container">
+            <div v-show="!videoCalling" id="chatbody" class="chatbody" :class="{ 'no-message': 'noChatSelected' }" style="overflow: auto; outline: currentcolor none medium;" tabindex="1"> <!-- .no-message -->
+                <div v-if="messages.length == 0" class="no-message-container">
                     <div class="row mb-5">
                         <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-6 offset-3">
                             <img src="/images/dashboard/undraw_empty_xct9.svg" class="img-fluid" alt="image">
                         </div>
                     </div>
-                    <p class="lead">Select a chat to read messages</p>
-                </div>-->
+                    <p class="lead">No messages here</p>
+                </div>
 
                 <div v-if="loading" class="col-md-12" style="text-align: center; margin-top: 70px;">
                     <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
@@ -140,7 +123,7 @@
                 </div>
             </div>
 
-            <div class="chat-footer">
+            <div v-show="videoCalling == false" class="chat-footer">
                 <form>
                     <div>
                         <button class="btn btn-light mr-3" data-toggle="tooltip" title="" type="button" data-original-title="Emoji">
@@ -148,7 +131,7 @@
                         </button>
                     </div>
                     
-                    <input type="text" class="form-control" @keydown="isTyping" v-model="newMessage" placeholder="Type your message...">
+                    <input type="text" class="form-control" @keydown="isTyping" @keyup.enter="sendMessage" v-model="newMessage" placeholder="Type your message...">
                     <span class="field-error">{{ String(errors.message) }}</span>
 
                     <div class="form-buttons">
@@ -166,52 +149,89 @@
             </div>
         </div>
     </div>
+
+    <!-- video call modal -->
+    <div data-backdrop="static" data-keyboard="false" class="modal call fade" id="videoCall" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="call">
+                        <div>
+                            <figure class="mb-4 avatar avatar-xl">
+                                <img :src="otheruser.photo_url" class="rounded-circle" alt="image">
+                            </figure>
+                            <h4>
+                                <span class="text-success">Contacting </span> {{ otheruser.name }}
+                            </h4>
+                            
+                            <div class="col-md-4 offset-md-5 text-center" style="margin-top: 30px;">
+                                <rotate-square5 class="video__spinner"></rotate-square5>
+                            </div>
+                            
+                            <div class="action-button">
+                                <button @click="stopVideoCall" type="button" class="btn btn-danger btn-floating btn-lg" data-dismiss="modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
+                                <!--<button type="button" class="btn btn-success btn-pulse btn-floating btn-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                                </button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ video call modal -->
+
+    <!-- video answer modal -->
+    <div data-backdrop="static" data-keyboard="false" class="modal call fade" id="videoAnswer" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="call">
+                        <div>
+                            <figure class="mb-4 avatar avatar-xl">
+                                <img :src="otheruser.photo_url" class="rounded-circle" alt="image">
+                            </figure>
+                            <h4>
+                                {{ otheruser.name }} is requesting a <span class="text-success">Video Call </span>
+                            </h4>
+                            
+                            <div class="col-md-4 offset-md-5 text-center" style="margin-top: 30px;">
+                                <rotate-square5 class="video__spinner"></rotate-square5>
+                            </div>
+                            
+                            <div class="action-button">
+                                <button @click="stopVideoCall" type="button" class="btn btn-danger btn-floating btn-lg" data-dismiss="modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </button>
+                                <button @click="answerCall" type="button" class="btn btn-success btn-pulse btn-floating btn-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ video call modal -->
 </div>
 </template>
 
 <script>
-/*$(function () {
-    //var localVideo = document.getElementById('localVideo');
-    //var remoteVideo = document.getElementById('remoteVideo');
-    //var answerButton = document.getElementById('answerCallButton');
-
-    //answerButton.onclick = answerCall;
-
-    //$('input[type=file]').on('change', prepareUpload);
-});*/
-
-var files;
-
-var conversationID;
-var leftUID;
-var rightUID;
-var startTime;
-var localStream;
-var pc;
-
-var offerOptions = {
-    offerToReceiveAudio: 1,
-    offerToReceiveVideo: 1
-};
-
-var isCaller = false;
-var peerConnectionDidCreate = false;
-var candidateDidReceived = false;
-
-function trace(arg) {
-    var now = (window.performance.now() / 1000).toFixed(3);
-    console.log(now + ': ', arg);
-}
-
 import Modals from './modals/Modals';
-//import VideoComponent from './VideoComponent';
+import { RotateSquare5 } from "vue-loading-spinner";
+import { servers } from './utils/ICEServers';
+import { log } from "./utils/logging";
 
 export default {
     props: ['authuser', 'otheruser', 'conversation'],
 
     components: {
         Modals,
-        //VideoComponent,
+        RotateSquare5
     },
       
     data() {
@@ -226,6 +246,44 @@ export default {
             typingUser: null,
 
             videoCalling: false,
+            isCaller: false,
+        
+            // videos
+            myVideo: {},
+            remoteVideo: {},
+
+            //offer received from person who requested video call
+            offer: null,
+
+            //peerConnectionDidCreate
+            peerConnectionDidCreate: false,
+
+            // Media config
+            constraints: {
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true, 
+                    autoGainControl: false
+                },
+                video: { 
+                    width: 1080, 
+                    height: 720 
+                }
+            },
+
+            // local & remote video stream
+            localStream: undefined,
+            remoteStream: undefined,
+            // STUN ice servers
+            configuration: servers,
+
+            // Peer connection
+            pc: undefined,
+            // Offer config
+            offerOptions: {
+                offerToReceiveAudio: 1,
+                offerToReceiveVideo: 1
+            },
 
             errors: {
                 message: "",
@@ -241,11 +299,20 @@ export default {
 
     async mounted() {
         this.getMessages(this.otheruser.id);
+        this.initializeVideo(this.conversation);
     },
     
     methods: {
-        check(id) {
-            return id === this.otheruser.id;
+        changeBackground() {
+            var body = document.getElementsByTagName("BODY")[0];
+            
+            if (body.classList.contains("dark")) {
+                axios.post('change-background', {  background: 'light'})
+            } else if (body.classList.contains("light")) {
+                axios.post('change-background', {  background: 'dark'})
+            } else {
+                return
+            }
         },
 
         async getMessages(user_id) {
@@ -295,7 +362,7 @@ export default {
                 // remove is typing indicator after 0.9s
                 setTimeout(function() {
                     _this.typing = false
-                }, 900);
+                }, 9000);
             });
         },
 
@@ -305,10 +372,10 @@ export default {
 
             setTimeout(function() {
                 channel.whisper('typing', {
-                    typingUser: self.user.name,
+                    typingUser: self.authuser.name,
                     typing: true
                 });
-            }, 300);
+            }, 3000);
         },
 
         notTyping() {
@@ -345,135 +412,330 @@ export default {
             });
         },
 
-        requestVideoCall() {
-            if(this.conversation.length === 0) {
+        async initializeVideo(conversation) {
+            if (conversation != null) {
+                Echo.private('video.' + conversation.id)
+                .listen('VideoChatStart', (data) => {
+                    if(data.to != this.authuser.id){
+                        return;
+                    }
+
+                    if(data.type === 'signal') {
+                        this.onSignalMessage(data);
+                    } else if(data.type === 'text') {
+                        console.log('received text message from ' + data.from + ', content: ' + data.content);
+                    } else{
+                        console.log('received unknown message type ' + data.type + ' from ' + data.from);
+                    }
+                });
+
+                // Set the video element
+                this.myVideo = document.getElementById("localVideo");
+                this.remoteVideo = document.getElementById("remoteVideo");
+
+                // Create peer connection
+                this.createPeerConnection();
+
+                // Event listeners
+                this.onIceCandidates();
+                this.onAddStream();
+            }
+        },
+
+        async requestVideoCall() {
+            if (this.conversation == null || this.conversation.length == 0) {
                 return;
             }
 
+            if (this.videoCalling == true) {
+                return;
+            }
+
+            log(`${this.authuser.name} wants to start a call`); 
+
+            this.isCaller = true;
+            $('#videoCall').modal('show');
+
+            await this.getUserMedia();
+            await this.getAudioVideo();
+
+            this.startVideoCall();
+        },
+
+        async getUserMedia() {
+            log(`Requesting ${this.authuser.name} video stream`);
+            if ("mediaDevices" in navigator) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+                    this.myVideo.srcObject = stream;
+                    this.localStream = stream;
+                    log("Received local video stream");
+                } catch (error) {
+                    log(`getUserMedia error: ${error}`);
+                }
+            }
+        },
+
+        getAudioVideo() {
+            const video = this.localStream.getVideoTracks();
+            const audio = this.localStream.getAudioTracks();
+            if (video.length > 0) log(`Using video device: ${video[0].label}`);
+            if (audio.length > 0) log(`Using audio device: ${audio[0].label}`);
+        },
+
+        // Send signaling data via Scaledrone
+        async sendSignal(details) {
+            let authuser = this.authuser.id; 
+            let otheruser = this.otheruser.id;
+            //return console.log(details['content'])
+
+            var message = { from: authuser, to: otheruser, type: details['type'], subtype: details['subtype'], content: details['content'], time: new Date() };
+            await axios.post('/trigger-video-call', {message: message});
+        },
+
+        startVideoCall() {
+            // Add local stream
+            this.addLocalStream();
             this.videoCalling = true;
 
-            Cookies.set('uuid', this.user.id);
-            Cookies.set('conversationID', this.conversation.id);
-            Cookies.set('remoteUUID', this.conversation.person.id);
-
-            window.remoteUUID = this.conversation.person.id;
-
-            leftUID = Cookies.get('uuid');
-            rightUID = Cookies.get('remoteUUID');
-            isCaller = true;
-
-            start()
+            if (this.isCaller) {
+                this.callFriend();
+            } else {
+                this.createAnswer()
+            }
+            
         },
+
+        createPeerConnection() {
+            this.pc = new RTCPeerConnection(this.configuration);
+            log(`Created ${this.authuser.name} peer connection object`);
+        },
+
+        addLocalStream(){
+            this.pc.addStream(this.localStream)
+        },
+
+        onIceCandidates() {
+            // send any ice candidates to the other peer
+            log(`${this.authuser.name} starting onice candidate`);
+            var limit = 0;
+            this.pc.onicecandidate = ({ candidate }) => {
+                if (limit == 0) {
+                    var details = [];
+            
+                    details['type'] = 'signal';
+                    details['subtype'] = 'candidate';
+                    details['content'] = candidate;
+
+                    this.sendSignal(details);
+                    limit = 1;
+                } else {
+                    return;
+                }
+            };
+        },
+
+         onAddStream() {
+            log(`${this.authuser.name} starting onadd stream`);
+
+            this.pc.onaddstream = (event) => {
+                if(!this.remoteVideo.srcObject && event.stream) {
+                    this.remoteStream = event.stream
+                    this.remoteVideo.srcObject = this.remoteStream ;
+                }
+            }
+        },
+
+        callFriend() {
+            log(`${this.authuser.name} wants to start a call`);   
+            this.createOffer();
+        },
+
+        async setRemoteDescription(remoteDesc) {
+            try {
+                log(`${this.authuser.name} setRemoteDescription: start`);
+                await this.pc.setRemoteDescription(remoteDesc);
+                log(`${this.authuser.name} setRemoteDescription: finished`);
+            } catch (error) {
+                log(`Error setting the RemoteDescription in ${this.authuser.name}. Error: ${error}`);
+            }
+        },
+
+        async createAnswer() {
+            log(`${this.authuser.name} create an answer: start`);
+            try {
+                const answer = await this.pc.createAnswer();
+
+                log(`Answer from ${this.authuser.name}\n ${answer.sdp}`);
+                log(`${this.authuser.name} setLocalDescription: start`);
+                
+                await this.pc.setLocalDescription(answer);
+                
+                log(`${this.authuser.name} setLocalDescription: finished`);
+                this.sendSignalingMessage(this.pc.localDescription, false);
+            } catch (error) {
+                log(`Error creating the answer from ${this.authuser.name}. Error: ${error}`);
+            }
+        },
+
+        async createOffer() {
+            log(`${this.authuser.name} create an offer: start`);
+            
+            try {
+                const offer = await this.pc.createOffer(this.offerOptions);
+
+                log(`Offer from ${this.authuser.name}\n ${offer.sdp}`);
+                log(`${this.authuser.name} setLocalDescription: start`);
+                
+                await this.pc.setLocalDescription(offer);
+                
+                log(`${this.authuser.name} setLocalDescription: finished`);
+                
+                this.sendSignalingMessage(this.pc.localDescription, true);
+            } catch (error) {
+                log(`Error creating the offer from ${this.authuser.name}. Error: ${error}`);
+            }
+        },
+
+        sendSignalingMessage(desc, offer) {
+            const isOffer = offer ? "offer" : "answer";
+            log(`${this.authuser.name} sends the ${isOffer} through the signal channel`);
+            // send the offer to the other peer
+            var details = [];
+            
+            details['type'] = 'signal';
+            details['subtype'] = isOffer;
+            details['content'] = desc;
+
+            this.sendSignal(details);
+        },
+
+        onSignalMessage(m) {
+            log(m.subtype);
+            
+            if(m.subtype === 'offer') {
+                log('got remote offer from ' + m.from + ', content ' + m.content);
+                this.onSignalOffer(m.content);
+            } else if(m.subtype === 'answer') {
+                this.onSignalAnswer(m.content);
+            } else if(m.subtype === 'candidate') {
+                log('got remote candidate from ' + m.from + ', content ' + m.content);
+                this.onSignalCandidate(m.content);
+            } else if(m.subtype === 'close') {
+                this.onSignalClose();
+            } else {
+                console.log('unknown signal type ' + m.subtype);
+            }
+        },
+
+        async onSignalOffer(offer) {
+            log('onsignal offer')
+            this.offer = offer;
+            
+            var data = {
+                type: this.offer.type,
+                sdp: this.offer.sdp += "\n"
+            }
+            await this.setRemoteDescription(data);
+            $('#videoAnswer').modal('show');
+        },
+
+        answerCall() {
+            this.isCaller = false;
+
+            $('#videoAnswer').modal('hide');
+            this.startAnswer()
+        },
+
+        async startAnswer() {
+            log(`Requesting ${this.authuser.name} video stream`);
+            
+            await this.getUserMedia();
+            await this.getAudioVideo();
+
+            this.startVideoCall();
+        },
+
+        async onSignalAnswer(answer) {
+            log('onRemoteAnswer : ' + answer);
+
+            var data = {
+                type: answer.type,
+                sdp: answer.sdp += "\n"
+            }
+            await this.setRemoteDescription(data);
+            
+            this.onSetRemoteSuccess(this.pc);
+        },
+
+        onSetRemoteSuccess(pc) {
+            $('#videoCall').modal('hide');
+            log(pc + ' setRemoteDescription complete');
+        },
+
+        async onSignalCandidate(candidate) {
+            try {
+                log(`${this.authuser.name} attempting to add a candidate`);
+                await this.pc.addIceCandidate(new RTCIceCandidate(candidate));
+                log(`Candidate added`);
+            } catch (error) {
+                log(`Error adding a candidate in ${this.authuser.name}. Error: ${error}`)
+            }
+        },
+
+        onSignalClose() {
+            log('Ending call');
+            this.pc.close();
+            this.pc = null;
+
+            this.videoCalling = false;
+
+            this.closeMedia();
+            this.clearView();
+        },
+
+        stopVideoCall() {
+            this.pc.close();
+            this.pc = null;
+
+            this.videoCalling = false;
+            
+            this.closeMedia();
+            this.clearView();
+
+            $('#videoCall').modal('hide')
+        },
+
+        closeMedia(){
+            this.localStream.getTracks().forEach(function(track){track.stop();});
+        },
+
+        clearView(){
+            this.myVideo.srcObject = null;
+            this.remoteVideo.srcObject = null;
+        },
+
+        //Video call already going on and member wants to end it
+        endVideoCall() {
+            let details = [];
+
+            details['type'] = 'signal';
+            details['subtype'] = 'close';
+            details['content'] = 'ending the call';
+
+            this.sendSignal(details);
+
+            log('Ending call');
+            this.pc.close();
+            this.pc = null;
+
+            this.videoCalling = false;
+
+            this.closeMedia();
+            this.clearView();
+        }
     }
 };
-
-async function start() {
-    trace('Requesting local stream');
-    await getUserMedia()
-}
-
-async function getUserMedia() {
-    navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: {
-            width: { min: 1280 },
-            height: { min: 720 }
-        }
-    })
-    .then(gotStream)
-    .catch(function(e) {
-        alert('getUserMedia() error: ' + e.name);
-    });
-}
-
-function gotStream(stream) {
-    trace('Received local stream');
-    
-    localVideo.srcObject = stream;
-    localStream = stream;
-    call()
-}
-
-function call() {
-    conversationID = Cookies.get('conversationID');
-
-    trace('Starting call');
-    startTime = window.performance.now();
-    var videoTracks = localStream.getVideoTracks();
-    var audioTracks = localStream.getAudioTracks();
-    
-    if (videoTracks.length > 0) {
-        trace('Using video device: ' + videoTracks[0].label);
-    }
-    if (audioTracks.length > 0) {
-        trace('Using audio device: ' + audioTracks[0].label);
-    }
-
-    var configuration = { "iceServers": [{ "urls": "stun:stun.ideasip.com" }] };
-    pc = new RTCPeerConnection(configuration);
-
-    trace('Created local peer connection object pc');
-
-
-    pc.onicecandidate = function(e) {
-        onIceCandidate(pc, e);
-    };
-    
-
-    pc.oniceconnectionstatechange = function(e) {
-        onIceStateChange(pc, e);
-    };
-
-    pc.onaddstream = gotRemoteStream;
-
-    //return alert('this far')
-
-    pc.addStream(localStream);
-
-    trace('Added local stream to pc');
-
-    peerConnectionDidCreate = true;
-
-    if(isCaller) {
-        trace('createOffer start');
-        trace('pc createOffer start');
-
-        pc.createOffer(
-            offerOptions
-        ).then(
-            //onCreateOfferSuccess,
-            //onCreateSessionDescriptionError
-        );
-    }else{
-        onAnswer()
-    }
-}
-
-function gotRemoteStream(e) {
-    if (remoteVideo.srcObject !== e.stream) {
-        remoteVideo.srcObject = e.stream;
-        trace('pc received remote stream');
-    }
-}
-
-function onCreateAnswerSuccess(desc) {
-    trace('Answer from pc:\n' + desc.sdp);
-    trace('pc setLocalDescription start');
-    pc.setLocalDescription(desc).then(
-        function() {
-            onSetLocalSuccess(pc);
-        },
-        onSetSessionDescriptionError
-    );
-    conversationID = Cookies.get('conversationID');
-    var message = {from: leftUID, to:rightUID, type: 'signal', subtype: 'answer', content: desc, time:new Date()};
-        axios.post('/trigger/' + conversationID , message );
-    }
-
-    function onSetRemoteSuccess(pc) {
-        trace(pc + ' setRemoteDescription complete');
-        applyRemoteCandidates();
-    }
 </script>
 
 <style scoped>

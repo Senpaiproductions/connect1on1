@@ -12,6 +12,7 @@ use App\Message;
 use App\Conversation;
 
 use App\Events\MessageSent;
+use App\Events\VideoChatStart;
 
 class MessageController extends Controller
 {
@@ -83,30 +84,14 @@ class MessageController extends Controller
                 return redirect()->back();
         }
 
-        /*$conversation = Conversation::where(function ($query) use ($user, $otherUser) {
+        $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
                 $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
             })->orWhere(function ($query) use ($user, $otherUser) {
                 $query->where('first_user_id', $otherUser->id)->where('second_user_id', $user->id);
             })->first();
 
-        
-        if (!$conversation) {
-                $conversation = [];
-                return view('frontend.user.chat')->with('otherUser', $otherUser)->with('conversation', $conversation);
-         }
-         
-        $messages = $conversation->messages;
  
-        foreach ($messages as $message) {
-                if($message->seen === 0 && ($message->user_id !== Auth::user()->id)) {
-                        $message->seen = 1;
-                        $message->save();
-                }
-                 
-                $message['user'] = User::find($message->user_id);
-        }*/
- 
-        return view('frontend.user.chat')->with('otherUser', $otherUser);
+        return view('frontend.user.chat')->with('otherUser', $otherUser)->with('conversation', $conversation);
     }
 
 
@@ -302,7 +287,7 @@ class MessageController extends Controller
                 'body' => $body
         ]);
 
-        //broadcast(new MessageSent($message->load('user')))->toOthers();
+        broadcast(new MessageSent($message->load('user')))->toOthers();
 
         return response()->json([
                 'message' => $message->load('user')
@@ -338,4 +323,25 @@ class MessageController extends Controller
                 'message' => $message->load('user')
         ], 200);
     }*/
+
+    public function triggerVideoCall(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $otherUser = User::find($request->message['to']);
+        
+        $message = $request->message;
+
+        $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
+                $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
+            })->orWhere(function ($query) use ($user, $otherUser) {
+                $query->where('first_user_id', $otherUser->id)->where('second_user_id', $user->id);
+            })->first();
+            
+
+        if (!$conversation) {
+                return false;
+        }
+
+        broadcast(new VideoChatStart($conversation, $message));
+    }
 }

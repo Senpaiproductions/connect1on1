@@ -12,6 +12,8 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Wildside\Userstamps\Userstamps;
 
+use App\Conversation;
+
 class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, Userstamps, HasSlug;
@@ -106,5 +108,18 @@ class User extends Authenticatable
 
     public function conversations(){
 		return $this->hasMany(Conversation::class, 'user_id');
+    }
+
+    public function canJoinConversation($user, $conversation)
+    {
+        $conversation = Conversation::find($conversation);
+
+        if ($conversation) {
+            if (($conversation->first_user_id == $user->id) || ($conversation->second_user_id == $user->id)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

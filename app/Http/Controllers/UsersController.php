@@ -12,6 +12,15 @@ use App\Conversation;
 
 class UsersController extends Controller
 {
+    public function changeBackground(Request $request)
+    {
+        $background = $request->background;
+
+        $user = User::find(Auth::user()->id);
+        $user->background_preference = $background;
+        $user->save();
+    }
+
     public function index(Request $request)
     {
 

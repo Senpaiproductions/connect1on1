@@ -215,14 +215,12 @@ function trace(arg) {
 }
 
 //import Modals from './modals/Modals';
-import VideoComponent from './VideoComponent';
 
 export default {
     props: ['user', 'conversation'],
 
     components: {
         //Modals,
-        VideoComponent,
     },
       
     data() {
@@ -456,13 +454,90 @@ function call() {
         pc.createOffer(
             offerOptions
         ).then(
-            //onCreateOfferSuccess,
-            //onCreateSessionDescriptionError
+            onCreateOfferSuccess,
+            onCreateSessionDescriptionError
         );
     }else{
         onAnswer()
     }
 }
+
+function onAnswer(){
+        var remoteOffer = Cookies.getJSON('offer');
+
+        pc.setRemoteDescription(remoteOffer).then(function(){onSetRemoteSuccess(pc)}, onSetSessionDescriptionError);
+
+        pc.createAnswer().then(
+            onCreateAnswerSuccess,
+            onCreateSessionDescriptionError
+        );
+    }
+
+function onCreateAnswerSuccess(desc) {
+        trace('Answer from pc:\n' + desc.sdp);
+        trace('pc setLocalDescription start');
+        pc.setLocalDescription(desc).then(
+            function() {
+                onSetLocalSuccess(pc);
+            },
+            onSetSessionDescriptionError
+        );
+        conversationID = Cookies.get('conversationID');
+        var message = {from: leftUID, to:rightUID, type: 'signal', subtype: 'answer', content: desc, time:new Date()};
+        //axios.post('/trigger/' + conversationID , message );
+    }
+
+function onCreateSessionDescriptionError(error) {
+        trace('Failed to create session description: ' + error.toString());
+    }
+
+function onIceCandidate(pc, event) {
+        if (event.candidate){
+            trace(pc + ' ICE candidate: \n' + (event.candidate ? event.candidate.candidate : '(null)'));
+            conversationID = Cookies.get('conversationID');
+            var message = {from: leftUID, to:rightUID, type: 'signal', subtype: 'candidate', content: event.candidate, time:new Date()};
+            //axios.post('/trigger/' + conversationID , message );
+        }
+    }
+
+function onAddIceCandidateSuccess(pc) {
+        trace(pc + ' addIceCandidate success');
+    }
+
+    function onAddIceCandidateError(pc, error) {
+        trace(pc + ' failed to add ICE Candidate: ' + error.toString());
+    }
+
+    function onIceStateChange(pc, event) {
+        if (pc) {
+            trace(pc + ' ICE state: ' + pc.iceConnectionState);
+            console.log('ICE state change event: ', event);
+        }
+    }
+
+function onCreateOfferSuccess(desc) {
+        trace('Offer from pc\n' + desc.sdp);
+        trace('pc setLocalDescription start');
+        pc.setLocalDescription(desc).then(
+            function() {
+                onSetLocalSuccess(pc);
+            },
+            onSetSessionDescriptionError
+        );
+
+        conversationID = Cookies.get('conversationID');
+        var message = {from: leftUID, to:rightUID, type: 'signal', subtype: 'offer', content: desc, time:new Date()};
+        //axios.post('/trigger/' + conversationID , message );
+    }
+
+function onSetLocalSuccess(pc) {
+        trace( pc + ' setLocalDescription complete');
+    }
+
+
+    function onSetSessionDescriptionError(error) {
+        trace('Failed to set session description: ' + error.toString());
+    }
 
 function gotRemoteStream(e) {
     if (remoteVideo.srcObject !== e.stream) {
@@ -471,23 +546,27 @@ function gotRemoteStream(e) {
     }
 }
 
-function onCreateAnswerSuccess(desc) {
-    trace('Answer from pc:\n' + desc.sdp);
-    trace('pc setLocalDescription start');
-    pc.setLocalDescription(desc).then(
-        function() {
-            onSetLocalSuccess(pc);
-        },
-        onSetSessionDescriptionError
-    );
-    conversationID = Cookies.get('conversationID');
-    var message = {from: leftUID, to:rightUID, type: 'signal', subtype: 'answer', content: desc, time:new Date()};
-        axios.post('/trigger/' + conversationID , message );
-    }
-
     function onSetRemoteSuccess(pc) {
         trace(pc + ' setRemoteDescription complete');
         applyRemoteCandidates();
+    }
+
+    function applyRemoteCandidates(){
+        var candidates = Cookies.getJSON('candidate');
+        for(var candidate in candidates){
+            addRemoteCandidate(candidates[candidate]);
+        }
+        Cookies.remove('candidate');
+    }
+
+    function addRemoteCandidate(candidate){
+        pc.addIceCandidate(candidate).then(
+            function() {
+                onAddIceCandidateSuccess(pc);
+            },
+            function(err) {
+                onAddIceCandidateError(pc, err);
+            });
     }
 </script>
 

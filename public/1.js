@@ -11,8 +11,6 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modals_Modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/Modals */ "./resources/js/components/dashboard/modals/Modals.vue");
-/* harmony import */ var _VideoComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideoComponent */ "./resources/js/components/dashboard/VideoComponent.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -225,15 +223,12 @@ var candidateDidReceived = false;
 function trace(arg) {
   var now = (window.performance.now() / 1000).toFixed(3);
   console.log(now + ': ', arg);
-}
-
+} //import Modals from './modals/Modals';
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'conversation'],
-  components: {
-    Modals: _modals_Modals__WEBPACK_IMPORTED_MODULE_1__["default"],
-    VideoComponent: _VideoComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  components: {//Modals,
   },
   data: function data() {
     return {
@@ -502,17 +497,18 @@ function call() {
   if (isCaller) {
     trace('createOffer start');
     trace('pc createOffer start');
-    pc.createOffer(offerOptions).then();
+    pc.createOffer(offerOptions).then(onCreateOfferSuccess, onCreateSessionDescriptionError);
   } else {
     onAnswer();
   }
 }
 
-function gotRemoteStream(e) {
-  if (remoteVideo.srcObject !== e.stream) {
-    remoteVideo.srcObject = e.stream;
-    trace('pc received remote stream');
-  }
+function onAnswer() {
+  var remoteOffer = Cookies.getJSON('offer');
+  pc.setRemoteDescription(remoteOffer).then(function () {
+    onSetRemoteSuccess(pc);
+  }, onSetSessionDescriptionError);
+  pc.createAnswer().then(onCreateAnswerSuccess, onCreateSessionDescriptionError);
 }
 
 function onCreateAnswerSuccess(desc) {
@@ -529,13 +525,96 @@ function onCreateAnswerSuccess(desc) {
     subtype: 'answer',
     content: desc,
     time: new Date()
-  };
-  axios.post('/trigger/' + conversationID, message);
+  }; //axios.post('/trigger/' + conversationID , message );
+}
+
+function onCreateSessionDescriptionError(error) {
+  trace('Failed to create session description: ' + error.toString());
+}
+
+function onIceCandidate(pc, event) {
+  if (event.candidate) {
+    trace(pc + ' ICE candidate: \n' + (event.candidate ? event.candidate.candidate : '(null)'));
+    conversationID = Cookies.get('conversationID');
+    var message = {
+      from: leftUID,
+      to: rightUID,
+      type: 'signal',
+      subtype: 'candidate',
+      content: event.candidate,
+      time: new Date()
+    }; //axios.post('/trigger/' + conversationID , message );
+  }
+}
+
+function onAddIceCandidateSuccess(pc) {
+  trace(pc + ' addIceCandidate success');
+}
+
+function onAddIceCandidateError(pc, error) {
+  trace(pc + ' failed to add ICE Candidate: ' + error.toString());
+}
+
+function onIceStateChange(pc, event) {
+  if (pc) {
+    trace(pc + ' ICE state: ' + pc.iceConnectionState);
+    console.log('ICE state change event: ', event);
+  }
+}
+
+function onCreateOfferSuccess(desc) {
+  trace('Offer from pc\n' + desc.sdp);
+  trace('pc setLocalDescription start');
+  pc.setLocalDescription(desc).then(function () {
+    onSetLocalSuccess(pc);
+  }, onSetSessionDescriptionError);
+  conversationID = Cookies.get('conversationID');
+  var message = {
+    from: leftUID,
+    to: rightUID,
+    type: 'signal',
+    subtype: 'offer',
+    content: desc,
+    time: new Date()
+  }; //axios.post('/trigger/' + conversationID , message );
+}
+
+function onSetLocalSuccess(pc) {
+  trace(pc + ' setLocalDescription complete');
+}
+
+function onSetSessionDescriptionError(error) {
+  trace('Failed to set session description: ' + error.toString());
+}
+
+function gotRemoteStream(e) {
+  if (remoteVideo.srcObject !== e.stream) {
+    remoteVideo.srcObject = e.stream;
+    trace('pc received remote stream');
+  }
 }
 
 function onSetRemoteSuccess(pc) {
   trace(pc + ' setRemoteDescription complete');
   applyRemoteCandidates();
+}
+
+function applyRemoteCandidates() {
+  var candidates = Cookies.getJSON('candidate');
+
+  for (var candidate in candidates) {
+    addRemoteCandidate(candidates[candidate]);
+  }
+
+  Cookies.remove('candidate');
+}
+
+function addRemoteCandidate(candidate) {
+  pc.addIceCandidate(candidate).then(function () {
+    onAddIceCandidateSuccess(pc);
+  }, function (err) {
+    onAddIceCandidateError(pc, err);
+  });
 }
 
 /***/ }),
@@ -1421,520 +1500,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/VideoComponent.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/VideoComponent.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/modals/Modals.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/modals/Modals.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['otherUser']
-});
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/ChatComponent.vue?vue&type=style&index=0&id=9d524aa2&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/ChatComponent.vue?vue&type=style&index=0&id=9d524aa2&scoped=true&lang=css& ***!
@@ -1999,67 +1564,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "chat" },
-    [
+  return _c("div", { staticClass: "chat" }, [
+    _c("div", { staticClass: "chat-header" }, [
       !_vm.noChatSelected
-        ? _c("Modals", {
-            attrs: { user: _vm.user, otherUser: _vm.conversation.person }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "chat-header" }, [
-        !_vm.noChatSelected
-          ? _c("div", { staticClass: "chat-header-user" }, [
-              _c("figure", { staticClass: "avatar" }, [
-                _c("img", {
-                  staticClass: "rounded-circle",
-                  attrs: {
-                    src: _vm.conversation.person.photo_url,
-                    alt: _vm.conversation.person.name
-                  }
-                })
-              ]),
+        ? _c("div", { staticClass: "chat-header-user" }, [
+            _c("figure", { staticClass: "avatar" }, [
+              _c("img", {
+                staticClass: "rounded-circle",
+                attrs: {
+                  src: _vm.conversation.person.photo_url,
+                  alt: _vm.conversation.person.name
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c("h5", [_vm._v(_vm._s(_vm.conversation.person.name))]),
               _vm._v(" "),
-              _c("div", [
-                _c("h5", [_vm._v(_vm._s(_vm.conversation.person.name))]),
-                _vm._v(" "),
-                _c("small", { staticClass: "text-success" }, [
-                  _vm.typingUser != null
-                    ? _c(
-                        "i",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.typing,
-                              expression: "typing"
-                            }
-                          ]
-                        },
-                        [_vm._v(" " + _vm._s(_vm.typingUser) + " is typing...")]
-                      )
-                    : _vm._e()
-                ])
+              _c("small", { staticClass: "text-success" }, [
+                _vm.typingUser != null
+                  ? _c(
+                      "i",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.typing,
+                            expression: "typing"
+                          }
+                        ]
+                      },
+                      [_vm._v(" " + _vm._s(_vm.typingUser) + " is typing...")]
+                    )
+                  : _vm._e()
               ])
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "chat-header-action" }, [
-          _c("ul", { staticClass: "list-inline" }, [
-            _c("li", { staticClass: "list-inline-item d-xl-none d-inline" }, [
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "chat-header-action" }, [
+        _c("ul", { staticClass: "list-inline" }, [
+          _c("li", { staticClass: "list-inline-item d-xl-none d-inline" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-outline-light mobile-navigation-button" },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-menu",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("line", {
+                      attrs: { x1: "3", y1: "12", x2: "21", y2: "12" }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "3", y1: "6", x2: "21", y2: "6" }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "3", y1: "18", x2: "21", y2: "18" }
+                    })
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "list-inline-item",
+              attrs: {
+                "data-toggle": "tooltip",
+                title: "",
+                "data-original-title": "Voice call"
+              }
+            },
+            [
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-outline-light mobile-navigation-button"
+                  staticClass: "btn btn-outline-light text-success",
+                  attrs: {
+                    disabled: _vm.noChatSelected,
+                    "data-toggle": "modal",
+                    "data-target": "#call"
+                  }
                 },
                 [
                   _c(
                     "svg",
                     {
-                      staticClass: "feather feather-menu",
+                      staticClass: "feather feather-phone",
                       attrs: {
                         xmlns: "http://www.w3.org/2000/svg",
                         width: "24",
@@ -2073,148 +1681,45 @@ var render = function() {
                       }
                     },
                     [
-                      _c("line", {
-                        attrs: { x1: "3", y1: "12", x2: "21", y2: "12" }
-                      }),
-                      _c("line", {
-                        attrs: { x1: "3", y1: "6", x2: "21", y2: "6" }
-                      }),
-                      _c("line", {
-                        attrs: { x1: "3", y1: "18", x2: "21", y2: "18" }
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                        }
                       })
                     ]
                   )
                 ]
               )
-            ]),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                staticClass: "list-inline-item",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  title: "",
-                  "data-original-title": "Voice call"
-                }
-              },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-light text-success",
-                    attrs: {
-                      disabled: _vm.noChatSelected,
-                      "data-toggle": "modal",
-                      "data-target": "#call"
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "feather feather-phone",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          stroke: "currentColor",
-                          "stroke-width": "2",
-                          "stroke-linecap": "round",
-                          "stroke-linejoin": "round"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                staticClass: "list-inline-item",
-                attrs: {
-                  "data-toggle": "tooltip",
-                  title: "",
-                  "data-original-title": "Video call"
-                }
-              },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-light text-warning",
-                    attrs: {
-                      disabled: _vm.noChatSelected,
-                      "data-toggle": "modal",
-                      "data-target": "#videoCall"
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "feather feather-video",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          stroke: "currentColor",
-                          "stroke-width": "2",
-                          "stroke-linecap": "round",
-                          "stroke-linejoin": "round"
-                        }
-                      },
-                      [
-                        _c("polygon", {
-                          attrs: { points: "23 7 16 12 23 17 23 7" }
-                        }),
-                        _c("rect", {
-                          attrs: {
-                            x: "1",
-                            y: "5",
-                            width: "15",
-                            height: "14",
-                            rx: "2",
-                            ry: "2"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-inline-item" }, [
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "list-inline-item",
+              attrs: {
+                "data-toggle": "tooltip",
+                title: "",
+                "data-original-title": "Video call"
+              }
+            },
+            [
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-outline-light",
+                  staticClass: "btn btn-outline-light text-warning",
                   attrs: {
                     disabled: _vm.noChatSelected,
-                    "data-toggle": "dropdown",
-                    "aria-expanded": "false"
+                    "data-toggle": "modal",
+                    "data-target": "#videoCall"
                   }
                 },
                 [
                   _c(
                     "svg",
                     {
-                      staticClass: "feather feather-more-horizontal",
+                      staticClass: "feather feather-video",
                       attrs: {
                         xmlns: "http://www.w3.org/2000/svg",
                         width: "24",
@@ -2228,247 +1733,42 @@ var render = function() {
                       }
                     },
                     [
-                      _c("circle", { attrs: { cx: "12", cy: "12", r: "1" } }),
-                      _c("circle", { attrs: { cx: "19", cy: "12", r: "1" } }),
-                      _c("circle", { attrs: { cx: "5", cy: "12", r: "1" } })
+                      _c("polygon", {
+                        attrs: { points: "23 7 16 12 23 17 23 7" }
+                      }),
+                      _c("rect", {
+                        attrs: {
+                          x: "1",
+                          y: "5",
+                          width: "15",
+                          height: "14",
+                          rx: "2",
+                          ry: "2"
+                        }
+                      })
                     ]
                   )
                 ]
-              ),
-              _vm._v(" "),
-              _vm._m(0)
-            ]),
-            _vm._v(" "),
-            _c("button", {
-              on: {
-                click: function($event) {
-                  return _vm.requestVideoCall()
-                }
-              }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.videoCalling
-        ? _c(
-            "div",
-            {
-              staticClass: "container video",
-              staticStyle: {
-                background: "rgba(21, 20, 20, 0.61)",
-                overflow: "auto"
-              }
-            },
-            [
-              _c("div", { staticClass: "row" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-12 col-md-12 mb-4" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "col-lg-12 text-center",
-                      staticStyle: {
-                        right: "0",
-                        "margin-bottom": "20px",
-                        "margin-top": "20px"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "action-button" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger btn-floating btn-lg",
-                            attrs: { type: "button", "data-dismiss": "modal" }
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "feather feather-x",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  width: "24",
-                                  height: "24",
-                                  viewBox: "0 0 24 24",
-                                  fill: "none",
-                                  stroke: "currentColor",
-                                  "stroke-width": "2",
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round"
-                                }
-                              },
-                              [
-                                _c("line", {
-                                  attrs: {
-                                    x1: "18",
-                                    y1: "6",
-                                    x2: "6",
-                                    y2: "18"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("line", {
-                                  attrs: {
-                                    x1: "6",
-                                    y1: "6",
-                                    x2: "18",
-                                    y2: "18"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ])
-              ])
-            ]
-          )
-        : _c(
-            "div",
-            {
-              staticClass: "chatbody",
-              class: { "no-message": _vm.noChatSelected },
-              staticStyle: {
-                overflow: "auto",
-                outline: "currentcolor none medium"
-              },
-              attrs: { id: "chatbody", tabindex: "1" }
-            },
-            [
-              _vm.noChatSelected
-                ? _c("div", { staticClass: "no-message-container" }, [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "lead" }, [
-                      _vm._v("Select a chat to read messages")
-                    ])
-                  ])
-                : _vm.loading
-                ? _c(
-                    "div",
-                    {
-                      staticClass: "col-md-12",
-                      staticStyle: {
-                        "text-align": "center",
-                        "margin-top": "70px"
-                      }
-                    },
-                    [
-                      _c("span", {
-                        staticClass: "spinner-border spinner-border-lg",
-                        attrs: { role: "status", "aria-hidden": "true" }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          staticStyle: {
-                            "text-align": "center",
-                            "white-space": "nowrap",
-                            "font-size": "16px",
-                            "font-weight": "100"
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.loadingMessage))]
-                      )
-                    ]
-                  )
-                : _c(
-                    "div",
-                    { staticClass: "messages" },
-                    [
-                      _vm._l(_vm.messages, function(message) {
-                        return _vm.messages.length > 0
-                          ? _c(
-                              "div",
-                              {
-                                key: message.id,
-                                staticClass: "message-item",
-                                class: {
-                                  "outgoing-message":
-                                    message.user_id === _vm.user.id
-                                }
-                              },
-                              [
-                                _c("div", { staticClass: "message-avatar" }, [
-                                  _c("figure", { staticClass: "avatar" }, [
-                                    _c("img", {
-                                      staticClass: "rounded-circle",
-                                      attrs: {
-                                        src: message.user.photo_url,
-                                        alt: message.user.name
-                                      }
-                                    })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c("h5", [
-                                      _vm._v(_vm._s(message.user.name))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "time" },
-                                      [
-                                        _c("timeago", {
-                                          attrs: {
-                                            datetime: message.created_at,
-                                            "auto-update": 60
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "message-content" }, [
-                                  _vm._v(
-                                    "\r\n                    " +
-                                      _vm._s(message.body) +
-                                      "\r\n                "
-                                  )
-                                ])
-                              ]
-                            )
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mb-10" })
-                    ],
-                    2
-                  )
+              )
             ]
           ),
-      _vm._v(" "),
-      _c("div", { staticClass: "chat-footer" }, [
-        _c("form", [
-          _c("div", [
+          _vm._v(" "),
+          _c("li", { staticClass: "list-inline-item" }, [
             _c(
               "button",
               {
-                staticClass: "btn btn-light mr-3",
+                staticClass: "btn btn-outline-light",
                 attrs: {
                   disabled: _vm.noChatSelected,
-                  "data-toggle": "tooltip",
-                  title: "",
-                  type: "button",
-                  "data-original-title": "Emoji"
+                  "data-toggle": "dropdown",
+                  "aria-expanded": "false"
                 }
               },
               [
                 _c(
                   "svg",
                   {
-                    staticClass: "feather feather-smile",
+                    staticClass: "feather feather-more-horizontal",
                     attrs: {
                       xmlns: "http://www.w3.org/2000/svg",
                       width: "24",
@@ -2482,190 +1782,429 @@ var render = function() {
                     }
                   },
                   [
-                    _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
-                    _c("path", { attrs: { d: "M8 14s1.5 2 4 2 4-2 4-2" } }),
-                    _c("line", {
-                      attrs: { x1: "9", y1: "9", x2: "9.01", y2: "9" }
-                    }),
-                    _c("line", {
-                      attrs: { x1: "15", y1: "9", x2: "15.01", y2: "9" }
-                    })
+                    _c("circle", { attrs: { cx: "12", cy: "12", r: "1" } }),
+                    _c("circle", { attrs: { cx: "19", cy: "12", r: "1" } }),
+                    _c("circle", { attrs: { cx: "5", cy: "12", r: "1" } })
                   ]
                 )
               ]
-            )
+            ),
+            _vm._v(" "),
+            _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newMessage,
-                expression: "newMessage"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              disabled: _vm.noChatSelected,
-              placeholder: "Type your message..."
-            },
-            domProps: { value: _vm.newMessage },
+          _c("button", {
             on: {
-              keydown: _vm.isTyping,
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.newMessage = $event.target.value
+              click: function($event) {
+                return _vm.requestVideoCall()
               }
             }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "field-error" }, [
-            _vm._v(_vm._s(String(_vm.errors.message)))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-buttons" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-light",
-                attrs: {
-                  disabled: _vm.noChatSelected,
-                  "data-toggle": "tooltip",
-                  title: "",
-                  type: "button",
-                  "data-original-title": "Add files"
-                }
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "feather feather-paperclip",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "24",
-                      height: "24",
-                      viewBox: "0 0 24 24",
-                      fill: "none",
-                      stroke: "currentColor",
-                      "stroke-width": "2",
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-light d-sm-none d-block",
-                attrs: {
-                  disabled: _vm.noChatSelected,
-                  "data-toggle": "tooltip",
-                  title: "",
-                  type: "button",
-                  "data-original-title": "Send a voice record"
-                }
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "feather feather-mic",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "24",
-                      height: "24",
-                      viewBox: "0 0 24 24",
-                      fill: "none",
-                      stroke: "currentColor",
-                      "stroke-width": "2",
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-                      }
-                    }),
-                    _c("path", { attrs: { d: "M19 10v2a7 7 0 0 1-14 0v-2" } }),
-                    _c("line", {
-                      attrs: { x1: "12", y1: "19", x2: "12", y2: "23" }
-                    }),
-                    _c("line", {
-                      attrs: { x1: "8", y1: "23", x2: "16", y2: "23" }
-                    })
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "button",
-                  disabled: _vm.noChatSelected || _vm.emptyMessage
-                },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.sendMessage($event)
-                  }
-                }
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "feather feather-send",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "24",
-                      height: "24",
-                      viewBox: "0 0 24 24",
-                      fill: "none",
-                      stroke: "currentColor",
-                      "stroke-width": "2",
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round"
-                    }
-                  },
-                  [
-                    _c("line", {
-                      attrs: { x1: "22", y1: "2", x2: "11", y2: "13" }
-                    }),
-                    _c("polygon", {
-                      attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
-                    })
-                  ]
-                )
-              ]
-            )
-          ])
+          })
         ])
       ])
-    ],
-    1
-  )
+    ]),
+    _vm._v(" "),
+    _vm.videoCalling
+      ? _c(
+          "div",
+          {
+            staticClass: "container video",
+            staticStyle: {
+              background: "rgba(21, 20, 20, 0.61)",
+              overflow: "auto"
+            }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12 col-md-12 mb-4" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-lg-12 text-center",
+                    staticStyle: {
+                      right: "0",
+                      "margin-bottom": "20px",
+                      "margin-top": "20px"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "action-button" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-floating btn-lg",
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "feather feather-x",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                "stroke-width": "2",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round"
+                              }
+                            },
+                            [
+                              _c("line", {
+                                attrs: { x1: "18", y1: "6", x2: "6", y2: "18" }
+                              }),
+                              _vm._v(" "),
+                              _c("line", {
+                                attrs: { x1: "6", y1: "6", x2: "18", y2: "18" }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      : _c(
+          "div",
+          {
+            staticClass: "chatbody",
+            class: { "no-message": _vm.noChatSelected },
+            staticStyle: {
+              overflow: "auto",
+              outline: "currentcolor none medium"
+            },
+            attrs: { id: "chatbody", tabindex: "1" }
+          },
+          [
+            _vm.noChatSelected
+              ? _c("div", { staticClass: "no-message-container" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "lead" }, [
+                    _vm._v("Select a chat to read messages")
+                  ])
+                ])
+              : _vm.loading
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "col-md-12",
+                    staticStyle: {
+                      "text-align": "center",
+                      "margin-top": "70px"
+                    }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "spinner-border spinner-border-lg",
+                      attrs: { role: "status", "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticStyle: {
+                          "text-align": "center",
+                          "white-space": "nowrap",
+                          "font-size": "16px",
+                          "font-weight": "100"
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.loadingMessage))]
+                    )
+                  ]
+                )
+              : _c(
+                  "div",
+                  { staticClass: "messages" },
+                  [
+                    _vm._l(_vm.messages, function(message) {
+                      return _vm.messages.length > 0
+                        ? _c(
+                            "div",
+                            {
+                              key: message.id,
+                              staticClass: "message-item",
+                              class: {
+                                "outgoing-message":
+                                  message.user_id === _vm.user.id
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "message-avatar" }, [
+                                _c("figure", { staticClass: "avatar" }, [
+                                  _c("img", {
+                                    staticClass: "rounded-circle",
+                                    attrs: {
+                                      src: message.user.photo_url,
+                                      alt: message.user.name
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", [
+                                  _c("h5", [_vm._v(_vm._s(message.user.name))]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "time" },
+                                    [
+                                      _c("timeago", {
+                                        attrs: {
+                                          datetime: message.created_at,
+                                          "auto-update": 60
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "message-content" }, [
+                                _vm._v(
+                                  "\r\n                    " +
+                                    _vm._s(message.body) +
+                                    "\r\n                "
+                                )
+                              ])
+                            ]
+                          )
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "mb-10" })
+                  ],
+                  2
+                )
+          ]
+        ),
+    _vm._v(" "),
+    _c("div", { staticClass: "chat-footer" }, [
+      _c("form", [
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light mr-3",
+              attrs: {
+                disabled: _vm.noChatSelected,
+                "data-toggle": "tooltip",
+                title: "",
+                type: "button",
+                "data-original-title": "Emoji"
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "feather feather-smile",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "24",
+                    height: "24",
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    "stroke-width": "2",
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round"
+                  }
+                },
+                [
+                  _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                  _c("path", { attrs: { d: "M8 14s1.5 2 4 2 4-2 4-2" } }),
+                  _c("line", {
+                    attrs: { x1: "9", y1: "9", x2: "9.01", y2: "9" }
+                  }),
+                  _c("line", {
+                    attrs: { x1: "15", y1: "9", x2: "15.01", y2: "9" }
+                  })
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newMessage,
+              expression: "newMessage"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            disabled: _vm.noChatSelected,
+            placeholder: "Type your message..."
+          },
+          domProps: { value: _vm.newMessage },
+          on: {
+            keydown: _vm.isTyping,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.newMessage = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "field-error" }, [
+          _vm._v(_vm._s(String(_vm.errors.message)))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-buttons" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light",
+              attrs: {
+                disabled: _vm.noChatSelected,
+                "data-toggle": "tooltip",
+                title: "",
+                type: "button",
+                "data-original-title": "Add files"
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "feather feather-paperclip",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "24",
+                    height: "24",
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    "stroke-width": "2",
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light d-sm-none d-block",
+              attrs: {
+                disabled: _vm.noChatSelected,
+                "data-toggle": "tooltip",
+                title: "",
+                type: "button",
+                "data-original-title": "Send a voice record"
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "feather feather-mic",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "24",
+                    height: "24",
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    "stroke-width": "2",
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d: "M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
+                    }
+                  }),
+                  _c("path", { attrs: { d: "M19 10v2a7 7 0 0 1-14 0v-2" } }),
+                  _c("line", {
+                    attrs: { x1: "12", y1: "19", x2: "12", y2: "23" }
+                  }),
+                  _c("line", {
+                    attrs: { x1: "8", y1: "23", x2: "16", y2: "23" }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: {
+                type: "button",
+                disabled: _vm.noChatSelected || _vm.emptyMessage
+              },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.sendMessage($event)
+                }
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "feather feather-send",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "24",
+                    height: "24",
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    "stroke-width": "2",
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round"
+                  }
+                },
+                [
+                  _c("line", {
+                    attrs: { x1: "22", y1: "2", x2: "11", y2: "13" }
+                  }),
+                  _c("polygon", {
+                    attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
+                  })
+                ]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -5962,1922 +5501,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/VideoComponent.vue?vue&type=template&id=33084088&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/VideoComponent.vue?vue&type=template&id=33084088& ***!
-  \***************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.videoCalling
-    ? _c("div", { staticClass: "col-6 col-s-9" }, [_vm._m(0)])
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "video",
-        {
-          staticClass: "img-responsive",
-          attrs: { width: "400", autoplay: "", id: "remoteVideo" }
-        },
-        [
-          _c("source", {
-            attrs: { src: "/storage/testvideo.mp4", type: "video/mp4" }
-          }),
-          _vm._v(
-            "\r\n            Your browser does not support the video tag.\r\n        "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "video",
-        {
-          staticClass: "img-responsive",
-          attrs: { autoplay: "", id: "localVideo" }
-        },
-        [
-          _vm._v(
-            "\r\n            Your browser does not support the video tag.\r\n        "
-          )
-        ]
-      )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/modals/Modals.vue?vue&type=template&id=58c70799&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/modals/Modals.vue?vue&type=template&id=58c70799& ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("span", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal call fade",
-        attrs: {
-          id: "call",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "call" }, [
-                  _c("div", [
-                    _c("figure", { staticClass: "mb-4 avatar avatar-xl" }),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "action-button" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-floating btn-lg",
-                          attrs: { type: "button", "data-dismiss": "modal" }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "feather feather-x",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                width: "24",
-                                height: "24",
-                                viewBox: "0 0 24 24",
-                                fill: "none",
-                                stroke: "currentColor",
-                                "stroke-width": "2",
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round"
-                              }
-                            },
-                            [
-                              _c("line", {
-                                attrs: { x1: "18", y1: "6", x2: "6", y2: "18" }
-                              }),
-                              _c("line", {
-                                attrs: { x1: "6", y1: "6", x2: "18", y2: "18" }
-                              })
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-success btn-pulse btn-floating btn-lg",
-                          attrs: { type: "button" }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "feather feather-phone",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                width: "24",
-                                height: "24",
-                                viewBox: "0 0 24 24",
-                                fill: "none",
-                                stroke: "currentColor",
-                                "stroke-width": "2",
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round"
-                              }
-                            },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                                }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal call fade",
-        staticStyle: { display: "none" },
-        attrs: {
-          id: "videoCall",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "call" }, [
-                  _c("div", [
-                    _c("figure", { staticClass: "mb-4 avatar avatar-xl" }, [
-                      _c("img", {
-                        staticClass: "rounded-circle",
-                        attrs: { src: _vm.otherUser.photo_url, alt: "image" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "action-button" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-floating btn-lg",
-                          attrs: { type: "button", "data-dismiss": "modal" }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "feather feather-x",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                width: "24",
-                                height: "24",
-                                viewBox: "0 0 24 24",
-                                fill: "none",
-                                stroke: "currentColor",
-                                "stroke-width": "2",
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round"
-                              }
-                            },
-                            [
-                              _c("line", {
-                                attrs: { x1: "18", y1: "6", x2: "6", y2: "18" }
-                              }),
-                              _c("line", {
-                                attrs: { x1: "6", y1: "6", x2: "18", y2: "18" }
-                              })
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-success btn-pulse btn-floating btn-lg",
-                          attrs: { type: "button" }
-                        },
-                        [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "feather feather-video",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                width: "24",
-                                height: "24",
-                                viewBox: "0 0 24 24",
-                                fill: "none",
-                                stroke: "currentColor",
-                                "stroke-width": "2",
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round"
-                              }
-                            },
-                            [
-                              _c("polygon", {
-                                attrs: { points: "23 7 16 12 23 17 23 7" }
-                              }),
-                              _c("rect", {
-                                attrs: {
-                                  x: "1",
-                                  y: "5",
-                                  width: "15",
-                                  height: "14",
-                                  rx: "2",
-                                  ry: "2"
-                                }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "addFriends",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "feather feather-user-plus mr-2",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        "stroke-width": "2",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d: "M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                        }
-                      }),
-                      _c("circle", { attrs: { cx: "8.5", cy: "7", r: "4" } }),
-                      _c("line", {
-                        attrs: { x1: "20", y1: "8", x2: "20", y2: "14" }
-                      }),
-                      _c("line", {
-                        attrs: { x1: "23", y1: "11", x2: "17", y2: "11" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" Add Friends\r\n                ")
-                ]),
-                _vm._v(" "),
-                _vm._m(3)
-              ]),
-              _vm._v(" "),
-              _vm._m(4),
-              _vm._v(" "),
-              _vm._m(5)
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "newGroup",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "feather feather-users mr-2",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        "stroke-width": "2",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                        }
-                      }),
-                      _c("circle", { attrs: { cx: "9", cy: "7", r: "4" } }),
-                      _c("path", {
-                        attrs: { d: "M23 21v-2a4 4 0 0 0-3-3.87" }
-                      }),
-                      _c("path", { attrs: { d: "M16 3.13a4 4 0 0 1 0 7.75" } })
-                    ]
-                  ),
-                  _vm._v(" New Group\r\n                ")
-                ]),
-                _vm._v(" "),
-                _vm._m(6)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("form", [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-form-label",
-                        attrs: { for: "group_name" }
-                      },
-                      [_vm._v("Group name")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text", id: "group_name" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-append" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light",
-                            attrs: {
-                              "data-toggle": "tooltip",
-                              title: "",
-                              type: "button",
-                              "data-original-title": "Emoji"
-                            }
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "feather feather-smile",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  width: "24",
-                                  height: "24",
-                                  viewBox: "0 0 24 24",
-                                  fill: "none",
-                                  stroke: "currentColor",
-                                  "stroke-width": "2",
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round"
-                                }
-                              },
-                              [
-                                _c("circle", {
-                                  attrs: { cx: "12", cy: "12", r: "10" }
-                                }),
-                                _c("path", {
-                                  attrs: { d: "M8 14s1.5 2 4 2 4-2 4-2" }
-                                }),
-                                _c("line", {
-                                  attrs: {
-                                    x1: "9",
-                                    y1: "9",
-                                    x2: "9.01",
-                                    y2: "9"
-                                  }
-                                }),
-                                _c("line", {
-                                  attrs: {
-                                    x1: "15",
-                                    y1: "9",
-                                    x2: "15.01",
-                                    y2: "9"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "mb-2" }, [
-                    _vm._v("The group members")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "avatar-group" }, [
-                      _vm._m(7),
-                      _vm._v(" "),
-                      _c("figure", {
-                        staticClass: "avatar",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          title: "",
-                          "data-original-title": "Cloe Jeayes"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm._m(8),
-                      _vm._v(" "),
-                      _c("figure", {
-                        staticClass: "avatar",
-                        attrs: {
-                          "data-toggle": "tooltip",
-                          title: "",
-                          "data-original-title": "Stafford Pioch"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm._m(9),
-                      _vm._v(" "),
-                      _c("a", { attrs: { href: "#", title: "Add friends" } }, [
-                        _c("figure", { staticClass: "avatar" }, [
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "avatar-title bg-primary rounded-circle"
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "feather feather-plus",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    width: "24",
-                                    height: "24",
-                                    viewBox: "0 0 24 24",
-                                    fill: "none",
-                                    stroke: "currentColor",
-                                    "stroke-width": "2",
-                                    "stroke-linecap": "round",
-                                    "stroke-linejoin": "round"
-                                  }
-                                },
-                                [
-                                  _c("line", {
-                                    attrs: {
-                                      x1: "12",
-                                      y1: "5",
-                                      x2: "12",
-                                      y2: "19"
-                                    }
-                                  }),
-                                  _c("line", {
-                                    attrs: {
-                                      x1: "5",
-                                      y1: "12",
-                                      x2: "19",
-                                      y2: "12"
-                                    }
-                                  })
-                                ]
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(10)
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(11)
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "settingModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "feather feather-settings mr-2",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        "stroke-width": "2",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
-                      }
-                    },
-                    [
-                      _c("circle", { attrs: { cx: "12", cy: "12", r: "3" } }),
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" Settings\r\n                ")
-                ]),
-                _vm._v(" "),
-                _vm._m(12)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm._m(13),
-                _vm._v(" "),
-                _c("div", { staticClass: "tab-content" }, [
-                  _vm._m(14),
-                  _vm._v(" "),
-                  _vm._m(15),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane",
-                      attrs: { id: "contact", role: "tabpanel" }
-                    },
-                    [
-                      _vm._m(16),
-                      _vm._v(" "),
-                      _vm._m(17),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-item" }, [
-                        _c("p", [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-light",
-                              attrs: {
-                                "data-toggle": "collapse",
-                                href: "#collapseExample",
-                                role: "button",
-                                "aria-expanded": "false",
-                                "aria-controls": "collapseExample"
-                              }
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "feather feather-plus mr-2",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    width: "24",
-                                    height: "24",
-                                    viewBox: "0 0 24 24",
-                                    fill: "none",
-                                    stroke: "currentColor",
-                                    "stroke-width": "2",
-                                    "stroke-linecap": "round",
-                                    "stroke-linejoin": "round"
-                                  }
-                                },
-                                [
-                                  _c("line", {
-                                    attrs: {
-                                      x1: "12",
-                                      y1: "5",
-                                      x2: "12",
-                                      y2: "19"
-                                    }
-                                  }),
-                                  _c("line", {
-                                    attrs: {
-                                      x1: "5",
-                                      y1: "12",
-                                      x2: "19",
-                                      y2: "12"
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(
-                                " Security Questions\r\n                                "
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(18)
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(19)
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "editProfileModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "feather feather-edit-2 mr-2",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        "stroke-width": "2",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" Edit Profile\r\n                ")
-                ]),
-                _vm._v(" "),
-                _vm._m(20)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm._m(21),
-                _vm._v(" "),
-                _c("div", { staticClass: "tab-content" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane show active",
-                      attrs: { id: "personal", role: "tabpanel" }
-                    },
-                    [
-                      _c("form", [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-form-label",
-                              attrs: { for: "fullname" }
-                            },
-                            [_vm._v("Fullname")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "text", id: "fullname" }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group-append" }, [
-                              _c("span", { staticClass: "input-group-text" }, [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "feather feather-user",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      width: "24",
-                                      height: "24",
-                                      viewBox: "0 0 24 24",
-                                      fill: "none",
-                                      stroke: "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-                                      }
-                                    }),
-                                    _c("circle", {
-                                      attrs: { cx: "12", cy: "7", r: "4" }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(22),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-form-label",
-                              attrs: { for: "city" }
-                            },
-                            [_vm._v("City")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "city",
-                                placeholder: "Ex: Columbia"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group-append" }, [
-                              _c("span", { staticClass: "input-group-text" }, [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "feather feather-target",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      width: "24",
-                                      height: "24",
-                                      viewBox: "0 0 24 24",
-                                      fill: "none",
-                                      stroke: "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    }
-                                  },
-                                  [
-                                    _c("circle", {
-                                      attrs: { cx: "12", cy: "12", r: "10" }
-                                    }),
-                                    _c("circle", {
-                                      attrs: { cx: "12", cy: "12", r: "6" }
-                                    }),
-                                    _c("circle", {
-                                      attrs: { cx: "12", cy: "12", r: "2" }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-form-label",
-                              attrs: { for: "phone" }
-                            },
-                            [_vm._v("Phone")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "phone",
-                                placeholder: "(555) 555 55 55"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group-append" }, [
-                              _c("span", { staticClass: "input-group-text" }, [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "feather feather-phone",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      width: "24",
-                                      height: "24",
-                                      viewBox: "0 0 24 24",
-                                      fill: "none",
-                                      stroke: "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(23)
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(24),
-                  _vm._v(" "),
-                  _vm._m(25)
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(26)
-            ])
-          ]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "disconnected",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass:
-              "modal-dialog modal-lg modal-dialog-centered modal-dialog-zoom",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "row mb-5" }, [
-                  _c("div", { staticClass: "col-md-6 offset-3" })
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "lead text-center" }, [
-                  _vm._v("Application disconnected")
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "modal-footer justify-content-center" },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success btn-lg",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Reconnect")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-link",
-                      attrs: { href: "login.html" }
-                    },
-                    [_vm._v("Logout")]
-                  )
-                ]
-              )
-            ])
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h4", [
-      _vm._v("Brietta Blogg "),
-      _c("span", { staticClass: "text-success" }, [_vm._v("calling...")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h4", [
-      _vm._v("Brietta Blogg "),
-      _c("span", { staticClass: "text-success" }, [_vm._v("video calling...")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("i", { staticClass: "ti-close" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "alert alert-info" }, [
-        _vm._v("Send invitations to friends.")
-      ]),
-      _vm._v(" "),
-      _c("form", [
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "emails" } },
-            [_vm._v("Email addresses")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "emails" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "message" } },
-            [_vm._v("Invitation message")]
-          ),
-          _vm._v(" "),
-          _c("textarea", {
-            staticClass: "form-control",
-            attrs: { id: "message" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Submit")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("i", { staticClass: "ti-close" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "figure",
-      {
-        staticClass: "avatar",
-        attrs: {
-          "data-toggle": "tooltip",
-          title: "",
-          "data-original-title": "Tobit Spraging"
-        }
-      },
-      [
-        _c("span", { staticClass: "avatar-title bg-success rounded-circle" }, [
-          _vm._v("T")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "figure",
-      {
-        staticClass: "avatar",
-        attrs: {
-          "data-toggle": "tooltip",
-          title: "",
-          "data-original-title": "Marlee Perazzo"
-        }
-      },
-      [
-        _c("span", { staticClass: "avatar-title bg-warning rounded-circle" }, [
-          _vm._v("M")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "figure",
-      {
-        staticClass: "avatar",
-        attrs: {
-          "data-toggle": "tooltip",
-          title: "",
-          "data-original-title": "Bethena Langsdon"
-        }
-      },
-      [
-        _c("span", { staticClass: "avatar-title bg-info rounded-circle" }, [
-          _vm._v("B")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-form-label", attrs: { for: "description" } },
-        [_vm._v("Description")]
-      ),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { id: "description" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Create Group")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("i", { staticClass: "ti-close" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#account",
-                role: "tab",
-                "aria-controls": "account",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("Account")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#notification",
-                role: "tab",
-                "aria-controls": "notification",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Notification")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#contact",
-                role: "tab",
-                "aria-controls": "contact",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Security")]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane show active",
-        attrs: { id: "account", role: "tabpanel" }
-      },
-      [
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", checked: "", id: "customSwitch1" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch1" }
-            },
-            [_vm._v("Allow connected contacts")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", checked: "", id: "customSwitch2" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch2" }
-            },
-            [_vm._v("Confirm message requests")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", checked: "", id: "customSwitch3" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch3" }
-            },
-            [_vm._v("Profile privacy")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", id: "customSwitch4" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch4" }
-            },
-            [_vm._v("Developer mode options")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", checked: "", id: "customSwitch5" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch5" }
-            },
-            [
-              _vm._v(
-                "Two-step security\r\n                                verification"
-              )
-            ]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane",
-        attrs: { id: "notification", role: "tabpanel" }
-      },
-      [
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", checked: "", id: "customSwitch6" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch6" }
-            },
-            [_vm._v("Allow mobile notifications")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", id: "customSwitch7" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch7" }
-            },
-            [
-              _vm._v(
-                "Notifications from your\r\n                                friends"
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-item custom-control custom-switch" }, [
-          _c("input", {
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", id: "customSwitch8" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "custom-control-label",
-              attrs: { for: "customSwitch8" }
-            },
-            [_vm._v("Send notifications by email")]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "form-item custom-control custom-switch" },
-      [
-        _c("input", {
-          staticClass: "custom-control-input",
-          attrs: { type: "checkbox", id: "customSwitch9" }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "custom-control-label",
-            attrs: { for: "customSwitch9" }
-          },
-          [
-            _vm._v(
-              "Suggest changing passwords every\r\n                                month."
-            )
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "form-item custom-control custom-switch" },
-      [
-        _c("input", {
-          staticClass: "custom-control-input",
-          attrs: { type: "checkbox", checked: "", id: "customSwitch10" }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "custom-control-label",
-            attrs: { for: "customSwitch10" }
-          },
-          [
-            _vm._v(
-              "Let me know about suspicious\r\n                                entries to your account"
-            )
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "collapse", attrs: { id: "collapseExample" } },
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Question 1" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Answer 1" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Question 2" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Answer 2" }
-          })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("i", { staticClass: "ti-close" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#personal",
-                role: "tab",
-                "aria-controls": "personal",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("Personal")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#about",
-                role: "tab",
-                "aria-controls": "about",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("About")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#social-links",
-                role: "tab",
-                "aria-controls": "social-links",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Social Links")]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-form-label" }, [_vm._v("Avatar")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex align-items-center" }, [
-        _c("div", [_c("figure", { staticClass: "avatar mr-3 item-rtl" })]),
-        _vm._v(" "),
-        _c("div", { staticClass: "custom-file" }, [
-          _c("input", {
-            staticClass: "custom-file-input",
-            attrs: { type: "file", id: "customFile" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            { staticClass: "custom-file-label", attrs: { for: "customFile" } },
-            [_vm._v("Choose file")]
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-form-label", attrs: { for: "website" } },
-        [_vm._v("Website")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "website", placeholder: "https://" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "tab-pane", attrs: { id: "about", role: "tabpanel" } },
-      [
-        _c("form", [
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "label",
-              { staticClass: "col-form-label", attrs: { for: "about-text" } },
-              [
-                _vm._v(
-                  "Write a few words that describe\r\n                                    you"
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("textarea", {
-              staticClass: "form-control",
-              attrs: { id: "about-text" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "custom-control custom-checkbox" }, [
-            _c("input", {
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", checked: "", id: "customCheck1" }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: "customCheck1" }
-              },
-              [_vm._v("View profile")]
-            )
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane",
-        attrs: { id: "social-links", role: "tabpanel" }
-      },
-      [
-        _c("form", [
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-facebook" }, [
-                  _c("i", { staticClass: "ti-facebook" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-twitter" }, [
-                  _c("i", { staticClass: "ti-twitter" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-instagram" }, [
-                  _c("i", { staticClass: "ti-instagram" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-linkedin" }, [
-                  _c("i", { staticClass: "ti-linkedin" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-dribbble" }, [
-                  _c("i", { staticClass: "ti-dribbble" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-youtube" }, [
-                  _c("i", { staticClass: "ti-youtube" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-google" }, [
-                  _c("i", { staticClass: "ti-google" })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Username" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c("span", { staticClass: "input-group-text bg-whatsapp" }, [
-                  _c("i", { staticClass: "fa fa-whatsapp" })
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/dashboard/ChatComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/dashboard/ChatComponent.vue ***!
@@ -8029,144 +5652,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_376ddb84___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_376ddb84___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/VideoComponent.vue":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/dashboard/VideoComponent.vue ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _VideoComponent_vue_vue_type_template_id_33084088___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoComponent.vue?vue&type=template&id=33084088& */ "./resources/js/components/dashboard/VideoComponent.vue?vue&type=template&id=33084088&");
-/* harmony import */ var _VideoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VideoComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/VideoComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _VideoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _VideoComponent_vue_vue_type_template_id_33084088___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _VideoComponent_vue_vue_type_template_id_33084088___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/dashboard/VideoComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/VideoComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/dashboard/VideoComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./VideoComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/VideoComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/VideoComponent.vue?vue&type=template&id=33084088&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/js/components/dashboard/VideoComponent.vue?vue&type=template&id=33084088& ***!
-  \*********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoComponent_vue_vue_type_template_id_33084088___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./VideoComponent.vue?vue&type=template&id=33084088& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/VideoComponent.vue?vue&type=template&id=33084088&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoComponent_vue_vue_type_template_id_33084088___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VideoComponent_vue_vue_type_template_id_33084088___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/modals/Modals.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/dashboard/modals/Modals.vue ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Modals_vue_vue_type_template_id_58c70799___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modals.vue?vue&type=template&id=58c70799& */ "./resources/js/components/dashboard/modals/Modals.vue?vue&type=template&id=58c70799&");
-/* harmony import */ var _Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modals.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/modals/Modals.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Modals_vue_vue_type_template_id_58c70799___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Modals_vue_vue_type_template_id_58c70799___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/dashboard/modals/Modals.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/modals/Modals.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/dashboard/modals/Modals.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modals.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/modals/Modals.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/modals/Modals.vue?vue&type=template&id=58c70799&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/dashboard/modals/Modals.vue?vue&type=template&id=58c70799& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_template_id_58c70799___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modals.vue?vue&type=template&id=58c70799& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/modals/Modals.vue?vue&type=template&id=58c70799&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_template_id_58c70799___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_template_id_58c70799___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

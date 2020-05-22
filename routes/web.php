@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'api'], function () {
+        Route::post('/change-background', 'UsersController@changeBackground')->name('user.change.background');
         Route::get('/get-conversations/{user_id}', 'MessageController@getConversations')->name('messages.conversations');
         Route::get('/messages/user/{id}', 'MessageController@chat')->name('messages.chat');
 
@@ -26,6 +27,9 @@ Route::group(['middleware' => ['auth']], function() {
         
         Route::post('/send-message/{conversation_id}', 'MessageController@sendMessage')->name('user.messages.send');
         Route::post('/send-message-without-convo/{user_id}', 'MessageController@sendMessageWithoutConvo')->name('user.messagesWithoutConvo.send');
+
+        //Broadcast Video Call
+        Route::post('/trigger-video-call', 'MessageController@triggerVideoCall')->name('user.triggerVideoCall');
         
     });
 

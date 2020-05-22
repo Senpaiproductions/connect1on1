@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('photo')->nullable();
             $table->text('about')->nullable();
+            $table->string('background_preference')->nullable()->default('dark');
             $table->rememberToken();
             $table->boolean('profile_completed')->default(false);
             $table->datetime('last_login_at')->nullable();

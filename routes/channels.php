@@ -22,3 +22,11 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });
+
+Broadcast::channel('video.{conversationId}', function ($user, $conversationId) {
+    // if ($user->canJoinConversation($user, $conversationId)) {
+    //     return $user;
+    // }
+
+    return true;
+});

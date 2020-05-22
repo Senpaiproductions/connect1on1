@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard/app.min.css') }}">
 </head>
 
-<body class="dark" data-gr-c-s-loaded="true">
+<body class="{{ Auth::user()->background_preference }}" data-gr-c-s-loaded="true">
 
 <!-- page loading -->
 
@@ -76,6 +76,7 @@
 
 <!-- Examples -->
 <script src="{{ asset('js/dashboard/examples.js') }}"></script>
-        
+
+<script src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
 </body>
 </html>
