@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Cupid Love Dating HTML5 Template</title>
+    <title>Home | Connect1on1</title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico">

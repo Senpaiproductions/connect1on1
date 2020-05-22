@@ -8,10 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>Slek - Chat and Discussion Platform</title>
+    <title>User | Connect1on1</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="./dist/media/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="/images/favicon.ico">
 
     <!-- Bundle Styles -->
     <link rel="stylesheet" href="{{ asset('css/dashboard/bundle.css') }}">
