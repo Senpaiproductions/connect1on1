@@ -462,19 +462,16 @@ export default {
         },
 
         async getUserMedia() {
-            log(`Requesting ${this.authuser.name} video stream`);
-            if ("mediaDevices" in navigator) {
-                log(`Requesting media`);
-                try {
+            log(`Requesting media`);
+            try {
                     const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
                     this.myVideo.srcObject = stream;
                     this.localStream = stream;
                     log("Received local video stream");
 
                     await this.getAudioVideo();
-                } catch (error) {
+            } catch (error) {
                     log(`getUserMedia error: ${error}`);
-                }
             }
         },
 
