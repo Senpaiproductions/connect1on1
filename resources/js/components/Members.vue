@@ -292,6 +292,10 @@ export default {
   methods: {
     //send a quick message to the user
     sendMessage(user) {
+      if (this.authuser == 'null') {
+        return window.location.href = '/login';
+      }
+      
       if (user == null) {
         return
       }
@@ -311,6 +315,10 @@ export default {
     },
 
     selectUser(user) {
+      if (this.authuser == 'null') {
+        return window.location.href = '/login';
+      }
+
       let exists = this.selectedUsers.filter(function(selected) {
         if (user.id === selected.id) {
           return selected.id;
