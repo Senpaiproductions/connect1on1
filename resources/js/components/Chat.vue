@@ -457,21 +457,22 @@ export default {
             $('#videoCall').modal('show');
 
             await this.getUserMedia();
+            await this.getAudioVideo();
 
-            //this.startVideoCall();
+            this.startVideoCall();
         },
 
         async getUserMedia() {
-            log(`Requesting media`);
-            try {
+            log(`Requesting ${this.authuser.name} video stream`);
+            if ("mediaDevices" in navigator) {
+                try {
                     const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
                     this.myVideo.srcObject = stream;
                     this.localStream = stream;
                     log("Received local video stream");
-
-                    await this.getAudioVideo();
-            } catch (error) {
+                } catch (error) {
                     log(`getUserMedia error: ${error}`);
+                }
             }
         },
 
@@ -706,9 +707,7 @@ export default {
         },
 
         closeMedia(){
-            if (this.localStream != undefined) {
-                this.localStream.getTracks().forEach(function(track){track.stop();});   
-            }
+            this.localStream.getTracks().forEach(function(track){track.stop();});
         },
 
         clearView(){
