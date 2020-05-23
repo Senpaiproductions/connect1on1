@@ -605,6 +605,10 @@
         
           <div id="app">
             @yield('content')
+
+            @auth
+            <chatpopup :user="{{ json_encode(Auth::user()) }}"></chatpopup>
+            @endauth
           </div>
           
         <!--footer -->
@@ -710,6 +714,10 @@
 
         @yield('scripts')
 
+        @auth
+        <!-- ChatPopup js -->
+        <script type="text/javascript" src="{{ asset('js/chatPopup.js') }}"></script>
+        @endauth
 
         <!-- bootstrap --> 
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script> 

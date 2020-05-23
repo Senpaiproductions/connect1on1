@@ -12,9 +12,10 @@
             <span class="text-black">{{ user.age }} Years Old</span>
 
             <div class="row">
-              <a
-                :href="'chat/' + user.slug"
+              <button
+                @click.prevent="selectUser(user)"
                 class="col-md-6 btn btn-outline-dark text-warning"
+                type="button"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@
                     d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
                   />
                 </svg>
-              </a>
+              </button>
 
               <button
                 class="col-md-6 btn btn-outline-dark text-warning"
@@ -152,7 +153,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="prof--textarea--border">
-                                                        <textarea class="prof-textarea-box" :disabled="notLoggedIn"></textarea>
+                                                        <textarea class="prof-textarea-box" v-model="newMessage" :disabled="notLoggedIn"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,7 +172,15 @@
                                                         <div
                                                             class="col-sm-12 end-sm nowrap-sm col-12 center-xs nowrap-xs"
                                                         >
-                                                            <button class="btn btn-primary btn--send--width" :disabled="notLoggedIn">Send</button>
+                                                            <button type="button" class="btn btn-primary btn--send--width" @click.prevent="sendMessage(user)" :disabled="notLoggedIn || emptyMessage">
+                                                              Send
+                                                              <span
+                                                                v-show="sending"
+                                                                class="spinner-border spinner-border-sm"
+                                                                role="status"
+                                                                aria-hidden="true"
+                                                              ></span>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,38 +240,97 @@
       </div>
       <!--Modal: Name-->
     </div>
+
+    <span v-if="selectedUsers != null && selectedUsers.length != 0" class="main-chat">
+        <popupwithoutconvo v-for="user in selectedUsers" :key="user.id" :user="user" :authuser="authuser" v-on:remove="removeSelectedUser"></popupwithoutconvo>
+    </span>
+
   </div>
 </template>
 
 <script>
+import popupwithoutconvo from './chat/PopupWithoutConvo';
+
 import VueGallery from "vue-gallery";
 
 export default {
   props: ["users", "authuser"],
+  
   components: {
+    popupwithoutconvo,
     gallery: VueGallery
   },
 
   data() {
     return {
+      selectedUsers: [],
+      
+      newMessage: "",
+      sending: false,
+
       images: [
         "https://dummyimage.com/800/ffffff/000000",
         "https://dummyimage.com/1600/ffffff/000000",
         "https://dummyimage.com/1280/000000/ffffff",
         "https://dummyimage.com/400/000000/ffffff"
       ],
+
       index: null
     };
   },
 
   computed: {
     notLoggedIn() {
-        return this.authuser == 'null'
+      return this.authuser == 'null'
+    },
+
+    emptyMessage() {
+      return this.newMessage == ""
     }
   },
 
-  created() {
-    console.log(this.users.data[0].id);
+  methods: {
+    //send a quick message to the user
+    sendMessage(user) {
+      if (user == null) {
+        return
+      }
+
+      if (this.newMessage == "") {
+        return;
+      }
+
+      this.sending = true;
+
+      let user_id = user.id;
+      let message = this.newMessage;
+      let url = `/send-message/${user_id}`;
+
+      axios.post(url, { user_id: user_id, message: message })
+      .then(response => { this.sending = false; this.newMessage = "" });
+    },
+
+    selectUser(user) {
+      let exists = this.selectedUsers.filter(function(selected) {
+        if (user.id === selected.id) {
+          return selected.id;
+        }
+      })
+
+      if (exists.length > 0) {
+        return;
+      }
+
+      this.selectedUsers.push(user);
+    },
+
+    removeSelectedUser(e) {
+      for(let s in this.selectedUsers) {
+        if (this.selectedUsers[s].id === e.id) {
+          this.selectedUsers.splice(s, 1);       
+        }
+      }
+    }
   }
 };
 </script>

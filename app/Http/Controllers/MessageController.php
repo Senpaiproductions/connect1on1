@@ -233,8 +233,7 @@ class MessageController extends Controller
         ], 200);
     }
 
-
-    /*public function fetchMessages($conversation_id)
+    public function fetchMiniMessages($conversation_id)
     {
         $conversation = Conversation::find($conversation_id);
         $messages = $conversation->messages;
@@ -249,22 +248,16 @@ class MessageController extends Controller
         }
 
         return response()->json(['messages' => $messages]);
-    }*/
+    }
 
-    public function sendMessageWithoutConvo(Request $request)
+    public function fetchMiniMessagesWithoutConvo($user_id)
     {
-        $validator = Validator::make($request->all(), [
-                'message' => 'required'
-        ]);
-          
-        if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()], 418);
-        }
-
         $user = User::find(Auth::user()->id);
-        $otherUser = User::find($request->user_id);
-        
-        $body = $request->message;
+        $otherUser = User::find($user_id);
+
+        if ($user->id == $otherUser->id) {
+                return redirect()->back();
+        }
 
         $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
                 $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
@@ -274,55 +267,23 @@ class MessageController extends Controller
             
 
         if (!$conversation) {
-                $conversation = new Conversation;
-               
-                $conversation->first_user_id = $user->id;
-                $conversation->second_user_id = $otherUser->id;
-                $conversation->save();
+               return response()->json(['messages' => null]);
+        }
+        
+        $messages = $conversation->messages;
+
+        foreach ($messages as $message) {
+                if($message->seen === 0 && ($message->user_id !== \Auth::user()->id)) {
+                        $message->seen = 1;
+                        $message->save();
+                }
+                
+                $message['user'] = User::find($message->user_id);
         }
 
-
-        $message = $conversation->messages()->create([
-                'user_id' => $user->id,
-                'body' => $body
-        ]);
-
-        broadcast(new MessageSent($message->load('user')))->toOthers();
-
-        return response()->json([
-                'message' => $message->load('user')
-        ], 200);
+        return response()->json(['messages' => $messages]);
     }
 
-    /*public function sendMessage(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-                'message' => 'required'
-        ]);
-          
-        if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()], 418);
-        }
-
-        $user = User::find(Auth::user()->id);
-
-        $conversation = Conversation::find($request->conversation_id);
-        $body = $request->message;
-
-
-        $message = $conversation->messages()->create([
-                'user_id' => $user->id,
-                'body' => $body
-        ]);
-
-        //return response($message->load('user'));
-
-        broadcast(new MessageSent($message->load('user')))->toOthers();
-
-        return response()->json([
-                'message' => $message->load('user')
-        ], 200);
-    }*/
 
     public function triggerVideoCall(Request $request)
     {

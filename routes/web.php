@@ -22,7 +22,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/get-conversations/{user_id}', 'MessageController@getConversations')->name('messages.conversations');
         Route::get('/messages/user/{id}', 'MessageController@chat')->name('messages.chat');
 
-        //Route::get('/messages/{conversation_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
+        //Get messages for mini chat popup (with conversation)
+        Route::get('/mini-messages/{conversation_id}', 'MessageController@fetchMiniMessages')->name('user.messages.fetchMiniMessages');
+        //Get messages for mini chat popup (without conversation)
+        Route::get('/mini-messages-without-convo/{user_id}', 'MessageController@fetchMiniMessagesWithoutConvo')->name('user.messages.fetchMiniMessagesWithoutConvo');
+        
+        //Get messages for normal chat (with conversation or without conversation)
         Route::get('/messages/{user_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
         
         Route::post('/send-message/{conversation_id}', 'MessageController@sendMessage')->name('user.messages.send');

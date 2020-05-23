@@ -58,21 +58,21 @@ Design and Developed by: potenzaglobalsolutions.com
 /*************************
 		General
 *************************/
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-@import url('https://fonts.googleapis.com/css?family=Engagement');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes');
 
- body {font-family: 'Montserrat', sans-serif; font-weight: normal; font-style: normal; font-size: 13px; line-height: 24px; color:#3d3d3d;}
+ body {font-family: 'Poppins', sans-serif; font-weight: normal; font-style: normal; font-size: 13px; line-height: 24px; color:#3d3d3d;}
  a, .btn, .owl-item, .post, .story-item  { -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s; -ms-transition: all 0.3s ease-out 0s; -o-transition: all 0.3s ease-out 0s;
 	transition: all 0.3s ease-out 0s; }
 a:focus { text-decoration: none !important; }
 a:focus, a:hover { color: #ffbc05; text-decoration: none !important; }
 a, button, input { outline: medium none !important; color: #ffbc05; }
-h1, h2, h3, h4, h5, h6{font-family: 'Montserrat', sans-serif; font-weight:normal; margin-top: 0px; margin-bottom: 0px; text-transform: capitalize;}
+h1, h2, h3, h4, h5, h6{font-family: 'Poppins', sans-serif; font-weight:normal; margin-top: 0px; margin-bottom: 0px; text-transform: capitalize;}
 h1.title2,h2.title2,h3.title2,h4.title2,h5.title2,h6.title2{ font-weight: 600; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: inherit; }
-h1 { font-size: 72px; font-style: normal; line-height: 95px; font-family: 'Engagement', cursive; text-transform: capitalize; color: #ffffff;}
-h2 { font-size: 50px; font-style: normal; line-height: 50px; font-family: 'Engagement', cursive; color: #000; text-transform: capitalize;}
+h1 { font-size: 72px; font-style: normal; line-height: 95px; font-family: 'Roboto', cursive; text-transform: capitalize; color: #ffffff;}
+h2 { font-size: 50px; font-style: normal; line-height: 50px; font-family: 'Roboto', cursive; color: #000; text-transform: capitalize;}
 h3 { font-size: 30px; font-style: normal; line-height: 40px; }
 h4 { font-size: 20px; font-style: normal; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; line-height: 26px; color: #000;}
 h5 { font-size: 16px; font-style: normal; line-height: 20px; font-weight: 500;}
@@ -403,7 +403,7 @@ section:hover .text-center .section-title .title:before, section:hover .text-cen
 /*----------------------------------------------------------------------
   Button
 ----------------------------------------------------------------------*/
-.button{cursor:pointer;display:inline-block;font-family:'Montserrat',sans-serif;color:#656565;font-weight:500;letter-spacing:1px;line-height:100%;margin:10px 0;outline:0 none;padding:15px 50px;position:relative;text-transform:capitalize;white-space:nowrap;border:2px solid #ddd;}
+.button{cursor:pointer;display:inline-block;font-family:'Poppins',sans-serif;color:#656565;font-weight:500;letter-spacing:1px;line-height:100%;margin:10px 0;outline:0 none;padding:15px 50px;position:relative;text-transform:capitalize;white-space:nowrap;border:2px solid #ddd;}
 .button:hover{color:#656565;text-decoration:none;}
 .button:hover:not,a.button:hover{opacity:0.8;}
 button:focus{outline:0; box-shadow: none !important;}
@@ -442,7 +442,7 @@ button:focus{outline:0; box-shadow: none !important;}
 /*---------------------------------------------------------------------
   Counter
 ----------------------------------------------------------------------*/
-.counter{position:relative; font-family: 'Montserrat', sans-serif; color:#3d3d3d; min-height:60px;}
+.counter{position:relative; font-family: 'Poppins', sans-serif; color:#3d3d3d; min-height:60px;}
 .counter i{font-size:60px; line-height:64px; display:inline-block;}
 .counter i:before{font-size:60px;}
 .counter span{display:block; font-size:40px; font-weight:normal; margin:20px 0 0; line-height:40px; position: relative;}
@@ -853,7 +853,7 @@ form .form-group textarea { resize: vertical; }
 /*----------------------------------------------------------------------
   Testimonials
 -----------------------------------------------------------------------*/
-.testimonial {position: relative; padding:0 50px 0 70px; font-family: 'Montserrat', sans-serif; color:#656565; font-weight:400; line-height:24px; text-align:center;}
+.testimonial {position: relative; padding:0 50px 0 70px; font-family: 'Poppins', sans-serif; color:#656565; font-weight:400; line-height:24px; text-align:center;}
 .testimonial-avatar{position: absolute; left: 50%; margin-left:-55px; top:-45px; width:110px; height:110px;}
 .testimonial-avatar img{border:4px solid #ffbc05; max-width:100%; border-radius: 50%;}
 

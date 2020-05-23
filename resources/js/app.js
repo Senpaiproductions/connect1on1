@@ -97,6 +97,9 @@ Vue.component('dashboard', () => import('./components/dashboard/Dashboard.vue'))
 */
 
 import findmembers from './components/Members';
+
+import chatpopup from './components/chat/ChatPopup';
+
 import chat from './components/Chat';
 
 const app = new Vue({
@@ -104,43 +107,7 @@ const app = new Vue({
 
     components: {
         findmembers,
+        chatpopup,
         chat
-    },
-
-    data() {
-        return {
-            selectedUsers: []
-        }
-    },
-
-    methods: {
-        selectUser(user) {
-            let exists = this.selectedUsers.filter(function(selected) {
-                if (user.id === selected.id) {
-                    return selected.id;
-                }
-            })
-
-            if (exists.length > 0) {
-                return;
-            }
-
-            this.selectedUsers.push(user);
-            /*let url = `/get-message-without-convo/${user.id}`
-
-            axios.get(url)
-            .then((response) => {
-                this.conversations = response.data.conversations
-                this.loading = false;
-            })*/
-        },
-
-        removeSelectedUser(e) {
-            for(let s in this.selectedUsers) {
-                if (this.selectedUsers[s].id === e.id) {
-                    this.selectedUsers.splice(s, 1);       
-                }
-            }
-        }
     }
 });
