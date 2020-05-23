@@ -456,7 +456,10 @@ export default {
             this.isCaller = true;
             $('#videoCall').modal('show');
 
-            await this.getUserMedia()
+            await this.getUserMedia();
+            await this.getAudioVideo();
+
+            this.startVideoCall();
         },
 
         async getUserMedia() {
@@ -467,8 +470,6 @@ export default {
                     this.myVideo.srcObject = stream;
                     this.localStream = stream;
                     log("Received local video stream");
-                    
-                    await this.getAudioVideo();
                 } catch (error) {
                     log(`getUserMedia error: ${error}`);
                 }
@@ -480,8 +481,6 @@ export default {
             const audio = this.localStream.getAudioTracks();
             if (video.length > 0) log(`Using video device: ${video[0].label}`);
             if (audio.length > 0) log(`Using audio device: ${audio[0].label}`);
-
-            this.startVideoCall();
         },
 
         // Send signaling data via Scaledrone
@@ -570,11 +569,10 @@ export default {
                 log(`Answer from ${this.authuser.name}\n ${answer.sdp}`);
                 log(`${this.authuser.name} setLocalDescription: start`);
                 
-                this.pc.setLocalDescription(answer)
-                .then(() => {
-                    log(`${this.authuser.name} setLocalDescription: finished`);
-                    this.sendSignalingMessage(this.pc.localDescription, false);
-                });
+                await this.pc.setLocalDescription(answer);
+                
+                log(`${this.authuser.name} setLocalDescription: finished`);
+                this.sendSignalingMessage(this.pc.localDescription, false);
             } catch (error) {
                 log(`Error creating the answer from ${this.authuser.name}. Error: ${error}`);
             }
@@ -652,11 +650,10 @@ export default {
         async startAnswer() {
             log(`Requesting ${this.authuser.name} video stream`);
             
-            //Get user media, set the audio and video tracks and finally start video call
             await this.getUserMedia();
-            // await this.getAudioVideo();
+            await this.getAudioVideo();
 
-            // this.startVideoCall();
+            this.startVideoCall();
         },
 
         async onSignalAnswer(answer) {
@@ -666,7 +663,9 @@ export default {
                 type: answer.type,
                 sdp: answer.sdp += "\n"
             }
-            this.setRemoteDescription(data).then(this.onSetRemoteSuccess(this.pc));
+            await this.setRemoteDescription(data);
+            
+            this.onSetRemoteSuccess(this.pc);
         },
 
         onSetRemoteSuccess(pc) {
