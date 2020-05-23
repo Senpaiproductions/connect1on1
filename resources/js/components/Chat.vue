@@ -708,7 +708,9 @@ export default {
         },
 
         closeMedia(){
-            this.localStream.getTracks().forEach(function(track){track.stop();});
+            if (this.localStream != undefined) {
+                this.localStream.getTracks().forEach(function(track){track.stop();});   
+            }
         },
 
         clearView(){
