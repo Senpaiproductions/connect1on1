@@ -475,6 +475,8 @@ export default {
                 } catch (error) {
                     log(`getUserMedia error: ${error}`);
                 }
+            } else {
+                return log(`Not Requesting media`);
             }
         },
 
