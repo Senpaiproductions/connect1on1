@@ -458,13 +458,13 @@ export default {
 
             await this.getUserMedia();
 
-            this.startVideoCall();
+            //this.startVideoCall();
         },
 
         async getUserMedia() {
             log(`Requesting ${this.authuser.name} video stream`);
             if ("mediaDevices" in navigator) {
-                return log(`Requesting media`);
+                log(`Requesting media`);
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
                     this.myVideo.srcObject = stream;
@@ -475,8 +475,6 @@ export default {
                 } catch (error) {
                     log(`getUserMedia error: ${error}`);
                 }
-            } else {
-                return log(`Not Requesting media`);
             }
         },
 
