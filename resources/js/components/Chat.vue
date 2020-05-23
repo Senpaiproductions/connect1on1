@@ -457,7 +457,6 @@ export default {
             $('#videoCall').modal('show');
 
             await this.getUserMedia();
-            await this.getAudioVideo();
 
             this.startVideoCall();
         },
@@ -467,10 +466,11 @@ export default {
             if ("mediaDevices" in navigator) {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
-                    return console.log(stream)
                     this.myVideo.srcObject = stream;
                     this.localStream = stream;
                     log("Received local video stream");
+
+                    await this.getAudioVideo();
                 } catch (error) {
                     log(`getUserMedia error: ${error}`);
                 }
