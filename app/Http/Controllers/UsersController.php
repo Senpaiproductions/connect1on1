@@ -23,9 +23,6 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-
-        $users = User::paginate(30);
-
         /*foreach($users as $user) {
 
             $user->conversations = [];
@@ -53,7 +50,23 @@ class UsersController extends Controller
             $user->conversations = array_merge($sender_conversations->toArray(), $receiver_conversations->toArray());
         }*/
 
-        return view('frontend.members', compact('users'));
+        return view('frontend.members');
+    }
+
+    public function getMembers()
+    {
+        $authuser = null;
+
+        if (Auth::check()) {
+            $authuser = User::find(Auth::user()->id);    
+        }
+
+        $users = User::all();
+
+        return response()->json([
+            'authuser' => $authuser,
+            'users' => $users
+        ]);
     }
 
     public function search(Request $request)
@@ -181,4 +194,24 @@ class UsersController extends Controller
         
         return view('frontend.profile', compact('profile'));
     }
+
+    // public function videoCall($slug)
+    // {
+    //     $user = User::find(Auth::user()->id);
+    //     $otherUser = User::where('slug', $slug);
+
+    //     $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
+    //         $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
+    //     })->orWhere(function ($query) use ($user, $otherUser) {
+    //         $query->where('first_user_id', $otherUser->id)->where('second_user_id', $user->id);
+    //     })->first();
+        
+
+    // if (!$conversation) {
+    //     return redirect()->back();
+    // }
+
+
+    //     return view('frontend.user.videocall');
+    // }
 }

@@ -33,6 +33,18 @@ const api = setup({
 
 window.api = api;
 
+import Swal from "sweetalert2";
+window.Swal = Swal;
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000
+});
+
+window.Toast = Toast;
+
 import VueChatScroll from 'vue-chat-scroll';
 import VueTimeago from 'vue-timeago';
 
@@ -96,18 +108,66 @@ Vue.component('dashboard', () => import('./components/dashboard/Dashboard.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
 */
 
-import findmembers from './components/Members';
+import members from './components/Members';
 
-import chatpopup from './components/chat/ChatPopup';
+import conversations from './components/chat/Conversations';
+import popup from './components/chat/Popup';
 
 import chat from './components/Chat';
+import videocall from './components/VideoCall';
+
+import { store } from "./store.js";
 
 const app = new Vue({
     el: '#app',
+    store,
 
     components: {
-        findmembers,
-        chatpopup,
-        chat
+        members,
+        conversations,
+        popup,
+        chat,
+        videocall
+    },
+
+    computed: {
+        selectedUsers () {
+          return this.$store.getters.getSelectedUsers
+        }
+    },
+
+    mounted() {
+        Echo.private('chat')
+        .listen('MessageSent', (e) => {
+            Toast.fire({
+                type: "success",
+                title: "You got a new message from " + e.message.user.name
+            });
+
+            this.$store.dispatch('addSelectedUser', {user: e.message.user});
+        });
+    },
+
+    methods: {
+        removeSelectedUser(e) {
+            this.$store.commit('REMOVE_USER', e);
+        }
     }
+});
+
+import notifications from './components/Notifications';
+
+const notification = new Vue({
+    components:{
+        notifications
+    },
+
+    data() {
+        return {
+            editing: false,
+            updating: false
+        }
+    },
+
+    el: '#notifications'
 });

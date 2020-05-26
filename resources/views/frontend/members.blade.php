@@ -8,25 +8,16 @@
                 <h2 class="title divider">All Profiles</h2>
             </div>
         </div>
-        @if (!$users->isEmpty())
-            @auth
-                <findmembers :users="{{ json_encode($users)  }}" :authuser="{{ json_encode(Auth::user()) }}"></findmembers>
-            @endauth
-
-            @guest
-                <findmembers :users="{{ json_encode($users)  }}" authuser="null"></findmembers>
-            @endguest
-        @endif
+        
+        <members />
+        
         <div class="row">
             <div class="col-md-12 text-center">
                 <a class="button  btn-lg btn-theme full-rounded animated right-icn">
                     <span>Show More<i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span>
                 </a>
-                {!! $users->render() !!}
+                
             </div>
-            <span v-if="selectedUsers != null" class="main-chat">
-                <!--<popup-without-convo v-for="user in selectedUsers" :key="user.id" :authuser="{{ json_encode(Auth::user()) }}" :user="user"  v-on:remove="removeSelectedUser" />-->
-            </span>
         </div>
     </div>
 </section>

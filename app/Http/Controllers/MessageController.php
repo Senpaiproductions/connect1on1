@@ -267,7 +267,7 @@ class MessageController extends Controller
             
 
         if (!$conversation) {
-               return response()->json(['messages' => null]);
+               return response()->json(['messages' => null, 'conversation' => null]);
         }
         
         $messages = $conversation->messages;
@@ -281,7 +281,7 @@ class MessageController extends Controller
                 $message['user'] = User::find($message->user_id);
         }
 
-        return response()->json(['messages' => $messages]);
+        return response()->json(['messages' => $messages, 'conversation' => $conversation]);
     }
 
 
@@ -303,6 +303,6 @@ class MessageController extends Controller
                 return false;
         }
 
-        broadcast(new VideoChatStart($conversation, $message));
+        broadcast(new VideoChatStart($conversation, $message))->toOthers();
     }
 }

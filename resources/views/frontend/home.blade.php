@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<!--preloader -->
+  <div id="preloader" style="display: block;">
+    <div class="clear-loading loading-effect"><img src="/images/loading.gif" alt=""></div>
+  </div>
+  
 <!--=================================
 banner -->
 <!--<section id="main-slider" class="fullscreen" style="height: 750px !important;">
@@ -735,5 +740,5 @@ banner -->
             <!--/.Content-->
           </div>
         </div>
-    <!--Modal: Name-->
+        <!--Modal: Name-->
 @endsection

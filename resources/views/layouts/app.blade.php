@@ -31,7 +31,6 @@
     <!-- owl-carousel -->
     <link href="{{ asset('css/owl-carousel/owl.carousel.css') }}" rel="stylesheet" type="text/css">
     
-    
     <!-- General style -->
     <link href="{{ asset('css/general.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/connect.css') }}" rel="stylesheet" type="text/css">
@@ -510,15 +509,121 @@
       }
     
     </style>
+
+    <style>
+      .nk-cart-toggle {
+        cursor: pointer;
+      }
+      svg:not(:root).svg-inline--fa {
+    overflow: visible;
+}
+.svg-inline--fa.fa-w-16 {
+    width: 1em;
+}
+.svg-inline--fa {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -0.125em;
+}
+.nk-cart-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    width: 315px;
+    padding: 18px;
+    padding-bottom: 30px;
+    margin-top: 11px;
+    text-align: left;
+    visibility: hidden;
+    background-color: #232930;
+    border: 1px solid #293139;
+    border-bottom: 4px solid #dd163b;
+    opacity: 0;
+    -webkit-transition: 0.3s opacity, 0.3s visibility;
+    -o-transition: 0.3s opacity, 0.3s visibility;
+    transition: 0.3s opacity, 0.3s visibility;
+    z-index: 1010;
+}
+.nk-cart-dropdown:hover,
+.nk-cart-toggle:hover + .nk-cart-dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+.nk-cart-dropdown::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: -18px;
+  right: 0;
+  left: 0;
+  height: 18px;
+}
+.nk-cart-dropdown .nk-post-title {
+  font-size: 1rem;
+}
+.nk-cart-dropdown .nk-cart-remove-item {
+  float: right;
+  padding: 5px;
+  margin-top: -10px;
+  font-size: 1.8rem;
+  opacity: 0.2;
+  -webkit-transition: 0.15s opacity;
+  -o-transition: 0.15s opacity;
+  transition: 0.15s opacity;
+}
+.nk-cart-dropdown .nk-cart-remove-item,
+.nk-cart-dropdown .nk-cart-remove-item:hover {
+  color: #fff;
+}
+.nk-cart-dropdown .nk-cart-remove-item:hover {
+  opacity: 1;
+}
+.nk-widget-categories {
+  color: #fff !important;
+}
+.nk-widget-categories,
+.nk-widget-categories ul {
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top: -14px !important;
+  list-style-type: none !important;
+}
+.nk-widget-categories .nk-widget-categories {
+  margin-top: 0 !important;
+  margin-left: 25px !important;
+}
+.nk-widget-categories .nk-widget-categories li {
+  border-top: 1px solid #293139 !important;
+}
+.nk-widget-categories li {
+  display: block !important;
+}
+.nk-widget-categories li + li {
+  border-top: 1px solid #293139 !important;
+}
+.nk-widget-categories li a {
+  display: block !important;
+  padding: 14px 0 !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.nk-widget-categories li a.hover,
+.nk-widget-categories li a:active,
+.nk-widget-categories li a:focus,
+.nk-widget-categories li a:hover {
+  color: #dd163b !important;
+}
+.nk-widget-categories li .nk-widget-categories-count {
+  float: right !important;
+  color: inherit !important;
+  opacity: 0.5 !important;
+}
+    </style>
   </head>
     
   <body data-gr-c-s-loaded="true">
-
-        <!--=================================
-         preloader -->
-        <div id="preloader" style="display: block;">
-          <div class="clear-loading loading-effect"><img src="/images/loading.gif" alt=""></div>
-        </div>
         <!--=================================
         header -->
         <header id="header" class="dark">
@@ -536,10 +641,99 @@
                   <div class="col-md-6">
                     <div class="topbar-right text-right">
                       <ul class="list-inline social-icons color-hover">
-                        <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        {{-- <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li class="social-instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li> --}}
+                        
+                        @auth
+                          <li id="notifications">
+                            <notifications user="{{ Auth::user() }}"></notifications>
+                          </li>
+            
+                          <li>
+                            <span class="nk-cart-toggle">
+                              <svg
+                                class="svg-inline--fa fa-user fa-w-16"
+                                aria-hidden="true"
+                                data-prefix="fa"
+                                data-icon="user"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                data-fa-i2svg
+                              >
+                                <path
+                                  fill="currentColor"
+                                  d="M256 0c88.366 0 160 71.634 160 160s-71.634 160-160 160S96 248.366 96 160 167.634 0 256 0zm183.283 333.821l-71.313-17.828c-74.923 53.89-165.738 41.864-223.94 0l-71.313 17.828C29.981 344.505 0 382.903 0 426.955V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48v-37.045c0-44.052-29.981-82.45-72.717-93.134z"
+                                />
+                              </svg>
+                              <!-- <span class="fa fa-user"></span> -->
+                            </span>
+            
+                            <div class="nk-cart-dropdown" style="width: 200px;">
+                              <div class="text-center">
+                                <h5 class="nk-username">Hi, {{ Auth::user()->name }}</h5>
+                                <hr style="background: white" />
+                                <ul class="nk-widget-categories">
+                                  <li>
+                                    <a href="">Profile</a>
+                                  </li>
+                                  <li>
+                                    <a href="">Dashboard</a>
+                                  </li>
+                                  <li>
+                                    <a href="">Feeds</a>
+                                  </li>
+                                  <li>
+                                    <a href="">Downloads</a>
+                                  </li>
+                                  <li>
+                                    <a href="">
+                                      Nakama Points
+                                      <span class="nk-cart-toggle"> 
+                                        <h5
+                                          class="nk-badge"
+                                          rel="tooltip nofollow"
+                                          title="Points left for downloads"
+                                          style="font-size: 12px;"
+                                        >
+                                        <svg
+                                            aria-hidden="true"
+                                            focusable="false"
+                                            data-prefix="far"
+                                            data-icon="gem"
+                                            class="svg-inline--fa fa-gem fa-w-18"
+                                            role="img"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 576 512"
+                                          >
+                                          <path
+                                            fill="currentColor"
+                                            d="M464 0H112c-4 0-7.8 2-10 5.4L2 152.6c-2.9 4.4-2.6 10.2.7 14.2l276 340.8c4.8 5.9 13.8 5.9 18.6 0l276-340.8c3.3-4.1 3.6-9.8.7-14.2L474.1 5.4C471.8 2 468.1 0 464 0zm-19.3 48l63.3 96h-68.4l-51.7-96h56.8zm-202.1 0h90.7l51.7 96H191l51.6-96zm-111.3 0h56.8l-51.7 96H68l63.3-96zm-43 144h51.4L208 352 88.3 192zm102.9 0h193.6L288 435.3 191.2 192zM368 352l68.2-160h51.4L368 352z"
+                                          />
+                                        </svg> 
+                                        {{ Auth::user()->nakamaPoints}} 
+                                        </h5>
+                                      </span>
+                                    </a>
+                                  </li>
+                                  <li class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">
+                                    <a href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                                      {{ __('Logout') }}
+                                    </a>
+                                    
+                                    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      @csrf
+                                    </form> --}}
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        @endauth
                       </ul>
                       <ul class="list-inline text-uppercase top-menu">
                         @guest
@@ -607,7 +801,11 @@
             @yield('content')
 
             @auth
-            <chatpopup :user="{{ json_encode(Auth::user()) }}"></chatpopup>
+            <conversations :user="{{ json_encode(Auth::user()) }}"></conversations>
+
+            <span v-if="selectedUsers != null && selectedUsers.length != 0" class="main-chat">
+              <popup v-for="user in selectedUsers" :key="user.id" :user="user" :authuser="{{ json_encode(Auth::user()) }}" v-on:remove="removeSelectedUser"></popup>
+            </span>
             @endauth
           </div>
           
@@ -714,10 +912,10 @@
 
         @yield('scripts')
 
-        @auth
+        {{-- @auth
         <!-- ChatPopup js -->
         <script type="text/javascript" src="{{ asset('js/chatPopup.js') }}"></script>
-        @endauth
+        @endauth --}}
 
         <!-- bootstrap --> 
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script> 

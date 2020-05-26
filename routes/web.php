@@ -33,8 +33,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/send-message/{conversation_id}', 'MessageController@sendMessage')->name('user.messages.send');
         Route::post('/send-message-without-convo/{user_id}', 'MessageController@sendMessageWithoutConvo')->name('user.messagesWithoutConvo.send');
 
-        //Broadcast Video Call
+        
         Route::post('/trigger-video-call', 'MessageController@triggerVideoCall')->name('user.triggerVideoCall');
+        
+        //Broadcast Video Call to bigger video page
+        // Route::get('/videocall/user/{slug}', 'UsersController@videoCall')->name('frontend.video.call');
         
     });
 
@@ -50,6 +53,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about-us', 'HomeController@about')->name('about');
 Route::get('/contact-us', 'HomeController@contact')->name('contact');
 
+//Members page
 Route::get('/members', 'UsersController@index')->name('frontend.members.index');
+Route::get('/api/get-members', 'UsersController@getMembers')->name('frontend.members.get.members');
+
 Route::get('/profile/{slug}', 'UsersController@show')->name('frontend.members.show');
 Route::get('/browse', 'UsersController@browse')->name('frontend.members.browse');

@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <div v-show="videoCalling == false" class="chat-footer">
+            <div v-show="!videoCalling" class="chat-footer">
                 <form>
                     <div>
                         <button class="btn btn-light mr-3" data-toggle="tooltip" title="" type="button" data-original-title="Emoji">
@@ -216,7 +216,7 @@
             </div>
         </div>
     </div>
-    <!-- ./ video call modal -->
+    <!-- ./ video answer modal -->
 </div>
 </template>
 
@@ -416,7 +416,9 @@ export default {
             if (conversation != null) {
                 Echo.private('video.' + conversation.id)
                 .listen('VideoChatStart', (data) => {
-                    if(data.to != this.authuser.id){
+
+                    // VALIDATOR: since the other user is getting the broadcast, data.to will now be the authuser while data.from will be the other user. It's reversed
+                    if(data.from != this.otheruser.id && data.to != this.authuser.id){
                         return;
                     }
 
