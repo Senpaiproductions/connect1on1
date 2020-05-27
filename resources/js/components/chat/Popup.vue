@@ -207,7 +207,7 @@ export default {
         var h = $(window).height();
 
         if (w < 768) {
-            $('.msg_box').css('width',  w);
+            $('.msg_box').css('width',  w - 30);
             $('.msg_box').css('height', h);
 
             //Set height for scroll effect
@@ -228,7 +228,7 @@ export default {
             
             if (w < 768) {
                 console.log(w)
-                $('.msg_box').css('width', w);
+                $('.msg_box').css('width', w - 30);
                 $('.msg_box').css('height', h);
                 
                 //Set height for scroll effect
