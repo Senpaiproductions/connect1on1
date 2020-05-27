@@ -22,10 +22,10 @@
 .banner .owl-theme .owl-next, .banner .owl-theme .owl-prev  {
 	display: none;
 }
-.logo {
+/* .logo {
 	width: 200px;
 	padding: 10px 0 10px 15px;
-}
+} */
 .login-nav {
 	width: 200px;
 	padding: 7px 10px
@@ -91,7 +91,7 @@
 
 @media (max-width: 1400px) {
 .logo,.login-nav {
-	width: 160px;
+	/* width: 160px; */
 }
 .login-nav ul li a {
 	padding: 0 12px;
@@ -701,9 +701,9 @@ p.m-txt {
 .login-nav ul li {
 	padding:10px 0; 
 }
-.logo {
+/* .logo {
 	padding: 0px 0 0px 15px;
-}
+} */
 .nav-block,
 .home3 .nav-block {
 	top: 80px;

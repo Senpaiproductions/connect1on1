@@ -1,5 +1,5 @@
 <template>
-<div class="msg_box" :style="'right: 20px'">
+<div class="msg_box">
     <div class="msg_head" style="background: rgb(255, 52, 131)">
         <a href="#">
             <img :src="user.photo_url" class="img-circle img-responsive">
@@ -22,48 +22,64 @@
             <div class="text-center" id="videoCall" style="display: none; margin-top: 20px;">
                 <span>contacting {{ user.name }} </span>
                 <hr style="margin: 0; border-color: #ff3483;">
-                <div class="tex-center col-md-4 offset-md-4" style="margin-top: 20px;">
+                <div class="text-center col-md-4 offset-md-4" style="margin-top: 20px;">
                     <rotate-square5 class="video__spinner"></rotate-square5>
                 </div>
             </div>
         </div>
     </div>
+
+    <div v-show="voiceCalling" class="msg_wrap">
+        <div class="msg_body">
+            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                <audio id="localAudio" autoplay controls muted></audio>
     
-    <div v-show="!videoCalling" class="msg_wrap">
+                <audio id="remoteAudio" autoplay></audio>
+            </div>
+            <div class="text-center" id="voiceCall" style="display: none; margin-top: 20px;">
+                <span>contacting {{ user.name }} </span>
+
+                <hr style="margin: 0; border-color: #ff3483;">
+                
+                <div class="text-center col-md-4 offset-md-4" style="margin-top: 20px; margin-bottom: 20px;">
+                    <rotate-square5 class="video__spinner"></rotate-square5>
+                </div>
+                        
+                <button @click="endCall()" type="button" class="col-md-12 text-center btn btn-danger btn-floating btn-lg" style="background: #df1b5c;border-color: #df1b5c;color: #fff;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+
+                <div style="margin-bottom: 15px"></div>
+            </div>
+
+            <!-- <div class="voiceAnswer" id="voiceAnswer" style="display: none;">
+                <span>{{ otheruser }} wants to do a voice chat</span>
+                    
+                <button @click="endCall()" type="button" class="btn btn-danger btn-floating btn-lg" style="background: #df1b5c;border-color: #df1b5c;color: #fff;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                        
+                <button @click="answerCall()" type="button" class="btn btn-success btn-pulse btn-floating btn-lg" style="background: #0abb87;border-color: #0abb87;color: #fff;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </button>
+
+                <div style="margin-bottom: 15px"></div>
+            </div> -->
+        </div>
+    </div>
+    
+    <div v-show="videoCalling == false && voiceCalling == false" class="msg_wrap">
         <div class="msg_body" id="msg_body">
             <div v-if="loading" class="col-md-12" style="text-align: center; margin-top: 70px;">
                 <span class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span>
                 <span style="text-align: center;white-space: nowrap;font-size: 16px;font-weight: 600;">{{ loadingMessage }}</span>
             </div>
             <div v-if="messages.length > 0" class="msg_push">
-                <div v-for="message in messages" :key="message.id"  :class="message.user_id === user.id ? 'msg-right' : 'msg-left'">
+                <div v-for="message in messages" :key="message.id"  :class="message.user_id === user.id ? 'msg-right' : 'msg-left'" style="margin-bottom: 10px">
                     {{ message.body }}
                 </div>
 
-                <div style="margin-bottom: 10px"></div>
-
-                <div class="text-center">
-                    <div class="msg_body">
-                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                            <audio id = "localAudio" controls autoplay></audio> 
-    
-                            <audio id = "remoteAudio" controls autoplay></audio>
-                        </div>
-                    </div>
-
-                    <span>Vennesa wants to do a voice call</span>
-                    
-                    <button @click="endVideoCall()" type="button" class="btn btn-danger btn-floating btn-lg" style="background: #df1b5c;border-color: #df1b5c;color: #fff;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                    </button>
-                    
-                    <button @click="answerCall()" type="button" class="btn btn-success btn-pulse btn-floating btn-lg" style="background: #0abb87;border-color: #0abb87;color: #fff;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    </button>
-
-                    <div style="margin-bottom: 15px"></div>
-                </div>
-
+                <div style="margin-bottom: 20px"></div>
             </div>
             <div v-else>
                 <span style="text-align: center;white-space: nowrap;font-size: 16px;font-weight: 600;">No messages!</span>
@@ -79,11 +95,11 @@
                 <i class="fa fa-paper-plane"></i>
             </button>
 
-            <button type="button" @click="want2VoiceChat()" data-toggle="tooltip" title="Start voice chat" data-original-title="Start voice chat" class="btn btn-warning col-md-6" style="border: 0px;top: 5px;float: left;">
+            <button type="button" @click="want2VoiceChat()" data-toggle="tooltip" title="Start voice chat" data-original-title="Start voice chat" class="btn btn-warning col-md-6 col-sm-6 col-6" style="border: 0px;top: 5px;float: left;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             </button>
 
-            <button type="button" @click="want2VideoChat()" data-toggle="tooltip" title="Start video chat" data-original-title="Start video chat" class="btn btn-info col-md-6" style="border: 0px;top: 5px;float: left;">
+            <button type="button" @click="want2VideoChat()" data-toggle="tooltip" title="Start video chat" data-original-title="Start video chat" class="btn btn-info col-md-6 col-sm-6 col-6" style="border: 0px;top: 5px;float: left;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
             </button>
         </div>
@@ -119,6 +135,9 @@ export default {
             videoCalling: false,
             voiceCalling: false,
             isCaller: false,
+
+            //Differenciate between when first user wants a voice chat. Video chat is the default
+            otherUserRequestedVoice: false,
         
             // videos
             myVideo: {},
@@ -134,8 +153,8 @@ export default {
             //peerConnectionDidCreate
             peerConnectionDidCreate: false,
 
-            // Media config
-            constraints: {
+            // Media config Video Call
+            videoConstraints: {
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true, 
@@ -145,6 +164,16 @@ export default {
                     width: 1080, 
                     height: 720 
                 }
+            },
+
+            // Media config Voice Call
+            voiceConstraints: {
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true, 
+                    autoGainControl: false
+                },
+                video: false
             },
 
             // local & remote video stream
@@ -174,6 +203,46 @@ export default {
     },
 
     async mounted() {
+        var w = $(window).width();
+        var h = $(window).height();
+
+        if (w < 768) {
+            $('.msg_box').css('width',  w - 30);
+            $('.msg_box').css('height', h);
+
+            //Set height for scroll effect
+            $('#msg_body').css('height', h);
+            
+            // $('.msg_box').css('height', 425);
+            $('.online-side-nav').hide();
+
+            this.$store.state.conversationIsFull = true;
+        } else {
+            $('.msg_box').css('width', 250);
+            $('.online-side-nav').hide();
+        }
+        
+        $(window).on('resize', function(){
+            var w = $(window).width();
+            var h = $(window).height();
+            
+            if (w < 768) {
+                console.log(w)
+                $('.msg_box').css('width', w - 30);
+                $('.msg_box').css('height', h);
+                
+                //Set height for scroll effect
+                $('#msg_body').css('height', h);
+                // $('.msg_box').css('height', 425);
+                $('.online-side-nav').hide();
+
+                this.$store.state.conversationIsFull = true;
+            } else {
+                $('.msg_box').css('width', 250);
+                $('.online-side-nav').hide();
+            }
+        });
+        
         await this.getMessages(this.user.id)
     },
 
@@ -308,8 +377,8 @@ export default {
                 this.myVideo = document.getElementById("localVideo");
                 this.remoteVideo = document.getElementById("remoteVideo");
 
-                this.myAudio = document.querySelector('#localAudio'); 
-                this.remoteAudio = document.querySelector('#remoteAudio');
+                this.myAudio = document.getElementById('localAudio'); 
+                this.remoteAudio = document.getElementById('remoteAudio');
 
                 // Create peer connection
                 this.createPeerConnection();
@@ -322,7 +391,7 @@ export default {
 
         async want2VoiceChat() {
             Swal.fire({
-                title: "Attempting To Voice Call " + this.user.name,
+                title: "Attempting To Call " + this.user.name,
                 type: "info",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -330,7 +399,7 @@ export default {
                 confirmButtonText: "Proceed"
             }).then(result => {
                 if (result.value) {
-                    this.answerCall();
+                    this.requestVoiceCall();
                 }
             });
         }, 
@@ -371,22 +440,10 @@ export default {
             this.isCaller = true;
             $('#voiceCall').show();
 
-            if ("mediaDevices" in navigator) {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
-                    this.myVideo.srcObject = stream;
-                    this.localStream = stream;
+            await this.getUserVoiceMedia();
+            await this.getAudio();
 
-                    log("Received local audio stream");
-
-                    //displaying local audio stream on the page
-                    this.localAudio.src = window.URL.createObjectURL(stream);
-
-                    this.startVoiceCall();
-                } catch (error) {
-                    log(`getUserMedia error: ${error}`);
-                }
-            }
+            this.startVoiceCall();
         },
 
         async requestVideoCall() {
@@ -401,7 +458,7 @@ export default {
                 return;
             }
 
-            if (tthis.voiceCalling || this.videoCalling) {
+            if (this.voiceCalling || this.videoCalling) {
                 return;
             }
 
@@ -420,10 +477,24 @@ export default {
             log(`Requesting ${this.authuser.name} video stream`);
             if ("mediaDevices" in navigator) {
                 try {
-                    const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+                    const stream = await navigator.mediaDevices.getUserMedia(this.videoConstraints);
                     this.myVideo.srcObject = stream;
                     this.localStream = stream;
                     log("Received local video stream");
+                } catch (error) {
+                    log(`getUserMedia error: ${error}`);
+                }
+            }
+        },
+
+        async getUserVoiceMedia() {
+            log(`Requesting ${this.authuser.name} video stream`);
+            if ("mediaDevices" in navigator) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia(this.voiceConstraints);
+                    this.myAudio.srcObject = stream;
+                    this.localStream = stream;
+                    log("Received local voice stream");
                 } catch (error) {
                     log(`getUserMedia error: ${error}`);
                 }
@@ -437,13 +508,18 @@ export default {
             if (audio.length > 0) log(`Using audio device: ${audio[0].label}`);
         },
 
+        getAudio() {
+            const audio = this.localStream.getAudioTracks();
+            if (audio.length > 0) log(`Using audio device: ${audio[0].label}`);
+        },
+
         // Send signaling data via Scaledrone
         async sendSignal(details) {
             let user = this.authuser.id; 
             let otheruser = this.user.id;
             //return console.log(details['content'])
 
-            var message = { from: user, to: otheruser, type: details['type'], subtype: details['subtype'], content: details['content'], time: new Date() };
+            var message = { from: user, to: otheruser, type: details['type'], subtype: details['subtype'], content: details['content'], contact_type: details['contact_type'], time: new Date() };
             await axios.post('/trigger-video-call', {message: message});
         },
 
@@ -488,7 +564,7 @@ export default {
                 //User already in a call so don't let him proceed
                 Toast.fire({
                     type: "error",
-                    title: "You are already in a call with " + this.user.name
+                    title: "You are already in a video call with " + this.user.name
                 });
 
                 return;
@@ -498,7 +574,7 @@ export default {
                 //User already in a call so don't let him proceed
                 Toast.fire({
                     type: "error",
-                    title: "You are already in a call with " + this.user.name
+                    title: "You are already in a voice call with " + this.user.name
                 });
 
                 return;
@@ -534,7 +610,18 @@ export default {
                     details['subtype'] = 'candidate';
                     details['content'] = candidate;
 
+                    //Tell the other user you only want voice chat
+                    if (this.voiceCalling) {
+                        details['contact_type'] = 'Voice';
+                    }
+                    else {
+                        //Video is default
+                        details['contact_type'] = 'Video';
+                    }
+
                     this.sendSignal(details);
+
+                    //Limit the number of ICEs to be sent to avoid recuring multiple times
                     limit = 1;
                 } else {
                     return;
@@ -614,13 +701,27 @@ export default {
             details['subtype'] = isOffer;
             details['content'] = desc;
 
+            //Tell the other user you only want voice chat
+            if (this.voiceCalling) {
+                details['contact_type'] = 'Voice';
+            }
+            else {
+                //Video is default
+                details['contact_type'] = 'Video';
+            }
+
             this.sendSignal(details);
         },
 
         onSignalMessage(m) {
             log(m.subtype);
 
+            //pop up the session to the user who has been called by adding him to a conversation
             this.$store.dispatch('addSelectedUser', {user: this.user});
+
+            if (m.contact_type == 'Voice') {
+                this.otherUserRequestedVoice = true;
+            }
             
             if(m.subtype === 'offer') {
                 log('got remote offer from ' + m.from + ', content ' + m.content);
@@ -647,19 +748,35 @@ export default {
             }
             await this.setRemoteDescription(data);
 
-            Swal.fire({
-                title: "Incoming Call...",
-                text: this.user.name + " is calling you",
-                type: "info",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Answer"
-            }).then(result => {
-                if (result.value) {
-                    this.answerCall();
-                }
-            });
+            if (this.otherUserRequestedVoice) {
+                Swal.fire({
+                    title: "Incoming Call...",
+                    text: this.user.name + " is calling you",
+                    type: "info",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Answer"
+                }).then(result => {
+                    if (result.value) {
+                        this.answerCall();
+                    }
+                });   
+            } else {
+                Swal.fire({
+                    title: "New Video Chat Request",
+                    text: this.user.name + " wants to video chat.",
+                    type: "info",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Answer"
+                }).then(result => {
+                    if (result.value) {
+                        this.answerCall();
+                    }
+                });
+            }
             
             // $('#videoAnswer').show();
         },
@@ -673,11 +790,18 @@ export default {
 
         async startAnswer() {
             log(`Requesting ${this.user.name} video stream`);
-            
-            await this.getUserMedia();
-            await this.getAudioVideo();
 
-            this.startVideoCall();
+            if (this.otherUserRequestedVoice) {
+                await this.getUserVoiceMedia();
+                await this.getAudio();
+
+                this.startVoiceCall();
+            } else{
+                await this.getUserMedia();
+                await this.getAudioVideo();
+
+                this.startVideoCall();
+            }
         },
 
         async onSignalAnswer(answer) {
@@ -693,7 +817,12 @@ export default {
         },
 
         onSetRemoteSuccess(pc) {
-            $('#videoCall').hide();
+            if (this.otherUserRequestedVoice) {
+                $('#voiceCall').hide();
+            } else {
+                $('#videoCall').hide();
+            }
+        
             log(pc + ' setRemoteDescription complete');
         },
 
@@ -708,10 +837,10 @@ export default {
         },
 
         async close() {
-            if (this.pc != undefined) {
+            if (this.videoCalling || this.voiceCalling) {
                 Swal.fire({
-                    title: "End Video Chat",
-                    text: "Closing this chat will end your video session with " + this.user.name,
+                    title: "Attempting To End Call?",
+                    text: "Closing this chat will end your current call session with " + this.user.name,
                     type: "error",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
@@ -719,7 +848,7 @@ export default {
                     confirmButtonText: "End call"
                 }).then(result => {
                     if (result.value) {
-                        this.endVideoCall();
+                        this.endCall();
                     } else {
                         return
                     }
@@ -730,14 +859,23 @@ export default {
         },
 
         //Video call already going on and member wants to end it
-        endVideoCall() {
+        async endCall() {
             let details = [];
 
             details['type'] = 'signal';
             details['subtype'] = 'close';
             details['content'] = 'ending the call';
 
-            this.sendSignal(details);
+            //Tell the other user you only want voice chat
+            if (this.voiceCalling) {
+                details['contact_type'] = 'Voice';
+            }
+            else {
+                //Video is default
+                details['contact_type'] = 'Video';
+            }
+
+            await this.sendSignal(details);
 
             log('Ending call');
             this.pc.close();
@@ -771,7 +909,11 @@ export default {
             this.closeMedia();
             this.clearView();
 
-            $('#videoCall').hide()
+            if (this.otherUserRequestedVoice) {
+                $('#voiceCall').hide();
+            } else {
+                $('#videoCall').hide();
+            }
         },
 
         closeMedia(){
@@ -779,8 +921,13 @@ export default {
         },
 
         clearView(){
-            this.myVideo.srcObject = null;
-            this.remoteVideo.srcObject = null;
+            if (this.otherUserRequestedVoice) {
+                this.myAudio.srcObject = null;
+                this.remoteAudio.srcObject = null;
+            } else {
+                this.myVideo.srcObject = null;
+                this.remoteVideo.srcObject = null;
+            }
 
             Toast.fire({
                 type: "success",
@@ -801,6 +948,7 @@ input[type="text"]:disabled, button:disabled {
     position: relative;
     right: 0;
     margin-left: 5px;
+    height: 100%;
     pointer-events: auto;
 }
 </style>

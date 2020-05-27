@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        selectedUsers: []
+        selectedUsers: [],
+        conversationIsFull: false,
     },
 
     getters: {
@@ -19,6 +20,10 @@ export const store = new Vuex.Store({
 
         SET_CONVERSATION: (state, payload) => {
             state.conversation = payload
+        },
+
+        CONVO_FULL: (state, payload) => {
+            state.conversationIsFull = payload;
         },
 
         REMOVE_USER: (state, payload) => {
@@ -42,6 +47,14 @@ export const store = new Vuex.Store({
                 return;
                 
             } else{
+                if (store.state.selectedUsers.length > 4) {
+                    return;
+                }
+
+                if (store.state.conversationIsFull) {
+                    return;
+                }
+
                 commit('SET_USER', user)
             }
         }

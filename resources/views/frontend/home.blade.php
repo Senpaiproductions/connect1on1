@@ -111,7 +111,7 @@ banner -->
         </section>-->
         
 
-        <section id="home-slider" class=" home-slider">
+        <section id="home-slider" class="fullscreen">
           <div id="main-slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item h-100 bg-overlay-red active" style="background: url(/images/bg/bg-1.jpg) no-repeat 0 0; background-size: cover;">
@@ -120,7 +120,7 @@ banner -->
                     <div class="row carousel-caption align-items-center h-100">
                       <div class="col-md-12 text-right">
                         <div class="slider-1">
-                          <h1 class="animated2 text-white">CONNECT1ON1.COM IS A <span>100% FREE SITE</span></h1>
+                          <h2 class="animated2 text-white">CONNECT1ON1.COM IS A <span>100% FREE SITE</span></h2>
                         </div>
                       </div>
                     </div>
@@ -133,7 +133,7 @@ banner -->
                     <div class="row carousel-caption align-items-center h-100">
                       <div class="col-md-12 text-left">
                         <div class="slider-1">
-                          <h1 class="animated7 text-white">CONNECT WITH <span> SEXY SINGLES!</span></h1>
+                          <h2 class="animated7 text-white">CONNECT WITH <span> SEXY SINGLES!</span></h2>
                         </div>
                       </div>
                     </div>
@@ -146,7 +146,7 @@ banner -->
                     <div class="row carousel-caption align-items-center h-100">
                       <div class="col-md-12 text-left">
                         <div class="slider-1">
-                          <h1 class="animated7 text-white">Chat Via <span>Audio, Webcam Or Text!</span></h1>
+                          <h2 class="animated7 text-white">Chat Via <span>Audio, Webcam Or Text!</span></h2>
                         </div>
                       </div>
                     </div>

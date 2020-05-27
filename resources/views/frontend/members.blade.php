@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center mb-5 sm-mb-3">
             <div class="col-md-8 text-center">
-                <h2 class="title divider">All Profiles</h2>
+                <h2 class="title divider">Matches</h2>
             </div>
         </div>
         

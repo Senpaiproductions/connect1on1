@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>User | Connect1on1</title>
+    <title>Chat | Connect1on1</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico">

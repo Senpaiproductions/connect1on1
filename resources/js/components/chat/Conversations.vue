@@ -39,18 +39,18 @@ export default {
     },
 
     created() {
-       this.getChat()
+       this.getConversations()
     },
 
     methods: {
-        async getChat() {
+        async getConversations() {
             if (this.user == null) {
                 return window.location.href = '/login';
             }
 
             this.loading = true;
 
-            let url = `/get-conversations/${this.user.id}`
+            let url = `/get-conversations`
 
             axios.get(url)
             .then((response) => {

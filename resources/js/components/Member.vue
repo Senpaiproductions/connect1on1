@@ -2,10 +2,10 @@
   <div class="col-md-3 sm-mb-3">
       <div class="profile-item-hover-1">
         <div class="profile-item">
-          <div class="profile-image clearfix">
-            <Skeleton height="200px" :src="user.photo_url">
-              <img class="img-fluid" data-toggle="modal" :data-target="'#modal' + user.id" :src="user.photo_url" :alt="user.name" style="cursor: pointer;" />            
-            </Skeleton>
+          <div class="profile-image member-image-div clearfix">
+            <Skeleton height="200px" :duration="20" v-if="!user.photo_url" />
+            
+            <img v-else class="img-fluid member-image" data-toggle="modal" :data-target="'#modal' + user.id" :src="user.photo_url" :alt="user.name" style="cursor: pointer;" />
           </div>
 
           <div class="profile-details profile-text">
@@ -20,7 +20,7 @@
             <div class="row">
                 <button
                     @click.prevent="emitSelectUser(user)"
-                    class="col-md-6 btn btn-success btn-pulse btn-floating btn-lg"
+                    class="col-md-6 col-sm-6 col-6 btn btn-success btn-pulse btn-floating btn-lg"
                     style="background: #0abb87;border-color: #0abb87;color: #fff;"
                     type="button"
                     data-toggle="tooltip"
@@ -45,7 +45,7 @@
 
                 <button
                     @click.prevent="emitSelectUserVideo(user)"
-                    class="col-md-6 btn btn-danger btn-floating btn-lg"
+                    class="col-md-6 col-sm-6 col-6 btn btn-danger btn-floating btn-lg"
                     type="button"
                     data-toggle="tooltip"
                     title="Video chat"
@@ -124,7 +124,6 @@
                                 >
                                     <div class id="ui-id-8">
                                         <div class="endless">
-                                            
                                             <img
                                             :src="user.photo_url"
                                             class="prof--image--size"
@@ -330,5 +329,14 @@ export default {
 </script>
 
 <style>
+.member-image-div{
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
 
+.member-image {
+    height: 40vh;
+    width: 100%;
+}
 </style>

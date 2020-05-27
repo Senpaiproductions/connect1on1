@@ -75,7 +75,14 @@ class MessageController extends Controller
         ]);
     }*/
 
-    public function chats(Request $request, $slug)
+    public function chat()
+    {
+        $user = User::find(Auth::user()->id);
+ 
+        return view('frontend.user.chat')->with('user', $user);
+    }
+
+    /*public function chats(Request $request, $slug)
     {
         $user = User::find(Auth::user()->id);
         $otherUser = User::where('slug', $slug)->first();
@@ -92,10 +99,10 @@ class MessageController extends Controller
 
  
         return view('frontend.user.chat')->with('otherUser', $otherUser)->with('conversation', $conversation);
-    }
+    }*/
 
 
-    public function chat(Request $request, $slug)
+    /*public function chat(Request $request, $slug)
     {
         $user = User::find(Auth::user()->id);
         $otherUser = User::where('slug', $slug)->first();
@@ -122,64 +129,53 @@ class MessageController extends Controller
         return dd($conversation->to_user);
 
         return view('user.dashboard', compact('conversation'));
-    }
+    }*/
 
-    public function getConversations($user_id) 
+    public function getConversations() 
     {
         $user = User::find(Auth::user()->id);
 
 
         $conversations = [];
 
-        $sender_conversations = Conversation::where('second_user_id', $user->id)
+        $receiver_conversations = Conversation::where('second_user_id', $user->id)
             ->latest()
             ->get();
         
-        if ( count($sender_conversations) ) {
-                foreach ($sender_conversations as $convo) {
+        if ( count($receiver_conversations) ) {
+                foreach ($receiver_conversations as $convo) {
                         $convo['person'] = User::find($convo->first_user_id);
                 }       
         }
 
-        $receiver_conversations = Conversation::where('first_user_id', $user->id)
+        $sender_conversations = Conversation::where('first_user_id', $user->id)
             ->latest()
             ->get();
 
-        if ( count($receiver_conversations) ) {
-                foreach ($receiver_conversations as $convo) {
+        if ( count($sender_conversations) ) {
+                foreach ($sender_conversations as $convo) {
                         $convo['person'] = User::find($convo->second_user_id);
                 }       
         }
         
-        $conversations = array_merge($sender_conversations->toArray(), $receiver_conversations->toArray());
+        $conversations = array_merge($receiver_conversations->toArray(), $sender_conversations->toArray());
 
         return response()->json(['conversations' => $conversations]);
     }
 
-    public function fetchMessages($user_id)
+    public function fetchMessages($conversation_id)
     {
         $user = User::find(Auth::user()->id);
-        $otherUser = User::find($user_id);
-
-        if ($user->id == $otherUser->id) {
-                return redirect()->back();
-        }
-
-        $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
-                $query->where('first_user_id', $user->id)->where('second_user_id', $otherUser->id);
-            })->orWhere(function ($query) use ($user, $otherUser) {
-                $query->where('first_user_id', $otherUser->id)->where('second_user_id', $user->id);
-            })->first();
-            
+        $conversation = Conversation::find($conversation_id);
 
         if (!$conversation) {
-               return response()->json(['messages' => null]);
+               return response()->json(['messages' => 'no conversation']);
         }
         
         $messages = $conversation->messages;
 
         foreach ($messages as $message) {
-                if($message->seen === 0 && ($message->user_id !== \Auth::user()->id)) {
+                if($message->seen === 0 && ($message->user_id !== $user->id)) {
                         $message->seen = 1;
                         $message->save();
                 }
@@ -226,7 +222,7 @@ class MessageController extends Controller
                 'body' => $body
         ]);
 
-        broadcast(new MessageSent($message->load('user')))->toOthers();
+        // broadcast(new MessageSent($message->load('user')))->toOthers();
 
         return response()->json([
                 'message' => $message->load('user')

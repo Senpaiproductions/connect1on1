@@ -19,16 +19,16 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'api'], function () {
         Route::post('/change-background', 'UsersController@changeBackground')->name('user.change.background');
-        Route::get('/get-conversations/{user_id}', 'MessageController@getConversations')->name('messages.conversations');
-        Route::get('/messages/user/{id}', 'MessageController@chat')->name('messages.chat');
+        Route::get('/get-conversations', 'MessageController@getConversations')->name('messages.conversations');
+        // Route::get('/messages/user/{id}', 'MessageController@chat')->name('messages.chat');
 
         //Get messages for mini chat popup (with conversation)
         Route::get('/mini-messages/{conversation_id}', 'MessageController@fetchMiniMessages')->name('user.messages.fetchMiniMessages');
         //Get messages for mini chat popup (without conversation)
         Route::get('/mini-messages-without-convo/{user_id}', 'MessageController@fetchMiniMessagesWithoutConvo')->name('user.messages.fetchMiniMessagesWithoutConvo');
         
-        //Get messages for normal chat (with conversation or without conversation)
-        Route::get('/messages/{user_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
+        //Get messages for normal chat page (with conversation)
+        Route::get('/messages/{conversation_id}', 'MessageController@fetchMessages')->name('user.messages.fetch');
         
         Route::post('/send-message/{conversation_id}', 'MessageController@sendMessage')->name('user.messages.send');
         Route::post('/send-message-without-convo/{user_id}', 'MessageController@sendMessageWithoutConvo')->name('user.messagesWithoutConvo.send');
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function() {
         
     });
 
-    Route::any('/chat/{slug}', 'MessageController@chats')->name('user.chat');
+    Route::any('/chat', 'MessageController@chat')->name('user.chat');
 
     Route::group(['prefix' => '@me'], function () {
         Route::any('/', 'UsersController@dashboard')->name('user.dashboard')->middleware('profile_completed');

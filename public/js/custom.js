@@ -370,7 +370,7 @@ POTENZA.countdownTimer = function () {
 /*************************
      FullScreen
 *************************/
-/*POTENZA.screenSizeControl = function () {
+POTENZA.screenSizeControl = function () {
     if ($fullScreen.exists()) {
     $fullScreen.each(function () {
         var $elem = $(this),
@@ -386,28 +386,28 @@ POTENZA.countdownTimer = function () {
         $elem.css('height', elemHeight / 1.5);
     });
     }
-};*/
+};
 
 /*************************
      FullScreen
 *************************/
-POTENZA.screenSizeControl = function () {
-  if ($fullScreen.exists()) {
-  $fullScreen.each(function () {
-      var $elem = $(this),
-          elemHeight = $window.height();
-      if($window.width() < 768 ) $elem.css('height', elemHeight/ 1.1);
-      else $elem.css('height', elemHeight);
-  });
-  }
-  if ($halfScreen.exists()) {
-  $halfScreen.each(function () {
-      var $elem = $(this),
-          elemHeight = $window.height();
-      $elem.css('height', elemHeight / 1.5);
-  });
-  }
-};
+// POTENZA.screenSizeControl = function () {
+//   if ($fullScreen.exists()) {
+//   $fullScreen.each(function () {
+//       var $elem = $(this),
+//           elemHeight = $window.height();
+//       if($window.width() < 768 ) $elem.css('height', elemHeight/ 1.1);
+//       else $elem.css('height', elemHeight);
+//   });
+//   }
+//   if ($halfScreen.exists()) {
+//   $halfScreen.each(function () {
+//       var $elem = $(this),
+//           elemHeight = $window.height();
+//       $elem.css('height', elemHeight / 1.5);
+//   });
+//   }
+// };
 
 
 
@@ -508,8 +508,8 @@ POTENZA.rangeslider = function () {
     		POTENZA.Contactform(),
     		POTENZA.countdownTimer(),
     		POTENZA.goToTop(),
-        POTENZA.mediaPopups(),
-        //POTENZA.screenSizeControl(),
+        // POTENZA.mediaPopups(),
+        POTENZA.screenSizeControl(),
         POTENZA.textrotatefn(),
         POTENZA.rangeslider(),
         POTENZA.stepwizard(),
@@ -517,7 +517,7 @@ POTENZA.rangeslider = function () {
     });
 
     $window.resize(function() {
-       //POTENZA.screenSizeControl();
+      POTENZA.screenSizeControl();
     });
 
 
