@@ -222,7 +222,7 @@ class MessageController extends Controller
                 'body' => $body
         ]);
 
-        // broadcast(new MessageSent($message->load('user')))->toOthers();
+        broadcast(new MessageSent($message->load('user')))->toOthers();
 
         return response()->json([
                 'message' => $message->load('user')
